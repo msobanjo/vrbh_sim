@@ -2,10 +2,10 @@
 
 ## Attendance
 
-Aston   - y
-George  - y
-Michael - y
-Shakeel - y
+* Aston   - y
+* George  - y
+* Michael - y
+* Shakeel - y
 
 ********
 
