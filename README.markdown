@@ -18,3 +18,6 @@ Obviously what's being implemented isn't going to be anything major as this is
 just for the sake of getting familiar with Git and demonstrating that everyone
 in the group has an idea of how to use things. It should also highlight any
 particular areas that are uncertain for yourself in this workflow.
+
+
+##### Add your files to the directory `git-testing`, with your name in the file name.
