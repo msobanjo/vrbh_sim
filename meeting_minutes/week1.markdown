@@ -69,6 +69,9 @@ tooling, workflow and familiarity with what's going to be involved.
 
 #### Git Activity
 
+**Have a look at the activity on the `git-test-dev` branch of this repo (in the
+README)**
+
 This was to go over in the meeting but is worth looking at. The idea is to get a
 feel of the approach that will be used when collaborating on the project in
 terms of implementing features on your machines locally and committing them to
