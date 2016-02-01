@@ -51,11 +51,8 @@ class Node:
     def get_neighbours(self):
         """needs to know what vertices are near to it and work out the weight to
         travel to them (which will be used in the case of avoiding and obstacles)
-
         The way to get them will be using the matrix calculation I think...
-
         this is only for square matrices
-
         x = col = ceil(node_n / matrix_width)
         y = row = node_n mod(matrix_width)
         """
@@ -63,7 +60,6 @@ class Node:
 
     def set_robot(self):
         """This needs to set the colour of a node to be the robot colour
-
         Maybe this should also take input to change the last one from being a
         robot
         """
@@ -124,7 +120,7 @@ node_dict = {}
 
 # I want to create a dictionary of nodes here - this will only create a square
 # matrix at the mo
-for i in range(1, (MATRIX_TOTAL)+1):
+for i in range(0, (MATRIX_TOTAL)):
     row = size * math.ceil(i / V_NUM_H)
     col = size * (i % V_NUM_H)
     node_dict[i] = Node(col, row, size)
