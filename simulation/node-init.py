@@ -121,8 +121,8 @@ node_dict = {}
 # I want to create a dictionary of nodes here - this will only create a square
 # matrix at the mo
 for i in range(0, (MATRIX_TOTAL)):
-    row = size * math.ceil(i / 40)
-    col = size * (i % 40)
+    row = size * math.ceil(i / V_NUM_H)
+    col = size * (i % V_NUM_H)
     node_dict[i] = Node(col, row, size)
 
 # TODO: at the moment the robot position is just set as a pretty random value.
