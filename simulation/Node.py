@@ -1,11 +1,15 @@
+
 class Node:
-    """
-    Will be each node on the screen - robot - obj etc...
+    """Will be each node on the screen - robot - obj etc...
+
+    Takes input of x and y positions, and colour values for the different node
+    types.
+
     """
 
     def __init__(self, x1, y1,
                  side_len,
-                 canvas_in,
+                 canvas,
                  weight=1,
                  price=5,
                  colour="#555",
@@ -21,9 +25,9 @@ class Node:
         self.x2 = x2
         self.y2 = y2
         self.colour = colour
+        self.canvas = canvas
         # colour to change the node to that's representing the robot
         self.robot_colour = robot_colour
-        self.canv = canvas_in
         self.outline = outline
         # all nodes are of weight 1 initially
         self.weight = weight
@@ -31,10 +35,9 @@ class Node:
         self.value = price
         # not sure if this'll be useful atm
         self.am_robot = False
-
     def display(self):
         """display the vertice on screen"""
-        self.canv.create_rectangle(self.x1,
+        self.canvas.create_rectangle(self.x1,
                                 self.y1,
                                 self.x2,
                                 self.y2,
@@ -72,4 +75,8 @@ class Node:
         return info
 
     def pass_the_butter(self):
+        print("""Butter Robot: What is my purpose?
+Rick: You pass butter
+Butter Robot: Oh my god
+Rick: Yeah, welcome to the club, pal""")
         return "butter"
