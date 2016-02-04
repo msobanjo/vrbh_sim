@@ -67,7 +67,7 @@ def robot_square(event):
 def main_animate():
     """This is currently the main section that's iterated over for the animation
     """
-    change_node_colour = random.randint(1, MATRIX_TOTAL)
+    change_node_colour = random.randint(1, MATRIX_TOTAL_NODE_AMOUNT)
     for index in range(len(unpacked_list)): # Iterates the list to set the colours
         node = unpacked_list[index]
         if index == change_node_colour:
@@ -106,7 +106,7 @@ canvas.bind('<Button-1>', lambda event: robot_square(event))
 # -----------------------------------
 
 # this are just used for testing at the moment
-set_objs = [random.randint(0,MATRIX_TOTAL) for x in range(9)]
+set_objs = [random.randint(0,MATRIX_TOTAL_NODE_AMOUNT) for x in range(9)]
 
 ###############################################################################
 
