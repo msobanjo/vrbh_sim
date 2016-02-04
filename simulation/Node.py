@@ -24,6 +24,11 @@ class Node:
         self.y1 = y1
         self.x2 = x2
         self.y2 = y2
+
+        # get the center point of a node object
+        self.mx = (x1 + x2) / 2
+        self.my = (y1 + y2) / 2
+
         self.colour = colour
         self.canvas = canvas
         # colour to change the node to that's representing the robot
