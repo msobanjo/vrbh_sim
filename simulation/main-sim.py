@@ -6,6 +6,8 @@ import time
 from itertools import chain
 
 from Node import Node
+from AllGraph import Graph
+
 # from AllGraph import Graph
 
 print("939495")
@@ -37,6 +39,12 @@ canvas = Canvas(root,
 canvas.pack()
 
 ###############################################################################
+
+test_graph = Graph(NODE_NUM_H, NODE_NUM_W, NODE_SIZE, canvas)
+
+
+print("length = {}".format(len(test_graph.matrix)))
+print("total length = {}".format((test_graph.node_number)))
 
 def create_node_matrix(
         NODE_NUM_H,
@@ -97,22 +105,25 @@ def draw_line(a, b, canvas):
 bot = "test"
 it = "test"
 
+
 def main_animate():
     """This is currently the main section that's iterated over for the animation
     """
+
     robot_is_set = False
     item_is_set = False
     change_node_colour = random.randint(1, MATRIX_TOTAL_NODE_AMOUNT)
 
-    for index in range(len(unpacked_list)): # Iterates the list to set the colours
+    # for index in range(len(unpacked_list)): # Iterates the list to set the colours
+    for index in range((test_graph.node_number)): # Iterates the list to set the colours
         node = unpacked_list[index]
 
+        # print("unpacked = {}".format(len(unpacked_list)))
         # This is just to draw the line in at the moment
         if index == fixed_robot:
             node.set_robot()
             bot = node
             robot_is_set = True
-            print("node = \n\t{}".format(node))
         if index == fixed_item:
             node.set_colour('#fff')
             line_nodes.append(node)
@@ -120,11 +131,6 @@ def main_animate():
             it = node
         if robot_is_set and item_is_set:
             draw_line(bot, it, canvas)
-
-        # if index == change_node_colour:
-        #     node.set_colour('#aaf')
-        # if index in set_objs:
-        #     node.set_colour("#f81")
 
         node.display()
     root.after(SCREEN_REFRESH, main_animate)
