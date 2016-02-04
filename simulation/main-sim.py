@@ -64,16 +64,39 @@ def robot_square(event):
     canvas.unbind('<Button-1>')
     robot.pass_the_butter() # Gets butter
 
+
+
+##########################
+
+
+# create a fixed robot node
+# create a fixed object node
+# draw a line between the two nodes
+
+fixed_robot = 100
+fixed_object = 750
+
+#########################
+
 def main_animate():
     """This is currently the main section that's iterated over for the animation
     """
     change_node_colour = random.randint(1, MATRIX_TOTAL_NODE_AMOUNT)
     for index in range(len(unpacked_list)): # Iterates the list to set the colours
         node = unpacked_list[index]
+        if index == fixed_robot:
+            node.set_robot()
+            print("node = \n\t{}".format(node))
+        if index == fixed_object:
+            node.set_colour('#fff')
+
+        """   
         if index == change_node_colour:
             node.set_colour('#aaf')
         if index in set_objs:
             node.set_colour("#f81")
+        """
+
         node.display()
     root.after(SCREEN_REFRESH, main_animate)
 
@@ -87,10 +110,10 @@ node_list = create_node_matrix(NODE_NUM_H, NODE_NUM_W, NODE_SIZE)
 
 ###############################################################################
 
-# I want to create a dictionary of nodes here - this will only create a square
-# matrix at the mo
-set_robot_val = 0
-set_robot_counter = 0
+# # I want to create a dictionary of nodes here - this will only create a square
+# # matrix at the mo
+# set_robot_val = 0
+# set_robot_counter = 0
 
 ###############################################################################
 
