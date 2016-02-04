@@ -1,7 +1,7 @@
 from Tkinter import *
 import math
 import random
- time
+import time
 # used to convert the 2D array into a 1D array
 from itertools import chain
 
