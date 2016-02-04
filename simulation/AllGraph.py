@@ -46,14 +46,17 @@ class Graph:
     def run(self):
         pass
 
-    def render():
+    def render(self):
         """This should render the graph on screen.
 
         # TODO: IS there a way to just render one of the nodes at a time? or to
         # change it; doing all of them each time could be quite expensive.
 
+        Ideally this will only have to be done once.
         """
-        pass
+        for index_r, a_row in enumerate(self.matrix):
+            for index_b, a_node in enumerate(a_row):
+                a_node.display()
 
     def draw_line():
         """This is going to take a path and draw a line along the given path. The path

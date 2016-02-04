@@ -105,6 +105,8 @@ def draw_line(a, b, canvas):
 bot = "test"
 it = "test"
 
+# render all nodes once then update within the loop nodes as necessary
+test_graph.render()
 
 def main_animate():
     """This is currently the main section that's iterated over for the animation
@@ -114,26 +116,36 @@ def main_animate():
     item_is_set = False
     change_node_colour = random.randint(1, MATRIX_TOTAL_NODE_AMOUNT)
 
-    # for index in range(len(unpacked_list)): # Iterates the list to set the colours
-    for index in range((test_graph.node_number)): # Iterates the list to set the colours
-        node = unpacked_list[index]
+    # Iterates the list to set the colours
+    # for index in range(len(unpacked_list)):
 
-        # print("unpacked = {}".format(len(unpacked_list)))
-        # This is just to draw the line in at the moment
-        if index == fixed_robot:
-            node.set_robot()
-            bot = node
-            robot_is_set = True
-        if index == fixed_item:
-            node.set_colour('#fff')
-            line_nodes.append(node)
-            item_is_set = True
-            it = node
-        if robot_is_set and item_is_set:
-            draw_line(bot, it, canvas)
+    count = 0
 
-        node.display()
+    for index_r, a_row in enumerate(test_graph.matrix):
+        for index_b, a_node in enumerate(a_row):
+            # index = count
+            if count == fixed_robot:
+                a_node.set_robot()
+                bot = a_node
+                robot_is_set = True
+                bot.display()
+
+            if count == fixed_item:
+                a_node.set_colour('#fff')
+                line_nodes.append(a_node)
+                item_is_set = True
+                it = a_node
+                it.display()
+
+            if robot_is_set and item_is_set:
+                draw_line(bot, it, canvas)
+
+            # a_node.display()
+            count += 1
+
     root.after(SCREEN_REFRESH, main_animate)
+
+
 
 ###############################################################################
 
