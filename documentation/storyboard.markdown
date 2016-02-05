@@ -23,4 +23,10 @@ Here is an image with a markdown image tag -
 
 Are done with `*` such as **bold** and *italic*
 
+## URLS 
+
+linked with `[` stuff
+
+[here's a hyperlink](www.google.com)
+
 ******
