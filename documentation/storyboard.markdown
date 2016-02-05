@@ -21,6 +21,4 @@ Here is an image with a markdown image tag -
 
 Here is an image with HTML tag (for location)
 
-<p align="center"
-<img src="http://i.imgur.com/KoT1wEU.png" width="350">
-<p>
+<p align="center"<img src="http://i.imgur.com/KoT1wEU.png" width="350"><p>
