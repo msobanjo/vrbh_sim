@@ -19,5 +19,8 @@ Here is an image with a markdown image tag -
 
 ![img](http://i.imgur.com/KoT1wEU.png)
 
+## Bold italic
+
+Are done with `*` such as **bold** and *italic*
 
 ******
