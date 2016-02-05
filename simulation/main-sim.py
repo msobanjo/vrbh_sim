@@ -29,7 +29,7 @@ NODE_SIZE = NODE_SIDE_LEN
 CANVAS_BACKGROUND_COLOUR = 'white'
 # Think frames per seconds, just a milliseconds value of how often to refresh
 # the page
-SCREEN_REFRESH = 100
+SCREEN_REFRESH = 50
 
 # Create the canvas with given sizes
 canvas = Canvas(root,
@@ -81,7 +81,7 @@ def robot_square(event):
 # CREATE A FIXED OBJECT NODE
 # DRAW A LINE BETWEEN THE TWO NODES
 fixed_robot = 100
-fixed_item = 750
+fixed_item = 414
 
 line_nodes = []
 
@@ -108,23 +108,37 @@ it = "test"
 # render all nodes once then update within the loop nodes as necessary
 test_graph.render()
 
+timer = 0
+
 def main_animate():
     """This is currently the main section that's iterated over for the animation
     """
+    timer += 1
 
     robot_is_set = False
     item_is_set = False
     change_node_colour = random.randint(1, MATRIX_TOTAL_NODE_AMOUNT)
 
-    # Iterates the list to set the colours
-    # for index in range(len(unpacked_list)):
-
+    # Count is used at the moment to check which if the node is the test robot
+    # or item
     count = 0
+    global timer
+    global fixed_robot
 
     for index_r, a_row in enumerate(test_graph.matrix):
+        prev_inc = 0
+        previous_node = a_row
         for index_b, a_node in enumerate(a_row):
-            # index = count
+            timer += 1
+
             if count == fixed_robot:
+
+                # increment the current node to change to searching nodes
+                if timer % 2 == 0:
+                    fixed_robot += 1
+                    timer = 0
+
+                previous_node[prev_inc].set_colour("#000")
                 a_node.set_robot()
                 bot = a_node
                 robot_is_set = True
@@ -137,11 +151,8 @@ def main_animate():
                 it = a_node
                 it.display()
 
-            if robot_is_set and item_is_set:
-                draw_line(bot, it, canvas)
-
-            # a_node.display()
             count += 1
+            prev_inc += 1
 
     root.after(SCREEN_REFRESH, main_animate)
 
