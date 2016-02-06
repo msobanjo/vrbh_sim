@@ -5,10 +5,6 @@ import ttk
 
 class Main:
 
-    def Done():
-            mtext = text.get()
-            print(mtext)
-
 
     def __init__(self, root):
         self.text = StringVar()
