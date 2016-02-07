@@ -156,8 +156,6 @@ def main_animate():
 
     root.after(SCREEN_REFRESH, main_animate)
 
-
-
 ###############################################################################
 
 # INIT THE MATRIX WITH NODES
