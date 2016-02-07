@@ -1,0 +1,108 @@
+from Tkinter import *
+import math
+import random
+import time
+from itertools import chain
+
+from Node import Node
+from AllGraph import Graph
+
+###############################################################################
+
+# CREATE MAIN TKINTER ROOT
+root = Tk()
+
+# INIT VARIABLES
+NODE_NUM_W = 40
+NODE_NUM_H = 40
+NODE_SIDE_LEN = 25
+MATRIX_TOTAL_NODE_AMOUNT = NODE_NUM_H * NODE_NUM_W # 3x3 = 9
+MATRIX_WIDTH = NODE_NUM_W * NODE_SIDE_LEN          # eg 3x3 matrix with NODE_SIZE of 2 = 6 wide
+MATRIX_HEIGHT = NODE_NUM_H * NODE_SIDE_LEN         # eg 3x3 with NODE_SIZE 2 = 6 high
+NODE_SIZE = NODE_SIDE_LEN
+
+CANVAS_BACKGROUND_COLOUR = 'white'
+# Think frames per seconds, just a milliseconds value of how often to refresh
+# the page
+SCREEN_REFRESH = 50
+
+# Create the canvas with given sizes
+canvas = Canvas(root,
+                width = MATRIX_WIDTH,
+                height = MATRIX_HEIGHT,
+                bg=CANVAS_BACKGROUND_COLOUR)
+canvas.pack()
+
+###############################################################################
+
+test_graph = Graph(NODE_NUM_H, NODE_NUM_W, NODE_SIZE, canvas)
+
+test_graph.render()
+
+fixed_robot = 620
+new_seeker_list = [fixed_robot]
+
+def unique_list(input):
+  output = []
+  for x in input:
+    if x not in output:
+      output.append(x)
+  return output
+
+def find_surrounding(initial_posistion):
+    next_x = initial_posistion +1
+    prev_x = initial_posistion -1
+    next_y = initial_posistion + NODE_NUM_W
+    prev_y = initial_posistion - NODE_NUM_W
+    seeker_list = [next_x, prev_x, next_y, prev_y]
+    return seeker_list
+
+def main_animate():
+
+    # Count is used at the moment to check which if the node is the test robot
+    # or item
+
+    global new_seeker_list
+
+    newer_seeker_list = []
+    
+    seeker_list = new_seeker_list
+    
+    for i in seeker_list:
+        count = 0
+        seeker = i
+        newer_seeker_list.extend(find_surrounding(i))
+    
+        for index_r, a_row in enumerate(test_graph.matrix):
+            prev_inc = 0
+            previous_node = a_row
+            for index_b, a_node in enumerate(a_row):
+
+                if count == fixed_robot:
+
+                    previous_node[prev_inc].set_colour("#000")
+                    a_node.set_robot()
+                    bot = a_node
+                    bot.display()
+
+                if count == seeker:
+
+                    previous_node[prev_inc].set_colour("#000")
+                    a_node.set_robot()
+                    bot = a_node
+                    bot.display()
+
+                count += 1
+                prev_inc += 1
+    
+    new_seeker_list = unique_list(newer_seeker_list)
+    print(newer_seeker_list)
+    
+    root.after(100, main_animate)
+
+###############################################################################
+
+root.after(100, main_animate)
+
+root.mainloop()
+root.destroy()
