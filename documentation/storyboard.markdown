@@ -44,4 +44,14 @@ goes out in all directions.
 
 <img src= "https://raw.githubusercontent.com/geo7/vrbh_sim/develop/documentation/imgs/robo4.png" data-canonical-src= "https://raw.githubusercontent.com/geo7/vrbh_sim/develop/documentation/imgs/robo4.png" width="400" height="400" />
 
+### Found item
+
+If this process is continued eventually the seekers will detect an item on
+screen, at which point the program will stop and display the path to that item.
+Currently this will be a stright line, though if there are types of obstacle
+implemented then this may change the course that the robot would have to take in
+order to reach the item.
+
+<img src= "https://raw.githubusercontent.com/geo7/vrbh_sim/develop/documentation/imgs/robo-found-item.png" data-canonical-src= "https://raw.githubusercontent.com/geo7/vrbh_sim/develop/documentation/imgs/robo-found-item.png" width="400" height="400" />
+
 
