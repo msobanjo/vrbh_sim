@@ -1,5 +1,7 @@
-#Storyboard
 
+
+#Storyboard
+<img scr= "http://i.imgur.com/gxrXjxw.png" width="400" height="400" />
 # Simulation screen
 
 Opened after the user has chosen information at the start screen. This is where
