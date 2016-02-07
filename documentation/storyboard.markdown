@@ -1,7 +1,7 @@
 
 
 #Storyboard
-<img src="http://imgur.com/gxrXjxw" alt="Mountain View" style="width:304px;height:228px;">
+<img src="http://i.imgur.com/gxrXjxw.png" alt="some_text">
 # Simulation screen
 
 Opened after the user has chosen information at the start screen. This is where
