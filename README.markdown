@@ -119,3 +119,13 @@ overall. Of course the code itself should be pretty readable but for somethings
 it can help to have a bit more of a verbose / prose explanation for things.
 
 Please contribute to this.
+
+
+
+# PyCharm
+
+### View TODOs in files
+
+`view > tool windows > TODO` or `Alt f6`. 
+
+This will show you the `TODOs` that are currently in files in the bottom of the screen and you can nav around them, quite useful.
