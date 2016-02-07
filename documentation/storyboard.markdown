@@ -1,17 +1,10 @@
 #Storyboard
-  - 
-  
-  
+
 # Simulation screen
 
-
-This is where the simulation is carried out, having seekers move out from the
-robot in a manner dictated by the chosen algorithm.
-
-
-## one
-
-
+Opened after the user has chosen information at the start screen. This is where
+the simulation is carried out, having seekers move out from the robot in a
+manner dictated by the chosen algorithm.
 
 ### Robot on grid
 
