@@ -7,7 +7,9 @@
 This is the first screen the user will see once they run the program. This where the user will 
 be able to select what type of simulation they want. They will be able to select from type, 
 time, searching, sorting and colour. To limit error from user entering wrong values we have
-used comboboxs so we can store the optios the user is able to select.
+used comboboxs so we can store the optios the user is able to select. We have also used
+a slider so the user is able to change the colour and see what ot will look like
+at the same time.
 
 
 <img src="http://i.imgur.com/gxrXjxw.png" alt="interface" width="500" height="450">
