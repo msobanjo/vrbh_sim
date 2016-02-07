@@ -20,14 +20,14 @@ robot in a manner dictated by the chosen algorithm.
 
 <!-- ![two](https://raw.githubusercontent.com/geo7/vrbh_sim/develop/documentation/imgs/robo2.png) -->
 
-<img src="
-https://raw.githubusercontent.com/geo7/vrbh_sim/develop/documentation/imgs/robo2.png" 
-data-canonical-src="
-https://raw.githubusercontent.com/geo7/vrbh_sim/develop/documentation/imgs/robo2.png" 
-width="400" height="400" />
+<!-- <img src=" -->
+<!-- https://raw.githubusercontent.com/geo7/vrbh_sim/develop/documentation/imgs/robo2.png"  -->
+<!-- data-canonical-src=" -->
+<!-- https://raw.githubusercontent.com/geo7/vrbh_sim/develop/documentation/imgs/robo2.png"  -->
+<!-- width="400" height="400" /> -->
 
 
-<img src=" https://raw.githubusercontent.com/geo7/vrbh_sim/develop/documentation/imgs/robo2.png" data-canonical-src=" https://raw.githubusercontent.com/geo7/vrbh_sim/develop/documentation/imgs/robo2.png" width="400" height="400" />
+<img src="https://raw.githubusercontent.com/geo7/vrbh_sim/develop/documentation/imgs/robo2.png" data-canonical-src="https://raw.githubusercontent.com/geo7/vrbh_sim/develop/documentation/imgs/robo2.png" width="400" height="400" />
 
 ## three
 
