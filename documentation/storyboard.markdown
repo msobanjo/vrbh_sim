@@ -1,7 +1,11 @@
 
 
 #Storyboard
+
+#Opening screen
+
 <img src="http://i.imgur.com/gxrXjxw.png" alt="interface" width="500" height="450">
+
 # Simulation screen
 
 Opened after the user has chosen information at the start screen. This is where
