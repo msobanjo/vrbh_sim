@@ -1,6 +1,5 @@
 # Robot Simulation
 
-# Some house keeping
 
 ## Code
 
@@ -10,6 +9,29 @@ write clean code` and there will be a guide. What's currently in the `develop`
 branch shouldn't be too far off either.
 
 Basically don't try sending a pull request full of spaghetti.
+
+```python
+def something(n):
+   """
+   What input of n is
+   what the output of something() is
+   An example use case for the function
+   """
+   pass
+```
+For example 
+
+```python
+def square(n):
+    """
+    Takes input of an int(), returns int() which is n**3
+    
+    square(3) = 9
+    """
+    return n*n
+```
+
+This will make writing tests easier
 
 ## Git
 
@@ -119,3 +141,13 @@ overall. Of course the code itself should be pretty readable but for somethings
 it can help to have a bit more of a verbose / prose explanation for things.
 
 Please contribute to this.
+
+
+
+# PyCharm
+
+### View TODOs in files
+
+`view > tool windows > TODO` or `Alt f6`. 
+
+This will show you the `TODOs` that are currently in files in the bottom of the screen and you can nav around them, quite useful.
