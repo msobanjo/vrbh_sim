@@ -47,7 +47,7 @@ Began the story board for the initial screen.
 
 ## Tasks for next session
 
-### All members
+
 
 * Finalise a working model for the startup screen.
 * Establish a fixed theme for the simulation and datasets to utilise
