@@ -27,16 +27,14 @@ those which are currently being looked at by the seekers (the green ones here
 are the ones which are currently being analysed, the blue those which have
 already been looked at ).
 
-
-<img src= "https://raw.githubusercontent.com/geo7/vrbh_sim/develop/documentation/imgs/robo3.png" data-canonical-src= "https://raw.githubusercontent.com/geo7/vrbh_sim/develop/documentation/imgs/robo3.png" width="400" height="400" />
-
+<img src= "https://raw.githubusercontent.com/geo7/vrbh_sim/develop/documentation/imgs/storyboard-imgs/robo3.png" data-canonical-src= "https://raw.githubusercontent.com/geo7/vrbh_sim/develop/documentation/imgs/storyboard-imgs/robo3.png" width="400" height="400" />
 
 ### Continuation
 
 The simulation will continue in this manner, here depicting an algorithm which
 goes out in all directions.
 
-<img src= "https://raw.githubusercontent.com/geo7/vrbh_sim/develop/documentation/imgs/robo4.png" data-canonical-src= "https://raw.githubusercontent.com/geo7/vrbh_sim/develop/documentation/imgs/robo4.png" width="400" height="400" />
+<img src= "https://raw.githubusercontent.com/geo7/vrbh_sim/develop/documentation/imgs/storyboard-imgs/robo4.png" data-canonical-src= "https://raw.githubusercontent.com/geo7/vrbh_sim/develop/documentation/imgs/storyboard-imgs/robo4.png" width="400" height="400" />
 
 ### Found item
 
@@ -46,6 +44,6 @@ Currently this will be a stright line, though if there are types of obstacle
 implemented then this may change the course that the robot would have to take in
 order to reach the item.
 
-<img src= "https://raw.githubusercontent.com/geo7/vrbh_sim/develop/documentation/imgs/robo-found-item.png" data-canonical-src= "https://raw.githubusercontent.com/geo7/vrbh_sim/develop/documentation/imgs/robo-found-item.png" width="400" height="400" />
+<img src= "https://raw.githubusercontent.com/geo7/vrbh_sim/develop/documentation/imgs/storyboard-imgs/robo-found-item.png" data-canonical-src= "https://raw.githubusercontent.com/geo7/vrbh_sim/develop/documentation/imgs/storyboard-imgs/robo-found-item.png" width="400" height="400" />
 
 
