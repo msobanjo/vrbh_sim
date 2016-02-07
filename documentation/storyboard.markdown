@@ -10,7 +10,7 @@ manner dictated by the chosen algorithm.
 
 Just the robot on the grid before the seeker nodes have started.
 
-<img src="https://raw.githubusercontent.com/geo7/vrbh_sim/develop/documentation/imgs/robo1.png" data-canonical-src="https://raw.githubusercontent.com/geo7/vrbh_sim/develop/documentation/imgs/robo1.png" width="400" height="400" />
+<img src="https://raw.githubusercontent.com/geo7/vrbh_sim/develop/documentation/storyboard-imgs/robo1.png" data-canonical-src="https://raw.githubusercontent.com/geo7/vrbh_sim/develop/documentation/storyboard-imgs/robo1.png" width="400" height="400" />
 
 ### Seekers
 
