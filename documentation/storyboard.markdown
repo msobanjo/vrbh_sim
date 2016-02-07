@@ -9,7 +9,8 @@ be able to select what type of simulation they want. They will be able to select
 time, searching, sorting and colour. To limit error from user entering wrong values we have
 used comboboxs so we can store the optios the user is able to select. We have also used
 a slider so the user is able to change the colour and see what ot will look like
-at the same time.
+at the same time. Another reason why we added the slider is because it's intuitive
+gives the user visual representation while using something they are familiar with.
 
 
 <img src="http://i.imgur.com/gxrXjxw.png" alt="interface" width="500" height="450">
