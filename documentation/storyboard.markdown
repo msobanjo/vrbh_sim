@@ -9,7 +9,10 @@ robot in a manner dictated by the chosen algorithm.
 ## one
 
 
-![one](https://raw.githubusercontent.com/geo7/vrbh_sim/develop/documentation/imgs/robo1.png | =250x250)
+
+![one](https://raw.githubusercontent.com/geo7/vrbh_sim/develop/documentation/imgs/robo1.png ) 
+
+<img src="https://raw.githubusercontent.com/geo7/vrbh_sim/develop/documentation/imgs/robo1.png" " data-canonical-src="https://raw.githubusercontent.com/geo7/vrbh_sim/develop/documentation/imgs/robo1.png" width="200" height="400" />
 
 ## two
 
