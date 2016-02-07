@@ -59,6 +59,18 @@ width="400" height="400" />
 So using that I would place the image path (in quotes) where it says, then
 concatenate everything onto one line.
 
+### Images directory
+
+For images used in the documentation there is an `img` directory
+([here's a link to it](https://github.com/geo7/vrbh_sim/tree/develop/documentation/imgs)).
+Note that the storyboard images has it's own directory - makes sense to try and
+keep things clean.
+
+To get the path to an image just click on an image
+[such as this](https://github.com/geo7/vrbh_sim/blob/develop/documentation/imgs/robo2.png)
+then right click on the image and select `copy image address` from the right
+click options. This is what you would paste into the `<img>` tags or the
+markdown.
  
 ## Bold italic
 
