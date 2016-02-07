@@ -2,6 +2,7 @@
 
 #Storyboard
 <img scr= "http://imgur.com/gxrXjxw" data-canonical-src= "http://imgur.com/gxrXjxw"  width="400" height="400" />
+<blockquote class="imgur-embed-pub" lang="en" data-id="gxrXjxw"><a href="//imgur.com/gxrXjxw">View post on imgur.com</a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
 # Simulation screen
 
 Opened after the user has chosen information at the start screen. This is where
