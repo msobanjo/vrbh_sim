@@ -6,6 +6,8 @@ import time
 from itertools import chain
 
 from Node import Node
+from AllGraph import Graph
+
 # from AllGraph import Graph
 
 print("939495")
@@ -27,7 +29,7 @@ NODE_SIZE = NODE_SIDE_LEN
 CANVAS_BACKGROUND_COLOUR = 'white'
 # Think frames per seconds, just a milliseconds value of how often to refresh
 # the page
-SCREEN_REFRESH = 100
+SCREEN_REFRESH = 50
 
 # Create the canvas with given sizes
 canvas = Canvas(root,
@@ -37,6 +39,12 @@ canvas = Canvas(root,
 canvas.pack()
 
 ###############################################################################
+
+test_graph = Graph(NODE_NUM_H, NODE_NUM_W, NODE_SIZE, canvas)
+
+
+print("length = {}".format(len(test_graph.matrix)))
+print("total length = {}".format((test_graph.node_number)))
 
 def create_node_matrix(
         NODE_NUM_H,
@@ -73,7 +81,7 @@ def robot_square(event):
 # CREATE A FIXED OBJECT NODE
 # DRAW A LINE BETWEEN THE TWO NODES
 fixed_robot = 100
-fixed_item = 750
+fixed_item = 414
 
 line_nodes = []
 
@@ -97,37 +105,58 @@ def draw_line(a, b, canvas):
 bot = "test"
 it = "test"
 
+# render all nodes once then update within the loop nodes as necessary
+test_graph.render()
+
+timer = 0
+
 def main_animate():
     """This is currently the main section that's iterated over for the animation
     """
+    timer += 1
+
     robot_is_set = False
     item_is_set = False
     change_node_colour = random.randint(1, MATRIX_TOTAL_NODE_AMOUNT)
 
-    for index in range(len(unpacked_list)): # Iterates the list to set the colours
-        node = unpacked_list[index]
+    # Count is used at the moment to check which if the node is the test robot
+    # or item
+    count = 0
+    global timer
+    global fixed_robot
 
-        # This is just to draw the line in at the moment
-        if index == fixed_robot:
-            node.set_robot()
-            bot = node
-            robot_is_set = True
-            print("node = \n\t{}".format(node))
-        if index == fixed_item:
-            node.set_colour('#fff')
-            line_nodes.append(node)
-            item_is_set = True
-            it = node
-        if robot_is_set and item_is_set:
-            draw_line(bot, it, canvas)
+    for index_r, a_row in enumerate(test_graph.matrix):
+        prev_inc = 0
+        previous_node = a_row
+        for index_b, a_node in enumerate(a_row):
+            timer += 1
 
-        # if index == change_node_colour:
-        #     node.set_colour('#aaf')
-        # if index in set_objs:
-        #     node.set_colour("#f81")
+            if count == fixed_robot:
 
-        node.display()
+                # increment the current node to change to searching nodes
+                if timer % 2 == 0:
+                    fixed_robot += 1
+                    timer = 0
+
+                previous_node[prev_inc].set_colour("#000")
+                a_node.set_robot()
+                bot = a_node
+                robot_is_set = True
+                bot.display()
+
+            if count == fixed_item:
+                a_node.set_colour('#fff')
+                line_nodes.append(a_node)
+                item_is_set = True
+                it = a_node
+                it.display()
+
+            count += 1
+            prev_inc += 1
+
     root.after(SCREEN_REFRESH, main_animate)
+
+
 
 ###############################################################################
 
