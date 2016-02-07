@@ -26,7 +26,7 @@ NODE_SIZE = NODE_SIDE_LEN
 CANVAS_BACKGROUND_COLOUR = 'white'
 # Think frames per seconds, just a milliseconds value of how often to refresh
 # the page
-SCREEN_REFRESH = 1000
+SCREEN_REFRESH = 2000
 
 # Create the canvas with given sizes
 canvas = Canvas(root,
@@ -52,7 +52,7 @@ new_seeker_list = [fixed_robot]
 def h_print_values(**kwargs):
     """Helper function.
 
-    This just prints out the argumentst that are given to it, kwargs is a dict
+    This just prints out the arguments that are given to it, kwargs is a dict
     of the keyword args that are passed to it
 
     Use -
@@ -77,10 +77,16 @@ def find_surrounding(initial_posistion):
     This is going to be done for every node, meaning it's an expensive
     function.
 
+    returns a list of the values, eg
+
+    return = [ 121, 129, 160, 80 ]
+
     """
 
-    # TODO: if you watch the output of values here they often seem to be doing
-    # nothing
+    # TODO: find_surrounding: if you watch the output of values here they often seem to be doing
+    # nothing - this is because the search is going in every direction for every
+    # node, so often there is 2 wasted searches for a node as only two edges of
+    # it are exposed to un-searched areas of the graph.
 
     next_x = initial_posistion +1
     prev_x = initial_posistion -1
@@ -95,20 +101,25 @@ def main_animate():
 
     """
 
-    # TODO: we shouldn't really need globals - this doesn't work if the value
-    # is coded without at the moment though, why?
+    # This stored the value of the last searched nodes. If there was only one
+    # node (eg the very first node) there will now be 4 node positions stored
+    # in here, if there were 4 then there will now be 16, etc.
 
+    # TODO: Would be good if this didn't need to be a global.
     global new_seeker_list
 
-    # TODO: why are we using two seeker_list in here?
+    # two seekers are used as one stored the values of the last search and the
+    # other stored the search for this iteration.
     newer_seeker_list = []
+
+    # first iteration this will just have the start location for the robot
+    # within it...
 
     seeker_list = new_seeker_list
 
-    # TODO: seeker list is always 1 here? what's the point in iterating over
-    # it? What is seeker_list MEANT to be? Seems that it's just the robot
-    # location?
-    for i in seeker_list:
+    # TODO: seeker_list might as well just be new_seeker_list AFAICT?
+    # for i in seeker_list:
+    for i in new_seeker_list:
 
         count = 0
         seeker = i
@@ -153,8 +164,8 @@ def main_animate():
                 count += 1
                 prev_inc += 1
 
-    # TODO: what's this line doing? why is the list copied here?
-
+    # after iterating the nodes that have been searched are copied into the
+    # new_seeker_list
     new_seeker_list = newer_seeker_list
     root.after(SCREEN_REFRESH, main_animate)
 

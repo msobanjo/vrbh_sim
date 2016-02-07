@@ -38,9 +38,12 @@ class Graph:
                 # Last row, add node
                 node_list[-1].append(Node(col, row, NODE_SIZE, self.canvas))
 
+        # total number of nodes in the matrix
         self.node_number = (NODE_NUM_W * NODE_NUM_H)
+        # total width and height of canvas in pixels
         self.pixel_width = (NODE_NUM_W * NODE_SIZE)
         self.pixel_height = (NODE_NUM_H * NODE_SIZE)
+        # the matrix containing all nodes.
         self.matrix = node_list
 
     def run(self):
@@ -48,9 +51,6 @@ class Graph:
 
     def render(self):
         """This should render the graph on screen.
-
-        # TODO: IS there a way to just render one of the nodes at a time? or to
-        # change it; doing all of them each time could be quite expensive.
 
         Ideally this will only have to be done once.
         """
