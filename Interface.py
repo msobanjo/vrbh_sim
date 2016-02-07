@@ -52,16 +52,25 @@ class Interface():
 
     def buttons(self):
            self.buttonOk = Button(self.root,text="Ok", command = self.done)
-           self.buttonOk.place(x=300,y=300)
+           self.buttonOk.place(x=350,y=300)
+           
+         
 
+    def slider(self):
+        self.sliderValue = StringVar()
+        #Need to fix
+        self.sliderColour = Scale(root, orient =HORIZONTAL,length=200,width=15,sliderlength=15,from_=0,to=10,variable=self.sliderValue,command=self.print_value)
+        self.sliderColour.place(x=100,y=350)
     def done(self):
           root.destroy()
           root2 = Tk()
           root2.geometry('450x450+200+200') 
-       
+    def print_value(self):
+        print self.sliderValue  
               
           
    
+
 
 
 
@@ -84,5 +93,9 @@ gui = Interface(root)
 gui.lables()
 gui.comboboxs()
 gui.buttons()
-root.geometry('450x450+200+200')        
+gui.slider()
+canvas = Canvas(root, width=100, height=90)
+d1=canvas.create_rectangle(3,7,3+90,7+80,fill="#000088")
+canvas.pack(padx=10,pady=240)
+root.geometry('450x600+200+200')        
 root.mainloop()
