@@ -5,4 +5,4 @@
 
 # test img 
 
-![img](vrbh_sim/documentation/imgs/robo1.png) 
+![img](https://raw.githubusercontent.com/geo7/vrbh_sim/develop/documentation/imgs/robo1.png) 
