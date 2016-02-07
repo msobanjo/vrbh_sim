@@ -1,7 +1,7 @@
 
 
 #Storyboard
-<img scr= "http://i.imgur.com/gxrXjxw.png" data-canonical-src= "http://i.imgur.com/gxrXjxw.png"  width="400" height="400" />
+<img scr= "http://imgur.com/gxrXjxw" data-canonical-src= "http://imgur.com/gxrXjxw"  width="400" height="400" />
 # Simulation screen
 
 Opened after the user has chosen information at the start screen. This is where
