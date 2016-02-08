@@ -1,3 +1,23 @@
+<!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-generate-toc again -->
+**Table of Contents**
+
+- [Robot Simulation](#robot-simulation)
+    - [Code](#code)
+    - [Git](#git)
+        - [Using Git](#using-git)
+            - [A possible workflow](#a-possible-workflow)
+        - [Edit files online in GitHub](#edit-files-online-in-github)
+        - [Issues](#issues)
+            - [DON'T CREATE MASSIVE ISSUES](#dont-create-massive-issues)
+        - [Local code is useless](#local-code-is-useless)
+        - [Make sure you're up to date!](#make-sure-youre-up-to-date)
+    - [Documentation](#documentation)
+- [PyCharm](#pycharm)
+    - [-](#-)
+
+<!-- markdown-toc end -->
+
+
 # Robot Simulation
 
 
