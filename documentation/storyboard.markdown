@@ -4,6 +4,8 @@
 
 #Start screen
 
+<img src="http://i.imgur.com/gVgsCoU.png" alt="interface" width="500" height="450">
+
 This is the first screen the user will see once they run the program. This where the user will 
 be able to select what type of simulation they want. They will be able to select from type, 
 time, searching, sorting and colour. To limit error from user entering wrong values we have
