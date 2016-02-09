@@ -14,7 +14,8 @@ class Node:
                  price=5,
                  colour="#555",
                  outline="#666",
-                 robot_colour = "#f27"
+                 robot_colour = "#f27",
+                 seeker_colour = "#93FF46"
                  ):
 
         x2 = x1 + side_len
@@ -31,8 +32,13 @@ class Node:
 
         self.colour = colour
         self.canvas = canvas
-        # colour to change the node to that's representing the robot
+
+        # colours for robot and seeker nodes
+        # Further colours might be chosen from
+        # http://paletton.com/#uid=12C0u0kllllnh++mjw0knaGjp00
         self.robot_colour = robot_colour
+        self.seeker_colour = seeker_colour
+
         self.outline = outline
         # all nodes are of weight 1 initially
         self.weight = weight
@@ -40,6 +46,7 @@ class Node:
         self.value = price
         # not sure if this'll be useful atm
         self.am_robot = False
+        self.am_seeker = False
     def display(self):
         """display the vertice on screen"""
         self.canvas.create_rectangle(self.x1,
@@ -66,6 +73,16 @@ class Node:
         """
         self.am_robot = True
         self.set_colour(self.robot_colour)
+
+    def set_seeker(self):
+        """Change the node to represent a seeker node given the class variable setting
+        of
+
+        self.seeker_colour
+
+        """
+        self.am_seeker = True
+        self.set_colour(self.seeker_colour)
 
     def set_colour(self, c):
         """

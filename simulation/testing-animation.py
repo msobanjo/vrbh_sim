@@ -24,7 +24,7 @@ NODE_SIZE = NODE_SIDE_LEN
 CANVAS_BACKGROUND_COLOUR = 'white'
 # Think frames per seconds, just a milliseconds value of how often to refresh
 # the page
-SCREEN_REFRESH = 100
+SCREEN_REFRESH = 2000
 
 # Create the canvas with given sizes
 canvas = Canvas(root,
@@ -90,19 +90,18 @@ def main_animate():
         for index_r, a_row in enumerate(test_graph.matrix):
             prev_inc = 0
             previous_node = a_row
+
             for index_b, a_node in enumerate(a_row):
 
-                if count == fixed_robot:
+                """# TODO: seeker setting - this should be a method?
 
-                    previous_node[prev_inc].set_colour("#000")
-                    a_node.set_robot()
-                    bot = a_node
-                    bot.display()
+                Currently the seekers are set just by having the colour
+                changed, this should be a method within the node class really
+                """
 
                 if count == seeker:
-
                     previous_node[prev_inc].set_colour("#000")
-                    a_node.set_robot()
+                    a_node.set_seeker()
                     bot = a_node
                     bot.display()
 
