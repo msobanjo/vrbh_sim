@@ -42,6 +42,12 @@ test_graph.render()
 fixed_robot = 620
 new_seeker_list = [fixed_robot]
 
+def unique_list(input):
+  output = []
+  for x in input:
+    if x not in output:
+      output.append(x)
+  return output
 
 def find_surrounding(initial_posistion):
     next_x = initial_posistion +1
@@ -88,16 +94,15 @@ def main_animate():
 
                 count += 1
                 prev_inc += 1
-
-            
-            
-    new_seeker_list = newer_seeker_list
+    
+    new_seeker_list = unique_list(newer_seeker_list)
+    print(newer_seeker_list)
     
     root.after(100, main_animate)
 
 ###############################################################################
 
-root.after(1000, main_animate)
+root.after(100, main_animate)
 
 root.mainloop()
 root.destroy()
