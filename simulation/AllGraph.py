@@ -58,6 +58,16 @@ class Graph:
             for index_b, a_node in enumerate(a_row):
                 a_node.display()
 
+    def get_all_neighbours(self, n):
+        """This is a naive method for getting all neighbours of a given node.
+
+        Given the input of a node "n" this method should return the address of the
+        4 nodes that are around it
+
+        """
+        return n
+
+
     def draw_line():
         """This is going to take a path and draw a line along the given path. The path
         will have to be a list of node locations, or just nodes and read the

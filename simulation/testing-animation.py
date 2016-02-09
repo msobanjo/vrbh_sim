@@ -43,19 +43,19 @@ fixed_robot = 620
 new_seeker_list = [fixed_robot]
 
 def unique_list(input):
-  """
-  # TODO: unique_list - info about function
+    """
+    # TODO: unique_list - info about function
 
-  - what's it's input
-  - whats it's output
-  - why is a keyword used :P
+    - what's it's input
+    - whats it's output
+    - why is a keyword used :P
 
-  """
-  output = []
-  for x in input:
-    if x not in output:
-      output.append(x)
-  return output
+    """
+    output = []
+    for x in input:
+      if x not in output:
+        output.append(x)
+    return output
 
 
 def find_surrounding(initial_posistion):
@@ -72,11 +72,11 @@ def find_surrounding(initial_posistion):
     seeker_list = [next_x, prev_x, next_y, prev_y]
     return seeker_list
 
-def main_animate():
 
-    # Count is used at the moment to check which if the node is the test robot
-    # or item
-
+def animate_testing():
+    """This function is for testing the animation and was added by george just
+    for while he was looking at a get_all_neighbours method in the graph class
+    """
     global new_seeker_list
 
     newer_seeker_list = []
@@ -109,6 +109,15 @@ def main_animate():
                 prev_inc += 1
 
     new_seeker_list = unique_list(newer_seeker_list)
+
+    pass
+
+def main_animate():
+
+    # Count is used at the moment to check which if the node is the test robot
+    # or item
+
+    print(test_graph.get_all_neighbours(fixed_robot))
 
     root.after(SCREEN_REFRESH, main_animate)
 
