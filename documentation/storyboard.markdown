@@ -6,7 +6,8 @@
 
 This is the information screen that will display to the user first giving 
 them information about what the program does and how to use it.
-We have used a 
+We have used a don't show me again button to give the user choice
+as to whether to view this screen every time the program is run.
 
 <img src="http://i.imgur.com/gVgsCoU.png" alt="interface" width="500" height="450">
 
