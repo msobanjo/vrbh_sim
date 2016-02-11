@@ -4,6 +4,10 @@
 
 #Start screen
 
+This is the information screen that will display to the user first giving 
+them information about what the program does and how to use it.
+We have used a 
+
 <img src="http://i.imgur.com/gVgsCoU.png" alt="interface" width="500" height="450">
 
 This is the first screen the user will see once they run the program. This where the user will 
