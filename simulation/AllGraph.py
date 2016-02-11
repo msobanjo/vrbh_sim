@@ -65,6 +65,31 @@ class Graph:
         """
         return n
 
+    def get_left_node(self):
+        """
+        Get the node to the left of the given node
+        """
+        pass
+
+    def get_right_node(self):
+        """
+        Get node to the right of the given node
+        """
+        pass
+
+    def get_above_node(self):
+        """
+        Get the node above the given node
+        """
+        pass
+
+    def get_below_node(self):
+        """
+        Get the node beneath the given node 
+        """
+        pass
+        
+
     def get_matrix_n(self):
         """
         At the moment when one pulls a node from the matrix the values are it's 
@@ -91,7 +116,6 @@ class Graph:
 
         # this is a node here    
         node_req = self.matrix[n1 - 1][n2]
-
 
         return node_req
 
