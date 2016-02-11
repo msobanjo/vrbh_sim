@@ -4,9 +4,14 @@
 
 #Start screen
 
+This is the information screen that will display to the user first giving 
+them information about what the program does and how to use it.
+We have used a don't show me again button to give the user choice
+as to whether to view this screen every time the program is run.
+
 <img src="http://i.imgur.com/gVgsCoU.png" alt="interface" width="500" height="450">
 
-This is the first screen the user will see once they run the program. This where the user will 
+This screen is opened up after the information screen. This where the user will 
 be able to select what type of simulation they want. They will be able to select from type, 
 time, searching, sorting and colour. To limit error from user entering wrong values we have
 used comboboxs so we can store the optios the user is able to select. We have also used
