@@ -20,6 +20,7 @@ class Node:
 
         x2 = x1 + side_len
         y2 = y1 + side_len
+        
         # initialise the coordinates for the vertice
         self.x1 = x1
         self.y1 = y1
