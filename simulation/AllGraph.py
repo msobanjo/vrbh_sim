@@ -33,10 +33,8 @@ class Graph:
             node_list.append([])
             # Create nodes in each row
             for i in range(NODE_NUM_W):
-                row = j*NODE_SIZE
-                col = i*NODE_SIZE
-                # Last row, add node
-                node_list[-1].append(Node(col, row, NODE_SIZE, self.canvas))
+                node_list[-1].append(Node(j, i, NODE_SIZE, self.canvas))
+
 
         # total number of nodes in the matrix
         self.node_number = (NODE_NUM_W * NODE_NUM_H)
@@ -92,14 +90,10 @@ class Graph:
         # The nodes have the <x, y> to render to canvas though, so this probably makes sense. 
 
         # this is a node here    
-        node_req = self.matrix[n1][n2]
+        node_req = self.matrix[n1 - 1][n2]
 
-        left_node = self.matrix[n1 - 25][n2]
-        right_node = self.matrix[n1 + 25][n2]
 
-        node_list = [left_node.center_tuple, right_node.center_tuple]
-
-        return node_list
+        return node_req
 
 
     def draw_line():
