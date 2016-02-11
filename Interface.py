@@ -31,10 +31,14 @@ class Interface():
         self.lableSorting = Label(root,text="Sorting")
         self.lableSorting.configure(background='white')
         self.lableSorting.place(x=80,y=190)
+    def combo(self):
+        self.value_of_combo = self.comboItems.get()
+        print(self.value_of_combo)
 
     def comboboxs(self):
-          self.textItems = StringVar()
+          
           self.comboItems = ttk.Combobox(self.root)
+          self.comboItems.bind(self.comboItems,self.print_value)
           self.comboItems.place(x=190,y=80)
           #Place holder values atm
           self.comboItems.config(values = ("a","b","c"))
@@ -56,15 +60,16 @@ class Interface():
           self.comboSorting.config(values = ("a","b","c"))
 
     def buttons(self):
-           self.buttonOk = Button(self.root,text="Ok", command = self.done)
+           self.buttonOk = Button(self.root,text="Ok", command = self.combo)
            self.buttonOk.place(x=350,y=300)
+           
            
          
 
     def slider(self):
         self.sliderColour = Scale(root, orient =HORIZONTAL,length=200,width=15,sliderlength=15,from_=0,to=3,command=self.print_value)
        
-        self.sliderColour.place(x=100,y=350)
+        self.sliderColour.place(x=100,y=380)
         self.sliderColour.configure(background='white')
     def done(self):
           root.destroy()
@@ -113,7 +118,7 @@ gui.slider()
 #test = gui.print_value("blue")
 #print(test)
 canvas = Canvas(root, width=100, height=90)
-rectangleColour=canvas.create_rectangle(3,7,3+90,7+80,fill=Interface.value)
+rectangleColour=canvas.create_rectangle(3,7,3+100,7+100,fill=Interface.value)
 canvas.configure(background='white')
 canvas.pack(padx=10,pady=240)
 root.geometry('450x600+200+200')        
