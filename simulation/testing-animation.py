@@ -40,6 +40,14 @@ test_graph = Graph(NODE_NUM_H, NODE_NUM_W, NODE_SIZE, canvas)
 test_graph.render()
 
 fixed_robot = 620
+
+# TODO: Pass in a tuple instead of a fixed value. It makes no sense for the value to 
+# just be one term for a 2D list, instead the Graph should receive a tuple to access the 
+# node positions. 
+# this should be roughly the center, 20th col in 20th row. 
+
+robot_tuple = (20, 20)
+
 new_seeker_list = [fixed_robot]
 
 def unique_list(input):
@@ -117,7 +125,11 @@ def main_animate():
     # Count is used at the moment to check which if the node is the test robot
     # or item
 
-    print(test_graph.get_all_neighbours(fixed_robot))
+    # print(test_graph.get_all_neighbours(fixed_robot))
+
+    print("Testing passing tuple value - ")
+    print(test_graph.receive_tuple_position(robot_tuple))
+
 
     root.after(SCREEN_REFRESH, main_animate)
 
@@ -126,4 +138,5 @@ def main_animate():
 root.after(SCREEN_REFRESH, main_animate)
 
 root.mainloop()
+
 root.destroy()

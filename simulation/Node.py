@@ -26,9 +26,13 @@ class Node:
         self.x2 = x2
         self.y2 = y2
 
+        self.side_len = side_len
+
         # get the center point of a node object
         self.mx = (x1 + x2) / 2
         self.my = (y1 + y2) / 2
+
+        self.center_tuple = (self.mx, self.my)
 
         self.colour = colour
         self.canvas = canvas
@@ -47,6 +51,7 @@ class Node:
         # not sure if this'll be useful atm
         self.am_robot = False
         self.am_seeker = False
+
     def display(self):
         """display the vertice on screen"""
         self.canvas.create_rectangle(self.x1,
@@ -63,6 +68,8 @@ class Node:
         this is only for square matrices
         x = col = ceil(node_n / matrix_width)
         y = row = node_n mod(matrix_width)
+
+        # TODO: I think this makes more sense for the Graph class rather than the Node class? 
         """
         pass
 

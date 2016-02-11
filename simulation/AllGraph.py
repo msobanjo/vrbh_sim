@@ -67,6 +67,40 @@ class Graph:
         """
         return n
 
+    def get_matrix_n(self):
+        """
+        At the moment when one pulls a node from the matrix the values are it's 
+        """
+        pass
+
+    def receive_tuple_position(self, n):
+        """
+        The  graph should be able to receive a tuple position and find nearby nodes based 
+        on that. 
+
+        At the moment the tuple input is a node position on a 40x40 matrix, rather than its pixel value. 
+
+        This needs to take the input of a node rather than a pixel value. 
+        """
+
+        n1 = n[0]
+        n2 = n[1]
+
+        # this will get the <x, y> for the Pixel coordinates rather than the Matrix coordinate? As in - the matrix coordinates 
+        # would be the row column where the matrix was ~ 40x40 or whatever, returning a value of 500 + means that they're 
+        # pixles rather than nodes. 
+        # The nodes have the <x, y> to render to canvas though, so this probably makes sense. 
+
+        # this is a node here    
+        node_req = self.matrix[n1][n2]
+
+        left_node = self.matrix[n1 - 25][n2]
+        right_node = self.matrix[n1 + 25][n2]
+
+        node_list = [left_node.center_tuple, right_node.center_tuple]
+
+        return node_list
+
 
     def draw_line():
         """This is going to take a path and draw a line along the given path. The path

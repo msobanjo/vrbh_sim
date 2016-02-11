@@ -44,6 +44,13 @@ test_graph.render()
 # set a location for the robot to go during testing
 fixed_robot = 620
 
+# TODO: Pass in a tuple instead of a fixed value. It makes no sense for the value to 
+# just be one term for a 2D list, instead the Graph should receive a tuple to access the 
+# node positions. 
+# this should be roughly the center, 20th col in 20th row. 
+robot_tuple = (20, 20)
+
+
 # TODO: what's the seeker list? Currently it's with one value - which is an
 # integer representing the node to start the robot from
 
@@ -124,9 +131,7 @@ def main_animate():
         count = 0
         seeker = i
 
-        # TODO: I thought this had been implemented as a 2D array now, ? We're
-        # still using 1D array indexes here.
-
+        
         newer_seeker_list.extend(find_surrounding(i))
 
         # TODO: printing out the values of newer_seeker_list it grows A LOT.
