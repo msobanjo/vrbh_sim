@@ -10,8 +10,9 @@ class Interface():
         self.root = root
     value = "blue"
     def lables(self):
+        ''' displays the labels on the main page'''
         font.nametofont('TkDefaultFont').configure(size=15)
-        MyFont = font.Font(size=20)
+        MyFont = font.Font(size=20)#Changes the font size
         self.lableItems = Label(root,text="Items", font=MyFont)
         self.lableItems.configure(background='white')
         self.lableItems.pack()
@@ -32,16 +33,18 @@ class Interface():
         self.lableSorting.configure(background='white')
         self.lableSorting.place(x=80,y=190)
     def combo(self):
-        self.value_of_combo = self.comboItems.get()
-        print(self.value_of_combo)
-
+        ''' prints the value of comboboxes '''
+        self.value_of_comboType = self.comboType.get()
+        self.value_of_comboTime = self.comboTime.get()
+        print(self.value_of_comboTime)
+    
     def comboboxs(self):
-          
-          self.comboItems = ttk.Combobox(self.root)
-          self.comboItems.bind(self.comboItems,self.print_value)
-          self.comboItems.place(x=190,y=80)
+          ''' displays the comboboxes on the main page'''
+          self.comboType = ttk.Combobox(self.root)
+          self.comboType.bind(self.comboType)
+          self.comboType.place(x=190,y=80)
           #Place holder values atm
-          self.comboItems.config(values = ("a","b","c"))
+          self.comboType.config(values = ("a","b","c"))
           #self.text.get()
 
           self.textTime = StringVar()
@@ -60,29 +63,38 @@ class Interface():
           self.comboSorting.config(values = ("a","b","c"))
 
     def buttons(self):
-           self.buttonOk = Button(self.root,text="Ok", command = self.combo)
-           self.buttonOk.place(x=350,y=300)
+        ''' displays the button on the main page'''
+        self.buttonOk = Button(self.root,text="Ok", command = self.combo)
+        self.buttonOk.place(x=350,y=350)
            
            
          
 
     def slider(self):
+        ''' displays the slider on the main page'''
         self.sliderColour = Scale(root, orient =HORIZONTAL,length=200,width=15,sliderlength=15,from_=0,to=3,command=self.print_value)
        
         self.sliderColour.place(x=100,y=380)
         self.sliderColour.configure(background='white')
     def done(self):
-          root.destroy()
-          root2 = Tk()
-          root2.geometry('450x450+200+200') 
+        ''' close the main page and opens up a new one'''
+        root.destroy()
+        root2 = Tk()
+        root2.geometry('450x450+200+200') 
     def print_value(self,value ):
+        '''sets the value of the colours on the slider ''' 
         if value == "0":
             Interface.value = "blue"
             
         elif value == "1":
             Interface.value = "black"
 
-        
+        elif value == "2":
+            Interface.value = "red"
+
+        elif value == "3":
+            Interface.value = "green"    
+
         canvas.itemconfig(rectangleColour, fill=Interface.value)    
            
         
@@ -115,8 +127,6 @@ gui.lables()
 gui.comboboxs()
 gui.buttons()
 gui.slider()
-#test = gui.print_value("blue")
-#print(test)
 canvas = Canvas(root, width=100, height=90)
 rectangleColour=canvas.create_rectangle(3,7,3+100,7+100,fill=Interface.value)
 canvas.configure(background='white')
