@@ -1,7 +1,7 @@
 This is just thinking aloud for the simple algorithm - 
 
 This should be run on a list of nodes representing the edges of the searched nodes in the graph
-
+```
 y pos = y position of Node (current node being searched)
 x pos = x position of the Node
 R = Robot (which will be fixed at this point)
@@ -21,3 +21,5 @@ if x pos > Rx:
 	Node is to the right of the robot
 	therefore
 	1 edge to search in +ve direction from the Robot
+
+```
