@@ -8,7 +8,7 @@ class Interface():
        for and how they want it to be searched '''
     def __init__(self, root):
         self.root = root
-    value = "blue"
+    value = "#000"
     def lables(self):
         ''' displays the labels on the main page'''
         font.nametofont('TkDefaultFont').configure(size=15)
@@ -32,12 +32,15 @@ class Interface():
         self.lableSorting = Label(root,text="Sorting")
         self.lableSorting.configure(background='white')
         self.lableSorting.place(x=80,y=190)
+
+
     def combo(self):
         ''' prints the value of comboboxes '''
         self.value_of_comboType = self.comboType.get()
         self.value_of_comboTime = self.comboTime.get()
         print(self.value_of_comboTime)
     
+
     def comboboxs(self):
           ''' displays the comboboxes on the main page'''
           self.comboType = ttk.Combobox(self.root)
@@ -64,7 +67,7 @@ class Interface():
 
     def buttons(self):
         ''' displays the button on the main page'''
-        self.buttonOk = Button(self.root,text="Ok", command = self.combo)
+        self.buttonOk = Button(self.root,text="Ok", command = self.done)
         self.buttonOk.place(x=350,y=350)
            
            
@@ -72,7 +75,10 @@ class Interface():
 
     def slider(self):
         ''' displays the slider on the main page'''
-        self.sliderColour = Scale(root, orient =HORIZONTAL,length=200,width=15,sliderlength=15,from_=0,to=3,command=self.print_value)
+        self.sliderColour = Scale(root, orient =HORIZONTAL,length=200,
+          width=15,sliderlength=15,
+          from_=0,to=4095,
+          command=self.print_value)
        
         self.sliderColour.place(x=100,y=380)
         self.sliderColour.configure(background='white')
@@ -81,19 +87,27 @@ class Interface():
         root.destroy()
         root2 = Tk()
         root2.geometry('450x450+200+200') 
-    def print_value(self,value ):
+
+    def print_value(self,value):
         '''sets the value of the colours on the slider ''' 
-        if value == "0":
-            Interface.value = "blue"
+
+        v = int(value)
+        col = (hex(v)[2:])
+
+        Interface.value = "#{}".format(col)
+
+        
+        # if value == "0":
+        #     Interface.value = "blue"
             
-        elif value == "1":
-            Interface.value = "black"
+        # elif value == "1":
+        #     Interface.value = "black"
 
-        elif value == "2":
-            Interface.value = "red"
+        # elif value == "2":
+        #     Interface.value = "red"
 
-        elif value == "3":
-            Interface.value = "green"    
+        # elif value == "3":
+        #     Interface.value = "green"    
 
         canvas.itemconfig(rectangleColour, fill=Interface.value)    
            
