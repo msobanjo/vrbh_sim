@@ -7,7 +7,6 @@ from itertools import chain
 from Node import Node
 from AllGraph import Graph
 
-
 print()
 
 ###############################################################################
@@ -367,5 +366,7 @@ if OK:
 
 """At this point I'm satisfied the logic works, and *hopefully* this was
 helpful in communicating it to others.
+
+I might just leave this as it is, it's pretty readable.
 
 """
