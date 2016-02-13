@@ -1,4 +1,11 @@
 
+
+
+# Robot Simulation
+
+[![Join the chat at https://gitter.im/geo7/vrbh_sim](https://badges.gitter.im/geo7/vrbh_sim.svg)](https://gitter.im/geo7/vrbh_sim?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
+
 <!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-generate-toc again -->
 **Table of Contents**
 
@@ -19,9 +26,6 @@
 <!-- markdown-toc end -->
 
 
-
-
-# Robot Simulation
 
 # Code
 
