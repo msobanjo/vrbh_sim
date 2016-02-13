@@ -20,7 +20,7 @@ print()
 ###############################################################################
 
 """
-Some helper functions
+Some helper functions to begin with
 """
 
 def print_matrix(m):
@@ -31,15 +31,35 @@ def print_matrix(m):
     for row in m:
         print(row)
 
-
 def create_matrix(s):
-    """
-    Create a square matrix to the given size for testing
+    """Create a square matrix to the given size (s) for testing.
+
+    The function starts with an empty list, for every additional row needed it
+    creates a new list and appends it to the original one.
+
+    The matrix.append([]) puts a new list (row) INTO the matrix, and the
+    matrix[-1] ensures that we're adding to the empty list just input to the
+    matrix.
+
+    matrix []
+
+    Then matrix [[]]
+
+    Etc.
+
+    For a size of three the matrix created would be
+
+    [
+    [[0, 0], [1, 0], [2, 0]],
+    [[0, 1], [1, 1], [2, 1]],
+    [[0, 2], [1, 2], [2, 2]]
+    ]
+
     """
     matrix = []
-    for i in range(size):
+    for i in range(s):
         matrix.append([])
-        for j in range(size):
+        for j in range(s):
             matrix[-1].append([j,i])
     return matrix
 
@@ -60,9 +80,7 @@ When the current graph is set up with 5x5 matrix the following is output -
 [ <0,3>, <1,3>, <2,3>, <3,3>, <4,3>,  ]
 [ <0,4>, <1,4>, <2,4>, <3,4>, <4,4>,  ]
 ```
-
 """
-
 
 """
 Variables
@@ -345,7 +363,6 @@ for test in test_edges:
         OK = False
 if OK:
     print("All good")
-
 
 
 """At this point I'm satisfied the logic works, and *hopefully* this was
