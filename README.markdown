@@ -169,6 +169,9 @@ Please contribute to this.
 
 # PyCharm
 
+If you find something particularly useful it might benefit all to update the
+information here.
+
 ## View TODOs in files
 
 `view > tool windows > TODO` or `Alt f6`. 
