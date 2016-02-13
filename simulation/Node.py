@@ -7,8 +7,8 @@ class Node:
 
     """
 
-    def __init__(self, 
-                 x1, 
+    def __init__(self,
+                 x1,
                  y1,
                  side_len,
                  canvas,
@@ -28,7 +28,7 @@ class Node:
         self.my = y1
 
         # These are the pixel positions for Node
-        self.x1 = x1 * side_len 
+        self.x1 = x1 * side_len
         self.y1 = y1 * side_len
 
         x2 = self.x1 + side_len
@@ -80,7 +80,7 @@ class Node:
         x = col = ceil(node_n / matrix_width)
         y = row = node_n mod(matrix_width)
 
-        # TODO: I think this makes more sense for the Graph class rather than the Node class? 
+        # TODO: I think this makes more sense for the Graph class rather than the Node class?
         """
         pass
 
@@ -112,10 +112,10 @@ class Node:
     def __str__(self):
         info = "Matrix <x,y> = <{},{}>\nPixel x1 = {}, Pixel y1 = {},\nPixel x2 = {}, Pixel y2 = {}\n".format(
             self.mx,
-            self.my, 
-            self.x1, 
-            self.y1, 
-            self.x2, 
+            self.my,
+            self.x1,
+            self.y1,
+            self.x2,
             self.y2)
         return info
 
