@@ -46,15 +46,9 @@ fixed_robot = 620
 robot_tuple = (20, 20)
 
 new_seeker_list = [fixed_robot]
+test_graph = Graph(NODE_NUM_H, NODE_NUM_W, NODE_SIZE, canvas)
+test_graph.render()
 
-def set_up_for_animation():
-    """Should be run before the animation so that the entire screen isn't being
-    re-rendered with every change.
-
-    """
-    test_graph = Graph(NODE_NUM_H, NODE_NUM_W, NODE_SIZE, canvas)
-    test_graph.render()
-    pass
 
 
 
