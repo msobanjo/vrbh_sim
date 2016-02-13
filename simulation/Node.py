@@ -17,9 +17,8 @@ class Node:
                  colour="#555",
                  outline="#666",
                  robot_colour = "#f27",
-                 seeker_colour = "#93FF46"
+                 seeker_colour = "#93FF46",
                  ):
-
 
         # initialise the coordinates for the vertice
 
@@ -62,6 +61,7 @@ class Node:
         # not sure if this'll be useful atm
         self.am_robot = False
         self.am_seeker = False
+        self.am_prev_seeker = False
 
     def display(self):
         """display the vertice on screen"""
@@ -102,6 +102,16 @@ class Node:
         self.am_seeker = True
         self.set_colour(self.seeker_colour)
 
+    def set_prev_seeker(self):
+        """Change the node to represent a seeker node given the class variable setting
+        of
+
+        self.seeker_colour
+
+        """
+        self.am_prev_seeker = True
+        self.set_colour("white")
+
     def set_colour(self, c):
         """
         Change the colour of the node - this will be used to show that the node
@@ -125,3 +135,7 @@ Rick: You pass butter
 Butter Robot: Oh my god
 Rick: Yeah, welcome to the club, pal""")
         return "butter"
+
+    def return_node(self): # Returns the co-ordinates of a node
+        co_ordinates = [self.mx,self.my]
+        return co_ordinates
