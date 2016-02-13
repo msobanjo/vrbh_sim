@@ -7,7 +7,9 @@ class Node:
 
     """
 
-    def __init__(self, x1, y1,
+    def __init__(self, 
+                 x1, 
+                 y1,
                  side_len,
                  canvas,
                  weight=1,
@@ -18,19 +20,28 @@ class Node:
                  seeker_colour = "#93FF46"
                  ):
 
-        x2 = x1 + side_len
-        y2 = y1 + side_len
+
         # initialise the coordinates for the vertice
-        self.x1 = x1
-        self.y1 = y1
+
+        # These are the matrix positions for Node
+        self.mx = x1
+        self.my = y1
+
+        # These are the pixel positions for Node
+        self.x1 = x1 * side_len 
+        self.y1 = y1 * side_len
+
+        x2 = self.x1 + side_len
+        y2 = self.y1 + side_len
+
         self.x2 = x2
         self.y2 = y2
 
         self.side_len = side_len
 
         # get the center point of a node object
-        self.mx = (x1 + x2) / 2
-        self.my = (y1 + y2) / 2
+        # self.mx = (x1 + x2) / 2
+        # self.my = (y1 + y2) / 2
 
         self.center_tuple = (self.mx, self.my)
 
@@ -99,8 +110,13 @@ class Node:
         self.colour = c
 
     def __str__(self):
-        info = "x1 = {}, y1 = {},\nx2 = {}, y2 = {}\n".format(
-            self.x1, self.y1, self.x2, self.y2)
+        info = "Matrix <x,y> = <{},{}>\nPixel x1 = {}, Pixel y1 = {},\nPixel x2 = {}, Pixel y2 = {}\n".format(
+            self.mx,
+            self.my, 
+            self.x1, 
+            self.y1, 
+            self.x2, 
+            self.y2)
         return info
 
     def pass_the_butter(self):
