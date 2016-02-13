@@ -39,16 +39,10 @@ test_graph = Graph(NODE_NUM_H, NODE_NUM_W, NODE_SIZE, canvas)
 
 test_graph.render()
 
-fixed_robot = 620
-
 # TODO: Pass in a tuple instead of a fixed value. It makes no sense for the value to 
 # just be one term for a 2D list, instead the Graph should receive a tuple to access the 
 # node positions. 
 # this should be roughly the center, 20th col in 20th row. 
-
-robot_tuple = (20, 20)
-
-new_seeker_list = [fixed_robot]
 
 def unique_list(input):
     """
@@ -79,7 +73,6 @@ def find_surrounding(initial_posistion):
     prev_y = initial_posistion - NODE_NUM_W
     seeker_list = [next_x, prev_x, next_y, prev_y]
     return seeker_list
-
 
 def animate_testing():
     """This function is for testing the animation and was added by george just
@@ -120,17 +113,89 @@ def animate_testing():
 
     pass
 
+fixed_robot = None
+robot_tuple = None
+prev_seeker_list = []
+
+def convert(co_ord): # Converts list co-ordinates into index values
+    index = co_ord[1] + co_ord[0]*NODE_NUM_W
+    return index
+
+def robot_square(event): #Function to find robot_square
+    global fixed_robot
+    global prev_seeker_list
+    global robot_tuple
+    """
+    Test function - Defines the clicked node as the robot from mouse selection
+    """
+    robot = test_graph.matrix[event.x//NODE_SIZE][event.y//NODE_SIZE] # Get the correct node
+    robot.set_robot() # Set the node as a robot
+    robot.display()
+    canvas.unbind('<Button-1>')
+    robot_tuple = robot.return_node()
+    fixed_robot = convert(robot_tuple) # To convert the robot co-ordinates into index
+    prev_seeker_list.append(fixed_robot) # Adds the robots index value to search list
+
+canvas.bind('<Button-1>', lambda event: robot_square(event))
+
 def main_animate():
 
-    # Count is used at the moment to check which if the node is the test robot
-    # or item
+    """This function is for testing the animation and was added by george just
+    for while he was looking at a get_all_neighbours method in the graph class
+    """
+    global prev_seeker_list
 
-    # print(test_graph.get_all_neighbours(fixed_robot))
+    new_seeker_list = []
+    search_list = prev_seeker_list
+    count = 0
+    if fixed_robot != None: #Only runs if fixed_robot has a value
 
+        for i in search_list:
+            new_seeker_list.extend(find_surrounding(i))
 
-    # Pass in the tuple to test graph methods
-    print(test_graph.receive_tuple_position(robot_tuple))
+        unique_list(new_seeker_list)
 
+        for index_r, a_row in enumerate(test_graph.matrix):
+                prev_inc = 0
+                previous_node = a_row
+
+                for index_b, a_node in enumerate(a_row):
+
+                    """# TODO: seeker setting - this should be a method?
+
+                    Currently the seekers are set just by having the colour
+                    changed, this should be a method within the node class really
+                    """
+
+    #                if count == seeker:
+    #                    previous_node[prev_inc].set_colour("#000")
+    #                    a_node.set_seeker()
+    #                    bot = a_node
+    #                    bot.display()
+
+                    if count in new_seeker_list:  #looks for current seekers
+                        previous_node[prev_inc].set_colour("#000")
+                        a_node.set_seeker()
+                        bot = a_node
+                        bot.display()
+
+                    if count in prev_seeker_list:  #looks for previous seekers
+                        previous_node[prev_inc].set_colour("#000")
+                        a_node.set_prev_seeker()
+                        bot = a_node
+                        bot.display()
+
+                    if count == fixed_robot:
+                        previous_node[prev_inc].set_colour("#000")
+                        a_node.set_robot()
+                        a_node.display()
+
+                    count += 1
+                    prev_inc += 1
+
+    prev_seeker_list.extend(unique_list(new_seeker_list))
+
+    prev_seeker_list = unique_list(prev_seeker_list)
 
     root.after(SCREEN_REFRESH, main_animate)
 
