@@ -15,6 +15,11 @@ root = Tk()
 # INIT VARIABLES
 NODE_NUM_W = 40
 NODE_NUM_H = 40
+
+# TODO: changing for a test
+NODE_NUM_W = 5
+NODE_NUM_H = 5
+
 NODE_SIDE_LEN = 25
 MATRIX_TOTAL_NODE_AMOUNT = NODE_NUM_H * NODE_NUM_W # 3x3 = 9
 MATRIX_WIDTH = NODE_NUM_W * NODE_SIDE_LEN          # eg 3x3 matrix with NODE_SIZE of 2 = 6 wide
@@ -118,6 +123,9 @@ def animate_testing():
 
     pass
 
+
+print(test_graph)
+
 def main_animate():
 
     # Count is used at the moment to check which if the node is the test robot
@@ -127,7 +135,7 @@ def main_animate():
 
     # Pass in the tuple to test graph methods
 
-    print(test_graph.receive_tuple_position(robot_tuple))
+    # print(test_graph.receive_tuple_position(robot_tuple))
 
     root.after(SCREEN_REFRESH, main_animate)
 
