@@ -33,10 +33,8 @@ class Graph:
             node_list.append([])
             # Create nodes in each row
             for i in range(NODE_NUM_W):
-                row = j*NODE_SIZE
-                col = i*NODE_SIZE
-                # Last row, add node
-                node_list[-1].append(Node(col, row, NODE_SIZE, self.canvas))
+                node_list[-1].append(Node(j, i, NODE_SIZE, self.canvas))
+
 
         # total number of nodes in the matrix
         self.node_number = (NODE_NUM_W * NODE_NUM_H)
@@ -67,6 +65,31 @@ class Graph:
         """
         return n
 
+    def get_left_node(self):
+        """
+        Get the node to the left of the given node
+        """
+        pass
+
+    def get_right_node(self):
+        """
+        Get node to the right of the given node
+        """
+        pass
+
+    def get_above_node(self):
+        """
+        Get the node above the given node
+        """
+        pass
+
+    def get_below_node(self):
+        """
+        Get the node beneath the given node 
+        """
+        pass
+        
+
     def get_matrix_n(self):
         """
         At the moment when one pulls a node from the matrix the values are it's
@@ -92,6 +115,7 @@ class Graph:
         # pixles rather than nodes.
         # The nodes have the <x, y> to render to canvas though, so this probably makes sense.
 
+<<<<<<< HEAD
         # this is a node here
         node_req = self.matrix[n1][n2]
 
@@ -99,8 +123,12 @@ class Graph:
         right_node = self.matrix[n1 + 25][n2]
 
         node_list = [left_node.center_tuple, right_node.center_tuple]
+=======
+        # this is a node here    
+        node_req = self.matrix[n1 - 1][n2]
+>>>>>>> b0c8fa4a32c9f23bcff681e92411a7b5539eed9f
 
-        return node_list
+        return node_req
 
 
     def draw_line():

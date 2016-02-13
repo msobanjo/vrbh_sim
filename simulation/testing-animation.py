@@ -125,7 +125,8 @@ def main_animate():
 
     # print(test_graph.get_all_neighbours(fixed_robot))
 
-    print("Testing passing tuple value - ")
+
+    # Pass in the tuple to test graph methods
     print(test_graph.receive_tuple_position(robot_tuple))
 
 
