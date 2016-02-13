@@ -41,10 +41,10 @@ test_graph.render()
 
 fixed_robot = 620
 
-# TODO: Pass in a tuple instead of a fixed value. It makes no sense for the value to 
-# just be one term for a 2D list, instead the Graph should receive a tuple to access the 
-# node positions. 
-# this should be roughly the center, 20th col in 20th row. 
+# TODO: Pass in a tuple instead of a fixed value. It makes no sense for the value to
+# just be one term for a 2D list, instead the Graph should receive a tuple to access the
+# node positions.
+# this should be roughly the center, 20th col in 20th row.
 
 robot_tuple = (20, 20)
 
@@ -65,7 +65,6 @@ def unique_list(input):
         output.append(x)
     return output
 
-
 def find_surrounding(initial_posistion):
     """
     # TODO: find_surrounding - info about function
@@ -79,7 +78,6 @@ def find_surrounding(initial_posistion):
     prev_y = initial_posistion - NODE_NUM_W
     seeker_list = [next_x, prev_x, next_y, prev_y]
     return seeker_list
-
 
 def animate_testing():
     """This function is for testing the animation and was added by george just
