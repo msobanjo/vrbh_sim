@@ -21,7 +21,10 @@
 # Robot Simulation
 
 
-## Code
+# Code
+
+4 `SPACES` (not tabs) for indentation
+
 
 Make sure that code is well commented and clean. If you have no idea what
 consitutes that then you can google for something along the lines of `how to
@@ -53,11 +56,11 @@ def square(n):
 
 This will make writing tests easier
 
-## Git
+# Git
 
 There's a reason I put so much stress on Git in the first week.
 
-### Using Git
+## Using Git
 
 You should be familiar with how to use Git at this point.
 
@@ -79,7 +82,7 @@ If you have a problem you should
   
 If you're careful there shouldn't be much of an issue.
 
-#### A possible workflow
+### A possible workflow
 
 * create an issue addressing something
 * state that you're going to address the issue
@@ -101,7 +104,7 @@ only way for this to sink in is to actually mess about with things.
 Learning to use it from PyCharm will also make your life easier, though you
 should be also aware of what commands are being used.
 
-### Edit files online in GitHub
+## Edit files online in GitHub
 
 You can edit files online in the webapp if it's just a quick change or addition
 (to documentation or such ) this can be handy. It will offer to create a branch
@@ -109,7 +112,7 @@ automatically for you at the time.
 
 Don't try programming here.
 
-### Issues
+## Issues
 
 You should be checking out the issues regularly and contributing to them. If
 there's anything that you want to implement then you should create an issue that
@@ -120,7 +123,7 @@ considered by others or whatever that's a valid reason for an issue. They have
 different labels that I can apply so that we can see what needs to be done
 quickly. These are important.
 
-#### DON'T CREATE MASSIVE ISSUES
+### DON'T CREATE MASSIVE ISSUES
 
 No one likes massive issues and it's just asking for something to go wrong.
 Create small issues where the gist of what's being done can be summed up in the
@@ -130,7 +133,7 @@ creating one such as `type print(n) to see value of n in my code` would be
 useless for hopefully obvious reasons. A better approach might be to `Implement
 button to set <x> value`. 
 
-### Local code is useless
+## Local code is useless
 
 If you have work on your computer locally for project purposes it might as well
 not exist (up to a point). If no one can see it / understand it / use it then
@@ -143,7 +146,7 @@ Trying to work on too much at once is going to cause problems because the
 project might have moved on or in a different direction in the time you've been
 working in isolation.
 
-### Make sure you're up to date!
+## Make sure you're up to date!
 
 Don't think that you can fork the repo and that's it. You might find that your
 repo is behind the master repository and if you try and make changes on that you
@@ -151,7 +154,7 @@ might bring up a load of merge conflicts.
 
 Keeping the code up to date is important
 
-## Documentation
+# Documentation
 
 I'm trying to document things in here so that others can see what's going on and
 what's been implemented. If you work on something it might take you a while to
@@ -162,11 +165,9 @@ it can help to have a bit more of a verbose / prose explanation for things.
 
 Please contribute to this.
 
-
-
 # PyCharm
 
-### View TODOs in files
+## View TODOs in files
 
 `view > tool windows > TODO` or `Alt f6`. 
 
