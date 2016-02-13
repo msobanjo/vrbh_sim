@@ -331,6 +331,7 @@ check that it's working alright. For the third iteration we're expecting a set
 / list / whatever of the following values
 
 Not a pretty test I'll admit but -
+
 """
 
 test_edges = [(4, 1), (3, 2), (5, 2), (2, 3), (6, 3), (1, 4), (7, 4), (2, 5),
@@ -344,3 +345,10 @@ for test in test_edges:
         OK = False
 if OK:
     print("All good")
+
+
+
+"""At this point I'm satisfied the logic works, and *hopefully* this was
+helpful in communicating it to others.
+
+"""
