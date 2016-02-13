@@ -50,8 +50,6 @@ test_graph = Graph(NODE_NUM_H, NODE_NUM_W, NODE_SIZE, canvas)
 test_graph.render()
 
 
-
-
 def unique_list(input):
     """
     # TODO: unique_list - info about function
@@ -128,6 +126,7 @@ def main_animate():
     # print(test_graph.get_all_neighbours(fixed_robot))
 
     # Pass in the tuple to test graph methods
+
     print(test_graph.receive_tuple_position(robot_tuple))
 
     root.after(SCREEN_REFRESH, main_animate)
