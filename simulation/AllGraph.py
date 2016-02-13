@@ -34,7 +34,7 @@ class Graph:
             node_list.append([])
             # Create nodes in each row
             for i in range(NODE_NUM_W):
-                node_list[-1].append(Node(j, i, NODE_SIZE, self.canvas))
+                node_list[-1].append(Node(i, j, NODE_SIZE, self.canvas))
 
 
         # total number of nodes in the matrix
@@ -131,3 +131,19 @@ class Graph:
 
         """
         pass
+
+    def __str__(self):
+        """
+        Method to call when a graph instance is printed as a string.
+
+        Currently just returns a string made up of all the rows
+
+        """
+        return_string = "\n"
+
+        for row_info in self.matrix:
+            return_string += "[ "
+            for node in row_info:
+                return_string += "<{},{}>, ".format(node.mx, node.my)
+            return_string += " ]\n"
+        return return_string
