@@ -8,6 +8,7 @@ from itertools import chain
 from Node import Node
 # import Globals as gvs
 
+
 class Graph:
     """Store the node objects and provide some higher level methods on them """
 

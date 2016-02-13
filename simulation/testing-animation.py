@@ -35,9 +35,6 @@ canvas.pack()
 
 ###############################################################################
 
-test_graph = Graph(NODE_NUM_H, NODE_NUM_W, NODE_SIZE, canvas)
-
-test_graph.render()
 
 fixed_robot = 620
 
@@ -49,6 +46,17 @@ fixed_robot = 620
 robot_tuple = (20, 20)
 
 new_seeker_list = [fixed_robot]
+
+def set_up_for_animation():
+    """Should be run before the animation so that the entire screen isn't being
+    re-rendered with every change.
+
+    """
+    test_graph = Graph(NODE_NUM_H, NODE_NUM_W, NODE_SIZE, canvas)
+    test_graph.render()
+    pass
+
+
 
 def unique_list(input):
     """
@@ -125,10 +133,8 @@ def main_animate():
 
     # print(test_graph.get_all_neighbours(fixed_robot))
 
-
     # Pass in the tuple to test graph methods
     print(test_graph.receive_tuple_position(robot_tuple))
-
 
     root.after(SCREEN_REFRESH, main_animate)
 
