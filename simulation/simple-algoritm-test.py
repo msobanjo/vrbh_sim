@@ -193,8 +193,154 @@ this iteration their position should be based on the location of Top and Bottom
 nodes rather than the robot position, so that they will fill up as the Top and
 Bottom nodes get further from the Robot position.
 
+For this I'm going to work out the difference between the top and the bottom
+nodes, then divide it by two
 """
 
+difference_top_bottom= abs(TopEdge[1] - BottomEdge[1]) / 2
+
+"""Now I'm going to create the nodes for the edges.
+
+The problem that might arise is that there are duplicate edges (though
+hopefully there will be far fewer duplicates than before, and there will only
+be one duplicate as the values grow)
+
+I'm using a set() structure so that there are no duplicates stored.
+"""
+
+edges = set()
+inc = 1
+
+for n in range(diff):
+    edges.add((TopEdge[0]    - inc, TopEdge[1]    + inc))
+    edges.add((BottomEdge[0] - inc, BottomEdge[1] - inc))
+    edges.add((TopEdge[0]    + inc, TopEdge[1]    + inc ))
+    edges.add((TopEdge[0]    + inc, TopEdge[1]    - inc ))
 
 
+"""This now has all of the iterations needed for this run, in conjunction with
+TopEdge and BottomEdge there are four edges to test
+"""
 
+print(edges)
+
+
+"""The same logic can be used for other iterations as it should scale up,
+create some functions to make things a bit easier to read -
+
+"""
+
+def calc_tb_distance(t, b):
+    """Input of tuples t[op] and b[ottom] nodes, returns half the distance between
+    the two
+
+    """
+    difference_top_bottom = abs(t[1] - b[1]) / 2
+    return difference_top_bottom
+
+def get_edges(t, b, d):
+    """Input of t[op], b[ottom] tuples and the d[ifference] from them to the Robot
+
+    This will return a set() of the values that should be tested.
+
+    I'm leaving print statements in here so that you can run if you choose to
+    in order to see how it's functioning
+
+    """
+    edges = set()
+
+    print("Iteration number [distance value] = {}".format(d))
+    print("\n\n")
+    for n in range(d):
+        n = n  + 1
+
+        topLeft = (t[0] - n, t[1] + n)
+        print("Top Left {} = {}".format(n,topLeft))
+        edges.add((topLeft))
+
+        bottomLeft = (b[0] - n, b[1] - n)
+        print("Bottom Left {} = {}".format(n, bottomLeft))
+        edges.add(bottomLeft)
+
+        topRight = (t[0] + n, t[1] + n)
+        print("Top Right {} = {}".format(n, topRight))
+        edges.add((topRight))
+
+        bottomRight = (b[0] + n, b[1] - n)
+        print("Bottom Right {} = {}".format(n, bottomRight))
+        edges.add((bottomRight))
+
+        print('\n')
+    return edges
+
+
+"""Now test these using increased iteration values, trying where the TopEdge is
+(4,2) and the BottomEdge is (4, 6), the values expected are (from the above
+diagram)
+
+```
+                         [3, 3]          [5, 3]
+                 [2, 4],                         [6, 4]
+                         [3, 5]          [5, 5]
+```
+
+"""
+
+print("-" * 79)
+
+edges = set()
+TopEdge = (TopEdge[0], TopEdge[1] - 1)
+BottomEdge = (BottomEdge[0], BottomEdge[1] + 1)
+dist = calc_tb_distance(TopEdge, BottomEdge)
+edges = get_edges(TopEdge, BottomEdge, dist)
+
+print(edges)
+
+
+"""Here it can be seen that the above logic is working given Tuples, a Matrix
+and the above functions.
+
+Try another iteration to ensure that it's functioning alright.
+
+From teh above illustration this is the third (or 2nd, depending on if you want
+to count zero for everything in your life or not) iteration -
+
+```
+                                 [4, 1],
+                         [3, 2]          [5, 2]
+                 [2, 3]                          [6, 3]
+         [1, 4]                  [4, 4],                 [7, 4]
+                 [2, 5]                          [6, 5]
+                         [3, 6]          [5, 6]
+                                 [4, 7]
+```
+"""
+print("-" * 79)
+
+edges = set()
+
+TopEdge = (TopEdge[0], TopEdge[1] - 1)
+BottomEdge = (BottomEdge[0], BottomEdge[1] + 1)
+dist = calc_tb_distance(TopEdge, BottomEdge)
+edges = get_edges(TopEdge, BottomEdge, dist)
+
+print(edges)
+
+"""One can see that all the values are in there, but might as well *double*
+check that it's working alright. For the third iteration we're expecting a set
+/ list / whatever of the following values
+
+Not a pretty test I'll admit but -
+"""
+
+test_edges = [(4, 1), (3, 2), (5, 2), (2, 3), (6, 3), (1, 4), (7, 4), (2, 5),
+              (6, 5), (3, 6), (5, 6), (4, 7) ]
+
+OK = True
+
+for test in test_edges:
+    if test not in edges and test != TopEdge and test != BottomEdge:
+        print("{} isn't in and it should be!".format(test))
+        OK = False
+if OK:
+    print("All good")
