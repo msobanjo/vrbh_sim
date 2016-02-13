@@ -85,10 +85,10 @@ class Graph:
 
     def get_below_node(self):
         """
-        Get the node beneath the given node 
+        Get the node beneath the given node
         """
         pass
-        
+
 
     def get_matrix_n(self):
         """
@@ -110,23 +110,15 @@ class Graph:
         n1 = n[0]
         n2 = n[1]
 
-        # this will get the <x, y> for the Pixel coordinates rather than the Matrix coordinate? As in - the matrix coordinates
-        # would be the row column where the matrix was ~ 40x40 or whatever, returning a value of 500 + means that they're
+        # this will get the <x, y> for the Pixel coordinates rather than the
+        # Matrix coordinate? As in - the matrix coordinates would be the row
+        # column where the matrix was ~ 40x40 or whatever, returning a value of
+        # 500 + means that they're
         # pixles rather than nodes.
         # The nodes have the <x, y> to render to canvas though, so this probably makes sense.
-
-<<<<<<< HEAD
         # this is a node here
-        node_req = self.matrix[n1][n2]
 
-        left_node = self.matrix[n1 - 25][n2]
-        right_node = self.matrix[n1 + 25][n2]
-
-        node_list = [left_node.center_tuple, right_node.center_tuple]
-=======
-        # this is a node here    
         node_req = self.matrix[n1 - 1][n2]
->>>>>>> b0c8fa4a32c9f23bcff681e92411a7b5539eed9f
 
         return node_req
 
