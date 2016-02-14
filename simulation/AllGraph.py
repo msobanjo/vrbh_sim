@@ -51,13 +51,10 @@ class Graph:
     def run(self):
         pass
 
-    def render(self, robot_position = None):
+    def render(self):
         """This should render the graph on screen.
 
         Ideally this will only have to be done once.
-
-        robot_position enables the position of the robot to be input when the
-        graph is first setup.
 
         """
         for index_r, a_row in enumerate(self.matrix):
