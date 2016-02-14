@@ -17,7 +17,8 @@ class Node:
                  colour="#555",
                  outline="#666",
                  robot_colour = "#f27",
-                 seeker_colour = "#93FF46"
+                 seeker_colour = "#93FF46",
+                 sought_colour = "#000"
                  ):
 
 
@@ -45,7 +46,13 @@ class Node:
 
         self.center_tuple = (self.mx, self.my)
 
+        # colours
+
         self.colour = colour
+        self.sought_colour = sought_colour
+        self.seeker_colour = seeker_colour
+
+
         self.canvas = canvas
 
         # colours for robot and seeker nodes
@@ -59,9 +66,11 @@ class Node:
         self.weight = weight
         # TODO the vertices just have a price of 5 atm
         self.value = price
+
         # not sure if this'll be useful atm
         self.am_robot = False
         self.am_seeker = False
+        self.am_sought = False
 
     def display(self):
         """display the vertice on screen"""
@@ -101,6 +110,16 @@ class Node:
         """
         self.am_seeker = True
         self.set_colour(self.seeker_colour)
+
+    def set_sought(self):
+        """Indicate that a node has been sought already, distinguish it from those
+        which are currently being searched.
+
+        """
+
+        self.am_sought = True
+        self.set_colour(self.sought_colour)
+
 
     def set_colour(self, c):
         """
