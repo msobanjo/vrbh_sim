@@ -19,6 +19,11 @@
         - [DON'T CREATE MASSIVE ISSUES](#dont-create-massive-issues)
     - [Local code is useless](#local-code-is-useless)
     - [Make sure you're up to date!](#make-sure-youre-up-to-date)
+    - [Keeping in sync with the master](#keeping-in-sync-with-the-master)
+        - [2](#2)
+        - [3](#3)
+        - [4](#4)
+    - [Intro to a merge conflict](#intro-to-a-merge-conflict)
 - [Documentation](#documentation)
 - [PyCharm](#pycharm)
     - [View TODOs in files](#view-todos-in-files)
@@ -159,6 +164,187 @@ repo is behind the master repository and if you try and make changes on that you
 might bring up a load of merge conflicts. 
 
 Keeping the code up to date is important
+
+## Keeping in sync with the master
+
+So far the 'easy' way to keep in sync with the main repository has been to nuke
+your local one and to re-fork mine. While this approach *does* work it's perhaps
+a little heavy handed, and any ease is overshadowed by tedium. This should
+provide a way to keep up to date with the main repository without having to go
+through that.
+
+1. Create a fork of the repository to your GitHub
+2. Add an `upstream` remote
+3. fetch upstream
+4. merge upstream branch to yours
+
+### 2
+
+From the terminal 
+
+```bash
+# view the remotes that you currently have (there will be two)
+git remote -v
+# add the url of my branch as an 'upstream' branch
+git remote add upstream <url of upstream branch>
+# Now view the remotes, there'll be 4, two of which are 'upstream'
+git remote -v
+```
+
+
+### 3 
+
+This will grab everything from the upstream repo
+
+```bash
+# view the local branches
+git branch -a
+# fetch upstream content
+git fetch upstream
+# now view branches - there will be a load that also have upstream
+# remotes/upstream/<--name-->
+git branch -a
+```
+
+### 4
+
+Now the upstream branches are local - but you still need to get their content in
+with yours. This is done using the `merge` command. I'm not going to go into
+merge conflicts here, hopefully you don't have any, keeping up to date regularly
+will help to prevent them.
+
+Make sure that you're in the branch that you want to merge into, so if you want
+to merge `upstream/item-one` content into your branch `origin/test-item` you
+would do the following
+
+```bash
+# check you're in the correct branch 
+git branch
+# merge in the content of the remotes branch
+git merge upstream/item-one
+```
+
+Hopefully this will go smoothly !
+
+## Intro to a merge conflict
+
+So just so there's an idea of what a conflict is here - it's basically when two
+people edit the same file with different (and conflicting) information.
+
+Original File - 
+```python
+v = "print"
+print(v)
+```
+
+Person A 
+
+```python
+v = "stop"
+print(v * 2)
+```
+
+Person B
+
+```python
+v = "start"
+print(v * 2)
+```
+
+Both want to commit this code - but the same content has changed and Git can't
+tell which version is most important. When this happens it flags it as a merge
+conflict and leaves you to decide which is the version that you want.
+
+Here I've created the above files in a git repository and I'm merging the
+`person-a` branch into my `master`
+
+```bash
+$ git branch -a
+* master
+  person-a
+  person-b
+
+$ git merge person-a 
+Updating f7c0e95..df6750a
+Fast-forward
+ file | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+$ 
+```
+
+All good, however I'll now try and merge `person-b` in the master -
+
+```bash
+~/git-demo
+$ git merge person-b
+Auto-merging file
+CONFLICT (content): Merge conflict in file
+Automatic merge failed; fix conflicts and then commit the result.
+```
+
+Ah, `CONFLICT`, because the files contain different content *at the same places*
+and Git can't tell which content is more important, so it hands the choice over
+to the user.
+
+Now if we look at the file contents -
+
+```text
+<<<<<<< HEAD
+v = "stop"
+print(v * 2)
+=======
+v = "start"
+print(v * 5)
+>>>>>>> person-b
+```
+
+We can see that our `HEAD` (the commit that git is currently pointing to) has
+the contents of `person-a` that we merged in without trouble, but we also have
+the contents of `person-b` underneath the equals `=======` signs.
+
+Now it's a case of manually editing to see which is needed, perhaps the goal was
+to print `stop` 5 times (a mix of both), in which case I would edit as follows -
+
+```text
+v = "stop"
+print(v * 5)
+```
+
+
+```bash
+# get status - currently there's a conflict BUT I have just fixed this
+
+$ git status
+On branch master
+You have unmerged paths.
+  (fix conflicts and run "git commit")
+
+Unmerged paths:
+  (use "git add <file>..." to mark resolution)
+
+	both modified:   file
+
+# I can add the file with the changes that I've made (which is the same file -
+I've just edited that file and saved it)
+
+$ git add file
+$ git commit -m 'fixed conflict'
+[master d6bd293] fixed conflict
+
+# The conflict is now resolved
+
+$ git status
+On branch master
+nothing to commit, working directory clean
+```
+
+
+You shouldn't have to do this (and neither should I), but it's good to have an
+idea of what it means. 
+
+Also I'll point out that this was for **2 LINES** of code - if there are 30
+lines+ you can see how something of this nature can be a nightmare to ammend.
+
 
 # Documentation
 
