@@ -18,7 +18,7 @@ class Node:
                  outline="#666",
                  robot_colour = "#f27",
                  seeker_colour = "#93FF46",
-                 sought_colour = "#000"
+                 sought_colour = "#F83BAA"
                  ):
 
 

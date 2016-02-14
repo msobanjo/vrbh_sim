@@ -25,7 +25,7 @@ NODE_SIZE = NODE_SIDE_LEN
 CANVAS_BACKGROUND_COLOUR = 'white'
 # Think frames per seconds, just a milliseconds value of how often to refresh
 # the page
-SCREEN_REFRESH = 500
+SCREEN_REFRESH = 50
 
 # Create the canvas with given sizes
 canvas = Canvas(root,
@@ -112,17 +112,23 @@ def get_edges(t, b, d):
 
 TopEdge = (robot_tuple[0], robot_tuple[1])
 BottomEdge = (robot_tuple[0], robot_tuple[1])
+edges = set()
 
 def main_animate():
 
+    # TODO: globals urgh - shouldn't need these
     global TopEdge
     global BottomEdge
+    global edges
 
+    # this should be all of the edges from the previous run, which
+    # (after being searched) should now be set to sought
     try:
         for e in edges:
             test_graph.set_sought(e)
     except UnboundLocalError as firstRun:
-        # This will kick up an error on the first pass so just catch it
+        # TODO: This will kick up an error on the first pass so just catch it
+        # for now
         pass
 
     edges = set()
@@ -130,11 +136,13 @@ def main_animate():
     TopEdge = (TopEdge[0], TopEdge[1] - 1)
     BottomEdge = (BottomEdge[0], BottomEdge[1] + 1)
     dist = calc_tb_distance(TopEdge, BottomEdge)
-
-    # so I have a set of edges here.
     edges = get_edges(TopEdge, BottomEdge, dist)
+
     edges.add(TopEdge)
     edges.add(BottomEdge)
+
+    print("Set len = {}".format(len(edges)))
+    print("Dist = {}".format(dist))
 
     if dist > 16:
         TopEdge, BottomEdge =  reset_values(TopEdge, BottomEdge, robot_tuple)
@@ -146,14 +154,8 @@ def main_animate():
 ###############################################################################
 
 root.after(SCREEN_REFRESH, main_animate)
-
 root.mainloop()
-
 root.destroy()
-
-
-
-
 
 ###############################################################################
 
