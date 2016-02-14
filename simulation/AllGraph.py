@@ -83,6 +83,21 @@ class Graph:
         """
         self.matrix[p[0]][p[1]].set_sought()
         self.matrix[p[0]][p[1]].display()
+
+
+    def place_robot(self, r):
+        """This will enable one to place the Robot on the Graph somewhere.
+
+        Takes input of r which should be a position in the matrix to assign a
+        robot node.
+
+        eg r = (20,20) will create a robot node in the middle of a 20x20 matrix
+
+        """
+        print("Assigning robot position...")
+        print(self.matrix[r[0]][r[1]])
+
+
     def get_all_neighbours(self, n):
         """This is a naive method for getting all neighbours of a given node.
 
