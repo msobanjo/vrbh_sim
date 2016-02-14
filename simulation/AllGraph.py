@@ -64,6 +64,18 @@ class Graph:
             for index_b, a_node in enumerate(a_row):
                 a_node.display()
 
+    def set_seeker(self, p):
+        """Set node at postiion p in the graph to be a seeker.
+
+        # TODO: It's worth considering whether this is the most appropriate
+        place to have this method. I think that it makes sense to talk to the
+        graph for this? Leaving this for others to consider.
+
+        """
+        self.matrix[p[0]][p[1]].set_seeker()
+        self.matrix[p[0]][p[1]].display()
+
+
     def set_sought(self, p):
         """Set node at postiion p in the graph to be sought (it's already been accessed
         / looked at)
