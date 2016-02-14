@@ -184,6 +184,8 @@ R = Robot
 
 """
 So this is going to be the first Top and Bottom edges
+
+[1]
 """
 
 TopEdge = (R[0], (R[1] - 1))
@@ -228,7 +230,7 @@ I'm using a set() structure so that there are no duplicates stored.
 edges = set()
 inc = 1
 
-for n in range(diff):
+for n in range(difference_top_bottom):
     edges.add((TopEdge[0]    - inc, TopEdge[1]    + inc))
     edges.add((BottomEdge[0] - inc, BottomEdge[1] - inc))
     edges.add((TopEdge[0]    + inc, TopEdge[1]    + inc ))
@@ -368,5 +370,15 @@ if OK:
 helpful in communicating it to others.
 
 I might just leave this as it is, it's pretty readable.
+
+"""
+
+"""Some notes on the above -
+
+[1] Looking back over this it would make more sense to assign the top and
+bottom to the robot values for the first run and just go from there. Whether it
+would be more expensive to do it this way or not idk, seems like it would be a
+bit cleaner at least.
+
 
 """
