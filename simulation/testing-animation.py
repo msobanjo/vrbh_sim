@@ -16,10 +16,6 @@ root = Tk()
 NODE_NUM_W = 40
 NODE_NUM_H = 40
 
-# TODO: changing for a test
-NODE_NUM_W = 5
-NODE_NUM_H = 5
-
 NODE_SIDE_LEN = 25
 MATRIX_TOTAL_NODE_AMOUNT = NODE_NUM_H * NODE_NUM_W # 3x3 = 9
 MATRIX_WIDTH = NODE_NUM_W * NODE_SIDE_LEN          # eg 3x3 matrix with NODE_SIZE of 2 = 6 wide
