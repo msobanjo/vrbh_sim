@@ -321,7 +321,7 @@ Unmerged paths:
 	both modified:   file
 
 # I can add the file with the changes that I've made (which is the same file -
-I've just edited that file and saved it)
+# I've just edited that file and saved it)
 
 $ git add file
 $ git commit -m 'fixed conflict'
