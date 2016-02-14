@@ -146,6 +146,7 @@ class Graph:
         Currently just returns a string made up of all the rows
 
         """
-        return_string = "Matrix size : \n{} X {}".format(self.number_of_rows,
+        return_string = "\nGraph Info : \n"
+        return_string += "Matrix size : \n{} X {}".format(self.number_of_rows,
                                                          self.number_of_rows)
         return return_string
