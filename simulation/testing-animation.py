@@ -119,7 +119,6 @@ def animate_testing():
 
     pass
 
-
 print(test_graph)
 
 def main_animate():
@@ -128,9 +127,7 @@ def main_animate():
     # or item
 
     # print(test_graph.get_all_neighbours(fixed_robot))
-
     # Pass in the tuple to test graph methods
-
     # print(test_graph.receive_tuple_position(robot_tuple))
 
     root.after(SCREEN_REFRESH, main_animate)

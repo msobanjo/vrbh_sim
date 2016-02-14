@@ -17,7 +17,7 @@ class Graph:
                  NODE_NUM_W,
                  NODE_SIZE,
                  canvas
-            ):
+    ):
 
         """
         Initialise a Matrix of Nodes
@@ -25,6 +25,7 @@ class Graph:
         Input of matrix width, matrix height, node size
         """
         # TODO: SHOULD THE CANVAS BE PASSED INTO THE GRAPH CLASS LIKE THIS?
+        # WORKS SO...?
         self.canvas = canvas
 
         # CREATE A 2D MATRIX TO STORE NODES
@@ -103,8 +104,7 @@ class Graph:
         """
         pass
 
-    def receive_tuple_position(self, n,
-                               robot_position = None):
+    def receive_tuple_position(self, n):
         """The graph should be able to receive a tuple position and find nearby nodes
         based on that.
 
@@ -113,8 +113,6 @@ class Graph:
 
         This needs to take the input of a node rather than a pixel value.
 
-        robot_position enables the position of the robot to be input when the
-        graph is first setup.
 
         """
 
@@ -132,7 +130,6 @@ class Graph:
         node_req = self.matrix[n1 - 1][n2]
 
         return node_req
-
 
     def draw_line():
         """This is going to take a path and draw a line along the given path. The path
