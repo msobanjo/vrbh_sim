@@ -53,6 +53,17 @@ test_graph.place_robot(robot_tuple)
 
 ###############################################################################
 
+def reset_values(t, b, r):
+    """
+    I just want to watch it move about actually
+
+    """
+    test_graph.reset_matrix()
+    t = (r[0], r[1])
+    b = (r[0], r[1])
+    print("reset shit")
+    return t, b
+
 def calc_tb_distance(t, b):
     """Input of tuples t[op] and b[ottom] nodes, returns half the distance between
     the two
