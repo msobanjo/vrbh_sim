@@ -82,6 +82,21 @@ class Graph:
         self.matrix[p[0]][p[1]].display()
 
 
+    def reset_matrix(self):
+        """reset all nodes of the matrix
+
+        Perhaps this should be able to take some kind of condition, so as to
+        set the matrix up with certain values?
+
+        Also it's quite an expensive method at the moment, so this should be looked at
+        """
+        for row in self.matrix:
+            for node in row:
+                node.reset()
+
+
+
+
     def place_robot(self, r):
         """This will enable one to place the Robot on the Graph somewhere.
 
