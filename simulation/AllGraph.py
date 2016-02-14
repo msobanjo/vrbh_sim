@@ -64,6 +64,13 @@ class Graph:
             for index_b, a_node in enumerate(a_row):
                 a_node.display()
 
+    def set_sought(self, p):
+        """Set node at postiion p in the graph to be sought (it's already been accessed
+        / looked at)
+
+        """
+        self.matrix[p[0]][p[1]].set_sought()
+        self.matrix[p[0]][p[1]].display()
     def get_all_neighbours(self, n):
         """This is a naive method for getting all neighbours of a given node.
 
