@@ -178,7 +178,7 @@ through that.
 3. fetch upstream
 4. merge upstream branch to yours
 
-### 2
+**2. Add an `upstream` remote**
 
 From the terminal 
 
@@ -191,8 +191,7 @@ git remote add upstream <url of upstream branch>
 git remote -v
 ```
 
-
-### 3 
+**3. fetch upstream**
 
 This will grab everything from the upstream repo
 
@@ -206,7 +205,7 @@ git fetch upstream
 git branch -a
 ```
 
-### 4
+**4. merge upstream branch to yours**
 
 Now the upstream branches are local - but you still need to get their content in
 with yours. This is done using the `merge` command. I'm not going to go into
