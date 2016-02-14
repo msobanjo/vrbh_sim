@@ -15,8 +15,8 @@ root = Tk()
 # INIT VARIABLES
 NODE_NUM_W = 40
 NODE_NUM_H = 40
-
 NODE_SIDE_LEN = 25
+
 MATRIX_TOTAL_NODE_AMOUNT = NODE_NUM_H * NODE_NUM_W # 3x3 = 9
 MATRIX_WIDTH = NODE_NUM_W * NODE_SIDE_LEN          # eg 3x3 matrix with NODE_SIZE of 2 = 6 wide
 MATRIX_HEIGHT = NODE_NUM_H * NODE_SIDE_LEN         # eg 3x3 with NODE_SIZE 2 = 6 high
@@ -25,7 +25,7 @@ NODE_SIZE = NODE_SIDE_LEN
 CANVAS_BACKGROUND_COLOUR = 'white'
 # Think frames per seconds, just a milliseconds value of how often to refresh
 # the page
-SCREEN_REFRESH = 2000
+SCREEN_REFRESH = 500
 
 # Create the canvas with given sizes
 canvas = Canvas(root,
@@ -35,7 +35,6 @@ canvas = Canvas(root,
 canvas.pack()
 
 ###############################################################################
-
 
 fixed_robot = 620
 
@@ -48,37 +47,105 @@ robot_tuple = (20, 20)
 
 new_seeker_list = [fixed_robot]
 test_graph = Graph(NODE_NUM_H, NODE_NUM_W, NODE_SIZE, canvas)
+
 test_graph.render()
+test_graph.place_robot(robot_tuple)
 
+###############################################################################
 
-def unique_list(input):
-    """
-    # TODO: unique_list - info about function
-
-    - what's it's input
-    - whats it's output
-    - why is a keyword used :P
+def calc_tb_distance(t, b):
+    """Input of tuples t[op] and b[ottom] nodes, returns half the distance between
+    the two
 
     """
-    output = []
-    for x in input:
-      if x not in output:
-        output.append(x)
-    return output
+    difference_top_bottom = abs(t[1] - b[1]) / 2
+    return difference_top_bottom
 
-def find_surrounding(initial_posistion):
+
+def get_edges(t, b, d):
+    """Input of t[op], b[ottom] tuples and the d[ifference] from them to the Robot
+
+    This will return a set() of the values that should be tested.
+
+    I'm leaving print statements in here so that you can run if you choose to
+    in order to see how it's functioning
+
     """
-    # TODO: find_surrounding - info about function
+    edges = set()
 
-    What's this function doing? Input / output
+    for n in range(d):
 
-    """
-    next_x = initial_posistion +1
-    prev_x = initial_posistion -1
-    next_y = initial_posistion + NODE_NUM_W
-    prev_y = initial_posistion - NODE_NUM_W
-    seeker_list = [next_x, prev_x, next_y, prev_y]
-    return seeker_list
+        n = n  + 1
+
+        topLeft = (t[0] - n, t[1] + n)
+        edges.add((topLeft))
+
+        bottomLeft = (b[0] - n, b[1] - n)
+        edges.add(bottomLeft)
+
+        topRight = (t[0] + n, t[1] + n)
+        edges.add((topRight))
+
+        bottomRight = (b[0] + n, b[1] - n)
+        edges.add((bottomRight))
+
+        print('\n')
+    return edges
+
+###############################################################################
+
+# IMPLEMENTING THE SIMPLE ALGOTITHM
+
+# TopEdge = (robot_tuple[0], robot_tuple[1] - 1)
+# BottomEdge = (robot_tuple[0], robot_tuple[1] + 1)
+
+TopEdge = (robot_tuple[0], robot_tuple[1])
+BottomEdge = (robot_tuple[0], robot_tuple[1])
+
+def main_animate():
+
+    global TopEdge
+    global BottomEdge
+
+    try:
+        for e in edges:
+            test_graph.set_sought(e)
+    except UnboundLocalError as firstRun:
+        # This will kick up an error on the first pass so just catch it
+        pass
+
+    edges = set()
+
+    TopEdge = (TopEdge[0], TopEdge[1] - 1)
+    BottomEdge = (BottomEdge[0], BottomEdge[1] + 1)
+    dist = calc_tb_distance(TopEdge, BottomEdge)
+
+    # so I have a set of edges here.
+    edges = get_edges(TopEdge, BottomEdge, dist)
+    edges.add(TopEdge)
+    edges.add(BottomEdge)
+
+    for e in edges:
+        test_graph.set_seeker(e)
+
+    root.after(SCREEN_REFRESH, main_animate)
+
+###############################################################################
+
+root.after(SCREEN_REFRESH, main_animate)
+
+root.mainloop()
+
+root.destroy()
+
+
+
+
+
+###############################################################################
+
+# this is just in the way at the moment
+
 
 def animate_testing():
     """This function is for testing the animation and was added by george just
@@ -119,23 +186,33 @@ def animate_testing():
 
     pass
 
-print(test_graph)
 
-def main_animate():
+def find_surrounding(initial_posistion):
+    """
+    # TODO: find_surrounding - info about function
 
-    # Count is used at the moment to check which if the node is the test robot
-    # or item
+    What's this function doing? Input / output
 
-    # print(test_graph.get_all_neighbours(fixed_robot))
-    # Pass in the tuple to test graph methods
-    # print(test_graph.receive_tuple_position(robot_tuple))
+    """
+    next_x = initial_posistion +1
+    prev_x = initial_posistion -1
+    next_y = initial_posistion + NODE_NUM_W
+    prev_y = initial_posistion - NODE_NUM_W
+    seeker_list = [next_x, prev_x, next_y, prev_y]
+    return seeker_list
 
-    root.after(SCREEN_REFRESH, main_animate)
 
-###############################################################################
+def unique_list(input):
+    """
+    # TODO: unique_list - info about function
 
-root.after(SCREEN_REFRESH, main_animate)
+    - what's it's input
+    - whats it's output
+    - why is a keyword used :P
 
-root.mainloop()
-
-root.destroy()
+    """
+    output = []
+    for x in input:
+      if x not in output:
+        output.append(x)
+    return output
