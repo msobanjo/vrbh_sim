@@ -33,12 +33,26 @@ class Interface():
         self.lableSorting.configure(background='white')
         self.lableSorting.place(x=80,y=190)
 
+        
 
-    def combo(self):
-        ''' prints the value of comboboxes '''
+
+    def okButton(self):
+        ''' prints the values the user has choosen '''
         self.value_of_comboType = self.comboType.get()
         self.value_of_comboTime = self.comboTime.get()
-        print(self.value_of_comboTime)
+        self.value_of_comboSearching = self.comboSearching.get()
+        self.value_of_comboSorting = self.comboSorting.get()
+        dic = { "type":self.value_of_comboType, "time":self.value_of_comboTime,
+                "searching":self.value_of_comboSearching,
+                "sorting":self.value_of_comboSorting,
+                "colour":Interface.value
+                } 
+        
+        print(dic["type"],dic["time"],dic["searching"],dic["sorting"],dic["colour"])
+
+        #root.destroy()
+        #root2 = Tk()
+        #root2.geometry('450x450+200+200')
     
 
     def comboboxs(self):
@@ -67,7 +81,7 @@ class Interface():
 
     def buttons(self):
         ''' displays the button on the main page'''
-        self.buttonOk = Button(self.root,text="Ok", command = self.done)
+        self.buttonOk = Button(self.root,text="Ok", command = self.combo)
         self.buttonOk.place(x=350,y=350)
            
            
@@ -84,9 +98,9 @@ class Interface():
         self.sliderColour.configure(background='white')
     def done(self):
         ''' close the main page and opens up a new one'''
-        root.destroy()
-        root2 = Tk()
-        root2.geometry('450x450+200+200') 
+        #root.destroy()
+        #root2 = Tk()
+        #root2.geometry('450x450+200+200') 
 
     def print_value(self,value):
         '''sets the value of the colours on the slider ''' 
