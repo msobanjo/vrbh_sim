@@ -136,6 +136,8 @@ def main_animate():
     edges.add(TopEdge)
     edges.add(BottomEdge)
 
+    if dist > 16:
+        TopEdge, BottomEdge =  reset_values(TopEdge, BottomEdge, robot_tuple)
     for e in edges:
         test_graph.set_seeker(e)
 
