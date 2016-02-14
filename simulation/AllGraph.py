@@ -149,11 +149,6 @@ class Graph:
         Currently just returns a string made up of all the rows
 
         """
-        return_string = "\n"
-
-        for row_info in self.matrix:
-            return_string += "[ "
-            for node in row_info:
-                return_string += "<{},{}>, ".format(node.mx, node.my)
-            return_string += " ]\n"
+        return_string = "Matrix size : \n{} X {}".format(self.number_of_rows,
+                                                         self.number_of_rows)
         return return_string
