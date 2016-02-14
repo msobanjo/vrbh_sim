@@ -36,22 +36,28 @@ class Graph:
             for i in range(NODE_NUM_W):
                 node_list[-1].append(Node(i, j, NODE_SIZE, self.canvas))
 
-
         # total number of nodes in the matrix
         self.node_number = (NODE_NUM_W * NODE_NUM_H)
+
         # total width and height of canvas in pixels
         self.pixel_width = (NODE_NUM_W * NODE_SIZE)
         self.pixel_height = (NODE_NUM_H * NODE_SIZE)
         # the matrix containing all nodes.
         self.matrix = node_list
 
+        self.number_of_rows = NODE_NUM_W
+
     def run(self):
         pass
 
-    def render(self):
+    def render(self, robot_position = None):
         """This should render the graph on screen.
 
         Ideally this will only have to be done once.
+
+        robot_position enables the position of the robot to be input when the
+        graph is first setup.
+
         """
         for index_r, a_row in enumerate(self.matrix):
             for index_b, a_node in enumerate(a_row):
@@ -97,7 +103,8 @@ class Graph:
         """
         pass
 
-    def receive_tuple_position(self, n):
+    def receive_tuple_position(self, n,
+                               robot_position = None):
         """The graph should be able to receive a tuple position and find nearby nodes
         based on that.
 
@@ -105,6 +112,9 @@ class Graph:
         rather than its pixel value.
 
         This needs to take the input of a node rather than a pixel value.
+
+        robot_position enables the position of the robot to be input when the
+        graph is first setup.
 
         """
 
