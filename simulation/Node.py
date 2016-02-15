@@ -27,8 +27,11 @@ class Node:
         self.my = y1
 
         # These are the pixel positions for Node
-        self.x1 = x1 * side_len 
-        self.y1 = y1 * side_len
+        x1 = x1 * side_len
+        y1 = y1 * side_len
+
+        self.x1 = x1
+        self.y1 = y1
 
         x2 = self.x1 + side_len
         y2 = self.y1 + side_len
@@ -39,8 +42,8 @@ class Node:
         self.side_len = side_len
 
         # get the center point of a node object
-        # self.mx = (x1 + x2) / 2
-        # self.my = (y1 + y2) / 2
+        self.midx = (x1 + x2) / 2
+        self.midy = (y1 + y2) / 2
 
         self.center_tuple = (self.mx, self.my)
 
@@ -62,6 +65,8 @@ class Node:
         self.am_robot = False
         self.am_seeker = False
         self.am_prev_seeker = False
+        self.am_item = False
+        self.am_prev_robot = False
 
     def display(self):
         """display the vertice on screen"""
@@ -90,7 +95,7 @@ class Node:
         robot
         """
         self.am_robot = True
-        self.set_colour(self.robot_colour)
+        self.set_colour("red")
 
     def set_seeker(self):
         """Change the node to represent a seeker node given the class variable setting
@@ -111,6 +116,26 @@ class Node:
         """
         self.am_prev_seeker = True
         self.set_colour("white")
+
+    def set_item(self):
+        """Change the node to represent a item node given the class variable setting
+        of
+
+        self.seeker_colour
+
+        """
+        self.am_item = True
+        self.set_colour("yellow")
+
+    def set_prev_robot(self):
+        """Change the node to represent a item node given the class variable setting
+        of
+
+        self.seeker_colour
+
+        """
+        self.am_prev_robot = True
+        self.set_colour("pink")
 
     def set_colour(self, c):
         """
@@ -136,6 +161,6 @@ Butter Robot: Oh my god
 Rick: Yeah, welcome to the club, pal""")
         return "butter"
 
-    def return_node(self): # Returns the co-ordinates of a node
+    def return_node(self):
         co_ordinates = [self.mx,self.my]
         return co_ordinates
