@@ -95,7 +95,7 @@ class Node:
         robot
         """
         self.am_robot = True
-        self.set_colour("red")
+        self.set_colour(self.robot_colour)
 
     def set_seeker(self):
         """Change the node to represent a seeker node given the class variable setting
