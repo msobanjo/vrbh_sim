@@ -25,7 +25,8 @@ NODE_SIZE = NODE_SIDE_LEN
 CANVAS_BACKGROUND_COLOUR = 'white'
 # Think frames per seconds, just a milliseconds value of how often to refresh
 # the page
-SCREEN_REFRESH = 50
+SCREEN_REFRESH = 100
+
 
 # Create the canvas with given sizes
 canvas = Canvas(root,
@@ -58,7 +59,7 @@ def reset_values(t, b, r):
     I just want to watch it move about actually
 
     """
-    test_graph.reset_matrix()
+    # test_graph.reset_matrix()
     t = (r[0], r[1])
     b = (r[0], r[1])
     print("reset shit")
@@ -141,11 +142,11 @@ def main_animate():
     edges.add(TopEdge)
     edges.add(BottomEdge)
 
-    print("Set len = {}".format(len(edges)))
-    print("Dist = {}".format(dist))
-
-    if dist > 16:
+    if dist > 3:
         TopEdge, BottomEdge =  reset_values(TopEdge, BottomEdge, robot_tuple)
+        print("Greater...")
+        test_graph.reset_matrix()
+        # test_graph.render()
     for e in edges:
         test_graph.set_seeker(e)
 
@@ -160,7 +161,6 @@ root.destroy()
 ###############################################################################
 
 # this is just in the way at the moment
-
 
 def animate_testing():
     """This function is for testing the animation and was added by george just
