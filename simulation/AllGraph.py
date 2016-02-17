@@ -90,12 +90,14 @@ class Graph:
 
         Also it's quite an expensive method at the moment, so this should be looked at
         """
-        for row in self.matrix:
-            for node in row:
-                node.reset()
+        for index_r, a_row in enumerate(self.matrix):
+            for index_b, a_node in enumerate(a_row):
+                a_node.reset()
+                a_node.display()
 
-
-
+        # for row in self.matrix:
+        #     for node in row:
+        #         node.reset()
 
     def place_robot(self, r):
         """This will enable one to place the Robot on the Graph somewhere.
@@ -158,7 +160,6 @@ class Graph:
         rather than its pixel value.
 
         This needs to take the input of a node rather than a pixel value.
-
 
         """
 
