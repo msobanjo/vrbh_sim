@@ -132,9 +132,9 @@ class Node:
         """
         This will reset the node to an initial condition
         """
+        self.set_colour("#000")
         self.am_seeker = False
         self.am_robot = False
-        self.set_colour(self.sought_colour)
 
     def __str__(self):
         info = "Matrix <x,y> = <{},{}>\nPixel x1 = {}, Pixel y1 = {},\nPixel x2 = {}, Pixel y2 = {}\n".format(
