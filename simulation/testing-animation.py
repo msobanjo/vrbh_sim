@@ -229,18 +229,22 @@ def main_animate():
     TopEdge = (TopEdge[0], TopEdge[1] - 1)
     BottomEdge = (BottomEdge[0], BottomEdge[1] + 1)
     dist = calc_tb_distance(TopEdge, BottomEdge)
+
     edges = get_edges(TopEdge, BottomEdge, dist)
 
     edges.add(TopEdge)
     edges.add(BottomEdge)
 
-    if dist > 3:
+    if dist >= 8:
+        # clear the search pattern
+        reset_nodes = get_nodes_to_reset(TopEdge, BottomEdge, test_graph.matrix)
+        test_graph.reset_nodes(reset_nodes)
         TopEdge, BottomEdge =  reset_values(TopEdge, BottomEdge, robot_tuple)
-        print("Greater...")
-        test_graph.reset_matrix()
-        # test_graph.render()
-    for e in edges:
-        test_graph.set_seeker(e)
+    else:
+        # create the next line of seekers
+        for e in edges:
+            test_graph.set_seeker(e)
+
 
     root.after(SCREEN_REFRESH, main_animate)
 
