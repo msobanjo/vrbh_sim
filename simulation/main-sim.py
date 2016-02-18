@@ -41,9 +41,8 @@ canvas.pack()
 # reset method doesn't work.
 
 # Position for the robot to start at while testing
-robot_tuple = (20, 20)
+robot_tuple = (35,20)
 
-new_seeker_list = [fixed_robot]
 test_graph = Graph(NODE_NUM_H, NODE_NUM_W, NODE_SIZE, canvas)
 
 test_graph.render()
@@ -101,13 +100,16 @@ def get_edges(t, b, d, m=test_graph.matrix):
     matrix_y_range = len(m) - 1
 
     min_x = 0
-    max_x = matrix_x_range
+    max_x = NODE_NUM_W
     min_y = 0
-    max_y = matrix_y_range
+    max_y = NODE_NUM_H
 
     edges = set()
+    
     for n in range(d):
-
+        # TODO: How does it get the side values, i get how it gets the ones above and below
+        # but not the sides
+    
         n = n  + 1
 
         # Create nodes to be added to the set()
@@ -119,43 +121,28 @@ def get_edges(t, b, d, m=test_graph.matrix):
         # Check that the nodes aren't outside of the matrix index.
 
         # TODO: This isn't currently working though i don't think...
-        if (\
-            # Top
-
-            # check x values
-            topLeft[0] > max_x or \
-            topLeft[0] < min_x or \
-            topRight[0] > max_x or \
-            topRight[0] < min_x or \
-
-            # check y values
-            topLeft[1] < min_y or \
-            topLeft[1] > max_y or \
-            topRight[1] < min_y or \
-            topRight[1] > max_y or \
-
-            # Bottom
-
-            # check x values
-            bottomLeft[0] > max_x or \
-            bottomLeft[0] < min_x or \
-            bottomRight[0] > max_x or \
-            bottomRight[0] < min_x or \
-
-            # Check y values
-            bottomLeft[1] < min_y or \
-            bottomLeft[1] > max_y or \
-            bottomRight[1] < min_y or \
-            bottomRight[1] > max_y
-
-            ):
-            print("Greater")
 
         # Add nodes to the edges set
-        edges.add((topLeft))
-        edges.add(bottomLeft)
-        edges.add((topRight))
-        edges.add((bottomRight))
+
+        # Top left
+        if topLeft[0] >= 0:
+            if topLeft[1] >= 0:
+                edges.add(topLeft)
+
+        # Top right
+        if bottomLeft[0] >= 0:
+            if bottomLeft[1] < NODE_NUM_H:
+                edges.add(bottomLeft)
+
+        # bottom left
+        if topRight[0] < NODE_NUM_W:
+            if topRight[1] >= 0:
+                edges.add(topRight)
+
+        # bottom right
+        if bottomRight[0] < NODE_NUM_W:
+            if bottomRight[1] < NODE_NUM_H:
+                edges.add(bottomRight)
 
     return edges
 
@@ -280,14 +267,16 @@ def main_animate():
 
     TopEdge    = (TopEdge[0], TopEdge[1] - 1)
     BottomEdge = (BottomEdge[0], BottomEdge[1] + 1)
-    dist       = calc_tb_distance(TopEdge, BottomEdge)
+    dist = calc_tb_distance(TopEdge, BottomEdge)
 
     edges = get_edges(TopEdge, BottomEdge, dist)
 
-    edges.add(TopEdge)
-    edges.add(BottomEdge)
+    if TopEdge[1] >= 0:
+        edges.add(TopEdge)
+    if BottomEdge[1] <=  NODE_NUM_W- 1:
+        edges.add(BottomEdge)
 
-    if dist >= 78:
+    if dist >= 1000:
         # clear the search pattern
         reset_nodes = get_nodes_to_reset(TopEdge, BottomEdge, test_graph.matrix)
         test_graph.reset_nodes(reset_nodes)
