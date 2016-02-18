@@ -21,12 +21,13 @@ class Node:
                  sought_colour = "#F83BAA"
                  ):
 
-
         # initialise the coordinates for the vertice
 
         # These are the matrix positions for Node
         self.mx = x1
         self.my = y1
+        # so that the node has a tuple value of its position
+        self.pos = (self.mx, self.my)
 
         # These are the pixel positions for Node
         self.x1 = x1 * side_len
@@ -51,7 +52,6 @@ class Node:
         self.colour = colour
         self.sought_colour = sought_colour
         self.seeker_colour = seeker_colour
-
 
         self.canvas = canvas
 
@@ -116,10 +116,8 @@ class Node:
         which are currently being searched.
 
         """
-
         self.am_sought = True
         self.set_colour(self.sought_colour)
-
 
     def set_colour(self, c):
         """
@@ -132,12 +130,15 @@ class Node:
         """
         This will reset the node to an initial condition
         """
-        self.set_colour("#000")
+        self.colour = "#555"
+        self.set_colour(self.colour)
         self.am_seeker = False
         self.am_robot = False
+        self.display()
 
     def __str__(self):
-        info = "Matrix <x,y> = <{},{}>\nPixel x1 = {}, Pixel y1 = {},\nPixel x2 = {}, Pixel y2 = {}\n".format(
+        info = ("Matrix <x,y> = <{},{}>\nPixel x1 = {}," +
+        " Pixel y1 = {},\nPixel x2 = {}, Pixel y2 = {}\n").format(
             self.mx,
             self.my,
             self.x1,
