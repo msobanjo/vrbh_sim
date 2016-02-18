@@ -41,14 +41,28 @@ canvas.pack()
 # reset method doesn't work.
 
 # Position for the robot to start at while testing
-robot_tuple = (35,20)
+robot_tuple = None
 
 test_graph = Graph(NODE_NUM_H, NODE_NUM_W, NODE_SIZE, canvas)
 
 test_graph.render()
-test_graph.place_robot(robot_tuple)
 
 ###############################################################################
+
+def robot_square(event):
+    global robot_tuple
+    global TopEdge
+    global BottomEdge
+    global edges
+    """
+    Test function - Defines the clicked node as the robot from mouse selection
+    """
+    canvas.unbind('<Button-1>')
+    robot_tuple = (event.y//NODE_SIZE, event.x//NODE_SIZE)
+    test_graph.place_robot(robot_tuple)
+    TopEdge    = (robot_tuple[0], robot_tuple[1])
+    BottomEdge = (robot_tuple[0], robot_tuple[1])
+    edges      = set()
 
 def wait(n):
     """
@@ -239,54 +253,55 @@ def get_nodes_to_reset(t, b, m):
 
     return s
 
+canvas.bind('<Button-1>', lambda event: robot_square(event))
 
 ###############################################################################
-
-TopEdge    = (robot_tuple[0], robot_tuple[1])
-BottomEdge = (robot_tuple[0], robot_tuple[1])
-edges      = set()
 
 def main_animate():
 
     # TODO: globals urgh - shouldn't need these
+    global robot_tuple
     global TopEdge
     global BottomEdge
     global edges
 
-    # this should be all of the edges from the previous run, which
-    # (after being searched) should now be set to sought
-    try:
-        for e in edges:
-            test_graph.set_sought(e)
-    except UnboundLocalError as firstRun:
-        # TODO: This will kick up an error on the first pass so just catch it
-        # for now
-        pass
 
-    edges = set()
+    if robot_tuple != None:
+        
+        # this should be all of the edges from the previous run, which
+        # (after being searched) should now be set to sought
+        try:
+            for e in edges:
+                test_graph.set_sought(e)
+        except UnboundLocalError as firstRun:
+            # TODO: This will kick up an error on the first pass so just catch it
+            # for now
+            pass
 
-    TopEdge    = (TopEdge[0], TopEdge[1] - 1)
-    BottomEdge = (BottomEdge[0], BottomEdge[1] + 1)
-    dist = calc_tb_distance(TopEdge, BottomEdge)
-
-    edges = get_edges(TopEdge, BottomEdge, dist)
-
-    if TopEdge[1] >= 0:
-        edges.add(TopEdge)
-    if BottomEdge[1] <=  NODE_NUM_W- 1:
-        edges.add(BottomEdge)
-
-    if dist >= 1000:
-        # clear the search pattern
-        reset_nodes = get_nodes_to_reset(TopEdge, BottomEdge, test_graph.matrix)
-        test_graph.reset_nodes(reset_nodes)
-        TopEdge, BottomEdge =  reset_values(TopEdge, BottomEdge, robot_tuple)
-        # reset the edges to an empty set
         edges = set()
-    else:
-        # create the next line of seekers
-        for e in edges:
-            test_graph.set_seeker(e)
+
+        TopEdge    = (TopEdge[0], TopEdge[1] - 1)
+        BottomEdge = (BottomEdge[0], BottomEdge[1] + 1)
+        dist = calc_tb_distance(TopEdge, BottomEdge)
+
+        edges = get_edges(TopEdge, BottomEdge, dist)
+
+        if TopEdge[1] >= 0:
+            edges.add(TopEdge)
+        if BottomEdge[1] <=  NODE_NUM_W- 1:
+            edges.add(BottomEdge)
+
+        if dist >= 1000:
+            # clear the search pattern
+            reset_nodes = get_nodes_to_reset(TopEdge, BottomEdge, test_graph.matrix)
+            test_graph.reset_nodes(reset_nodes)
+            TopEdge, BottomEdge =  reset_values(TopEdge, BottomEdge, robot_tuple)
+            # reset the edges to an empty set
+            edges = set()
+        else:
+            # create the next line of seekers
+            for e in edges:
+                test_graph.set_seeker(e)
 
     root.after(SCREEN_REFRESH, main_animate)
 
