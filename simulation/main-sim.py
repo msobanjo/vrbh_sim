@@ -27,7 +27,6 @@ CANVAS_BACKGROUND_COLOUR = 'white'
 # the page
 SCREEN_REFRESH = 100
 
-
 # Create the canvas with given sizes
 canvas = Canvas(root,
                 width = MATRIX_WIDTH,
@@ -37,13 +36,11 @@ canvas.pack()
 
 ###############################################################################
 
-fixed_robot = 620
+# TODO: If the robot is set to the edge of the screen the search values will
+# overlap (like snake or something bleeding over). Also when this happens teh
+# reset method doesn't work.
 
-# TODO: Pass in a tuple instead of a fixed value. It makes no sense for the value to
-# just be one term for a 2D list, instead the Graph should receive a tuple to access the
-# node positions.
-# this should be roughly the center, 20th col in 20th row.
-
+# Position for the robot to start at while testing
 robot_tuple = (20, 20)
 
 new_seeker_list = [fixed_robot]
@@ -87,38 +84,90 @@ def get_reset_edges(t, b):
     """
     pass
 
-def get_edges(t, b, d):
+def get_edges(t, b, d, m=test_graph.matrix):
     """Input of t[op], b[ottom] tuples and the d[ifference] from them to the Robot
 
     This will return a set() of the values that should be tested.
 
-    I'm leaving print statements in here so that you can run if you choose to
-    in order to see how it's functioning
-
+    # TODO: This is for the seeker nodes right?
     """
-    edges = set()
 
+    # TODO: These values are so that if the value of the next node is greater
+    # than the edge of the screen they can be set to be the edge of the screen instead.
+
+    # TODO: This might be more efficient if at the end the values are hard
+    # coded somewhere else rather than setting jf things up in here
+    matrix_x_range = len(m[0]) - 1
+    matrix_y_range = len(m) - 1
+
+    min_x = 0
+    max_x = matrix_x_range
+    min_y = 0
+    max_y = matrix_y_range
+
+    edges = set()
     for n in range(d):
 
         n = n  + 1
 
+        # Create nodes to be added to the set()
         topLeft = (t[0] - n, t[1] + n)
-        edges.add((topLeft))
-
-        bottomLeft = (b[0] - n, b[1] - n)
-        edges.add(bottomLeft)
-
         topRight = (t[0] + n, t[1] + n)
-        edges.add((topRight))
-
+        bottomLeft = (b[0] - n, b[1] - n)
         bottomRight = (b[0] + n, b[1] - n)
+
+        # Check that the nodes aren't outside of the matrix index.
+
+        # TODO: This isn't currently working though i don't think...
+        if (\
+            # Top
+
+            # check x values
+            topLeft[0] > max_x or \
+            topLeft[0] < min_x or \
+            topRight[0] > max_x or \
+            topRight[0] < min_x or \
+
+            # check y values
+            topLeft[1] < min_y or \
+            topLeft[1] > max_y or \
+            topRight[1] < min_y or \
+            topRight[1] > max_y or \
+
+            # Bottom
+
+            # check x values
+            bottomLeft[0] > max_x or \
+            bottomLeft[0] < min_x or \
+            bottomRight[0] > max_x or \
+            bottomRight[0] < min_x or \
+
+            # Check y values
+            bottomLeft[1] < min_y or \
+            bottomLeft[1] > max_y or \
+            bottomRight[1] < min_y or \
+            bottomRight[1] > max_y
+
+            ):
+            print("Greater")
+
+        # Add nodes to the edges set
+        edges.add((topLeft))
+        edges.add(bottomLeft)
+        edges.add((topRight))
         edges.add((bottomRight))
 
-        print('\n')
     return edges
 
 def get_nodes_to_reset(t, b, m):
-    """
+    """# TODO: Though this works at the moment - it might make sense to just do a
+    square rather than working out the diamon as is done here. Reason being that if
+    the search is close to the edge of the screen the shape won't be a diamond in
+    the same way as this is expecting. However just resetting the rectangle around
+    it would work - permitting that the nodes being reset weren't either obstacles
+    or other items (this would be something to check)
+
+    ###############################################################################
 
     INPUT
     -----
@@ -206,9 +255,9 @@ def get_nodes_to_reset(t, b, m):
 
 ###############################################################################
 
-TopEdge = (robot_tuple[0], robot_tuple[1])
+TopEdge    = (robot_tuple[0], robot_tuple[1])
 BottomEdge = (robot_tuple[0], robot_tuple[1])
-edges = set()
+edges      = set()
 
 def main_animate():
 
@@ -229,26 +278,26 @@ def main_animate():
 
     edges = set()
 
-    TopEdge = (TopEdge[0], TopEdge[1] - 1)
+    TopEdge    = (TopEdge[0], TopEdge[1] - 1)
     BottomEdge = (BottomEdge[0], BottomEdge[1] + 1)
-    dist = calc_tb_distance(TopEdge, BottomEdge)
+    dist       = calc_tb_distance(TopEdge, BottomEdge)
 
     edges = get_edges(TopEdge, BottomEdge, dist)
 
     edges.add(TopEdge)
     edges.add(BottomEdge)
 
-    if dist >= 8:
+    if dist >= 78:
         # clear the search pattern
         reset_nodes = get_nodes_to_reset(TopEdge, BottomEdge, test_graph.matrix)
         test_graph.reset_nodes(reset_nodes)
         TopEdge, BottomEdge =  reset_values(TopEdge, BottomEdge, robot_tuple)
+        # reset the edges to an empty set
         edges = set()
     else:
         # create the next line of seekers
         for e in edges:
             test_graph.set_seeker(e)
-
 
     root.after(SCREEN_REFRESH, main_animate)
 
