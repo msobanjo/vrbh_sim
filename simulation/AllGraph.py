@@ -72,7 +72,6 @@ class Graph:
         self.matrix[p[0]][p[1]].set_seeker()
         self.matrix[p[0]][p[1]].display()
 
-
     def set_sought(self, p):
         """Set node at postiion p in the graph to be sought (it's already been accessed
         / looked at)
@@ -82,22 +81,15 @@ class Graph:
         self.matrix[p[0]][p[1]].display()
 
 
-    def reset_matrix(self):
+    def reset_nodes(self, node_set):
         """reset all nodes of the matrix
 
-        Perhaps this should be able to take some kind of condition, so as to
-        set the matrix up with certain values?
+        input - node_set are the nodes that are to be reset by this method. This
+        is a set() object
 
-        Also it's quite an expensive method at the moment, so this should be looked at
         """
-        for index_r, a_row in enumerate(self.matrix):
-            for index_b, a_node in enumerate(a_row):
-                a_node.reset()
-                a_node.display()
-
-        # for row in self.matrix:
-        #     for node in row:
-        #         node.reset()
+        for node in node_set:
+            node.reset()
 
     def place_robot(self, r):
         """This will enable one to place the Robot on the Graph somewhere.
