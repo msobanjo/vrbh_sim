@@ -110,12 +110,98 @@ def get_edges(t, b, d):
         print('\n')
     return edges
 
+def get_nodes_to_reset(t, b, m):
+    """
+
+    INPUT
+    -----
+
+    t[op] > tuple > the top node of search
+
+    b[ottom] > tuple > bottom node of search
+
+    m[atrix] > 2D list > 2D list of node objects, this is the graph.
+
+    RETURN
+    ------
+
+    Returns a set() which has all of the node object index positions from the
+    search top to bottom
+
+    EXAMPLE
+    -------
+
+    m[atrix] to use for values, which will be structured as (for a 3x3 matrix
+    size where n represents a node object)
+
+    m = [
+        [n, n, n],
+        [n, n, n],
+        [n, n, n]]
+
+    Here Top and Bottom nodes represent the node on the top or the bottom of
+    the search as it's viewed from the screen.
+
+    EXAMPLE SEARCH TOP / BOTTOM
+
+    here [2,0] would be the top and [2,4] would be the bottom -
+
+                        (2, 0)
+                (1, 1), (2, 1), (3, 1)
+        (0, 2), (1, 2), (2, 2), (3, 2), (4, 2)
+                (1, 3), (2, 3), (3, 3)
+                        (2, 4)
+
+    """
+
+    # TODO: I'm currently getting a trailing edge which might be resolved by
+    # extending the top/bottom range by 1? Move the top and bottom nodes up by
+    # one
+
+    # TODO: Changing 'alt' value alters the amount of 'seeker buffers' that are
+    # on the edge of the search graph
+    alt = 1
+    t = (t[0] , t[1] + alt)
+    b = (b[0], b[1] - alt)
+
+    # need half the distance between the nodes + 1 because it needs to iterate
+    # from the top node to the center position and from the bottom node to the
+    # center position
+
+    d2 = (abs(t[1] - b[1]) / 2) + 1
+
+    s = set()
+
+    # Iterate from the top to the center and from the bottom to the center.
+    for i in range(d2):
+
+        # i rows away from either the top or the bottom node
+        top_row    = t[1] + i
+        bottom_row = b[1] - i
+
+        # values that set the most left and most right nodes for each
+        # iteration. For example on the Example Matrix in the doc string for
+        # the second iteration (1,1) would be top left and (3,1) would be top
+        # right.
+        topLeft     = t[0] - i
+        topRight    = t[0] + i
+        bottomLeft  = b[0] - i
+        bottomRight = b[0] + i
+
+        # Once the top left and right nodes have been found everything
+        # inbetween them can be got through list slicing
+        top_list    = (m[top_row][topLeft:topRight+1])
+        bottom_list = (m[bottom_row][bottomLeft:bottomRight+1])
+
+        # s.update() is a method to add list values to sets. bit more info here
+        # - https://docs.python.org/2/library/sets.html#set-objects
+        s.update(top_list)
+        s.update(bottom_list)
+
+    return s
+
+
 ###############################################################################
-
-# IMPLEMENTING THE SIMPLE ALGOTITHM
-
-# TopEdge = (robot_tuple[0], robot_tuple[1] - 1)
-# BottomEdge = (robot_tuple[0], robot_tuple[1] + 1)
 
 TopEdge = (robot_tuple[0], robot_tuple[1])
 BottomEdge = (robot_tuple[0], robot_tuple[1])
