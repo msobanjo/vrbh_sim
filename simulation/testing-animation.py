@@ -13,9 +13,9 @@ from AllGraph import Graph
 root = Tk()
 
 # INIT VARIABLES
-NODE_NUM_W = 40
-NODE_NUM_H = 40
-NODE_SIDE_LEN = 25
+NODE_NUM_W = 50
+NODE_NUM_H = 50
+NODE_SIDE_LEN = 15
 
 MATRIX_TOTAL_NODE_AMOUNT = NODE_NUM_H * NODE_NUM_W # 3x3 = 9
 MATRIX_WIDTH = NODE_NUM_W * NODE_SIDE_LEN          # eg 3x3 matrix with NODE_SIZE of 2 = 6 wide
@@ -63,12 +63,13 @@ def wait(n):
         print("...")
         time.sleep(1)
 
+def reset_values(t, b, r):
+    """Takes input of top and bottom tuples for the search graph and resets them
+    to the robot position.
 
     """
-    # test_graph.reset_matrix()
     t = (r[0], r[1])
     b = (r[0], r[1])
-    print("reset shit")
     return t, b
 
 def calc_tb_distance(t, b):
@@ -79,6 +80,12 @@ def calc_tb_distance(t, b):
     difference_top_bottom = abs(t[1] - b[1]) / 2
     return difference_top_bottom
 
+def get_reset_edges(t, b):
+    """Resetting is a bit different to the seeker edges - as ALL nodes in the
+    'diamond' need to be reset here, wheras for the seeker (get_edges()) it's
+    just the external nodes which should be set.
+    """
+    pass
 
 def get_edges(t, b, d):
     """Input of t[op], b[ottom] tuples and the d[ifference] from them to the Robot
@@ -253,4 +260,3 @@ def main_animate():
 root.after(SCREEN_REFRESH, main_animate)
 root.mainloop()
 root.destroy()
-
