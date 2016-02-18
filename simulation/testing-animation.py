@@ -161,10 +161,6 @@ def get_nodes_to_reset(t, b, m):
 
     """
 
-    # TODO: I'm currently getting a trailing edge which might be resolved by
-    # extending the top/bottom range by 1? Move the top and bottom nodes up by
-    # one
-
     # TODO: Changing 'alt' value alters the amount of 'seeker buffers' that are
     # on the edge of the search graph
     alt = 1
@@ -247,6 +243,7 @@ def main_animate():
         reset_nodes = get_nodes_to_reset(TopEdge, BottomEdge, test_graph.matrix)
         test_graph.reset_nodes(reset_nodes)
         TopEdge, BottomEdge =  reset_values(TopEdge, BottomEdge, robot_tuple)
+        edges = set()
     else:
         # create the next line of seekers
         for e in edges:
