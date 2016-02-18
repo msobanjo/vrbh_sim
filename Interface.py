@@ -3,6 +3,8 @@ from Tkinter import *
 import ttk
 import tkFont as font
 
+
+
 class Interface():
     '''Displays the main menu where the user will select what they want to search
        for and how they want it to be searched '''
@@ -81,7 +83,7 @@ class Interface():
 
     def buttons(self):
         ''' displays the button on the main page'''
-        self.buttonOk = Button(self.root,text="Ok", command = self.combo)
+        self.buttonOk = Button(self.root,text="Ok", command = self.okButton)
         self.buttonOk.place(x=350,y=350)
            
            
@@ -126,8 +128,33 @@ class Interface():
         canvas.itemconfig(rectangleColour, fill=Interface.value)    
            
         
-       
-              
+class Info(Interface):
+    def __init__(self, root):
+        #Interface.__init__(self,root)
+        self.root = root
+        #root = Tk()
+        #gui = Interface(root)
+          
+
+
+    
+    def okButton1(self):
+     
+        self.buttonOk = Button(self.root,text="Ok",command = self.close)
+        self.buttonOk.place(x=350,y=350)
+
+    def showMeAgainButton(self):
+        self.buttonShowAgain = Button(self.root,text="Don't show me again")
+        self.buttonShowAgain.place(x=50 , y=350)
+    def close(self):
+        self.buttonShowAgain.place_forget()
+        self.buttonOk.place_forget()
+        gui.lables()
+        gui.comboboxs()
+        gui.buttons()
+        gui.slider()
+        canvas.pack(padx=10,pady=240)
+        
           
    
 
@@ -147,17 +174,21 @@ class Interface():
 
 
 
-
 root = Tk()
-gui = Interface(root)
+gui = Info(root)
+gui.okButton1()
+gui.showMeAgainButton()
 root.configure(background='white')
-gui.lables()
-gui.comboboxs()
-gui.buttons()
-gui.slider()
+font.nametofont('TkDefaultFont').configure(size=15)
+#gui.lables()
+#gui.comboboxs()
+#gui.buttons()
+#gui.slider()
 canvas = Canvas(root, width=100, height=90)
 rectangleColour=canvas.create_rectangle(3,7,3+100,7+100,fill=Interface.value)
 canvas.configure(background='white')
 canvas.pack(padx=10,pady=240)
+canvas.pack_forget()
+
 root.geometry('450x600+200+200')        
 root.mainloop()
