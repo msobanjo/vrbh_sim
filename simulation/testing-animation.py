@@ -54,9 +54,15 @@ test_graph.place_robot(robot_tuple)
 
 ###############################################################################
 
-def reset_values(t, b, r):
+def wait(n):
     """
-    I just want to watch it move about actually
+    Used while debugging - just causes the program to wait for n seconds
+    """
+    print("Freeze for {}".format(n))
+    for i in range(n):
+        print("...")
+        time.sleep(1)
+
 
     """
     # test_graph.reset_matrix()
