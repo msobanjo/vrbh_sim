@@ -1,12 +1,14 @@
-def bubbleSort(numlist):
-    for x in range(len(numlist)-1,0,-1):
+import random
+def bubbleSort(randomItems):
+    for x in range(len(randomItems)-1,0,-1):
         for i in range(x):
-            if numlist[i]>numlist[i+1]:
-                temp = numlist[i]
-                numlist[i] = numlist[i+1]
-                numlist[i+1] = temp
+            if randomItems[i]>randomItems[i+1]:
+                temp = randomItems[i]
+                randomItems[i] = randomItems[i+1]
+                randomItems[i+1] = temp
 
-numlist= [34,46,3,1,45,78,97,43]
 
-bubbleSort(numlist)
-print(numlist)
+randomItems = [random.randint(-50, 100) for c in range(32)]
+print(randomItems)
+bubbleSort(randomItems)
+print(randomItems)
