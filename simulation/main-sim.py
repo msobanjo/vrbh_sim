@@ -105,17 +105,18 @@ def get_edges(t, b, d, m=test_graph.matrix):
     max_y = NODE_NUM_H
 
     edges = set()
-    
+
     for n in range(d):
         # TODO: How does it get the side values, i get how it gets the ones above and below
         # but not the sides
-    
+
         n = n  + 1
 
         # Create nodes to be added to the set()
-        topLeft = (t[0] - n, t[1] + n)
-        topRight = (t[0] + n, t[1] + n)
-        bottomLeft = (b[0] - n, b[1] - n)
+
+        topLeft     = (t[0] - n, t[1] + n)
+        topRight    = (t[0] + n, t[1] + n)
+        bottomLeft  = (b[0] - n, b[1] - n)
         bottomRight = (b[0] + n, b[1] - n)
 
         # Check that the nodes aren't outside of the matrix index.
@@ -240,11 +241,58 @@ def get_nodes_to_reset(t, b, m):
     return s
 
 
+def check_nodes_around(n, graph, previous_edges=None):
+    """
+    Try checking all nodes around a node and seeing if they've been visited or not yet
+
+    Check all nodes around an input node 'n' to see if they've been searched yet
+    """
+    return_nodes = set()
+
+    # These are the positions
+
+    # TODO: This could be written nicer - maybe these could be stored in a list
+    # rather than separate like they are here
+    up = (n.mx  ,n.my - 1)
+    down = (n.mx  ,n.my + 1)
+    left = (n.mx - 1 , n.my)
+    right = ( n.mx + 1, n.my )
+
+    # check if the nodes around that node in the graph have been searched yet -
+    # this will be 4 checks
+    print("up = {}".format(up))
+    print(down)
+    print(left)
+    print(right)
+
+    if graph.matrix[up[0]][up[1]].am_sought == False:
+        return_nodes.add(up)
+
+    if graph.matrix[down[0]][down[1]].am_sought == False:
+        return_nodes.add(down)
+
+    if graph.matrix[left[0]][left[1]].am_sought == False:
+        return_nodes.add(left)
+
+    if graph.matrix[right[0]][right[1]].am_sought == False:
+        return_nodes.add(right)
+
+    # return the nodes to search
+    return return_nodes
+
+def check_if_item():
+    """
+    Check if any of the nodes in the list are an item
+    """
+    pass
+
 ###############################################################################
 
 TopEdge    = (robot_tuple[0], robot_tuple[1])
 BottomEdge = (robot_tuple[0], robot_tuple[1])
 edges      = set()
+nodes_to_check = set()
+nodes_to_check.add(robot_tuple)
 
 def main_animate():
 
@@ -252,6 +300,7 @@ def main_animate():
     global TopEdge
     global BottomEdge
     global edges
+    global nodes_to_check
 
     # this should be all of the edges from the previous run, which
     # (after being searched) should now be set to sought
@@ -267,14 +316,26 @@ def main_animate():
 
     TopEdge    = (TopEdge[0], TopEdge[1] - 1)
     BottomEdge = (BottomEdge[0], BottomEdge[1] + 1)
-    dist = calc_tb_distance(TopEdge, BottomEdge)
+    dist       = calc_tb_distance(TopEdge, BottomEdge)
 
-    edges = get_edges(TopEdge, BottomEdge, dist)
+    ###############################################################################
+    # Edges are going to be in all directions for every node
 
-    if TopEdge[1] >= 0:
-        edges.add(TopEdge)
-    if BottomEdge[1] <=  NODE_NUM_W- 1:
-        edges.add(BottomEdge)
+    ###############################################################################
+
+    # edges = get_edges(TopEdge, BottomEdge, dist)
+    edges = check_nodes_around(nodes_to_check, test_graph)
+
+
+    # *. Get set of edges that have to be checked using check_nodes_around method
+    # *. Display the edges on the screen
+    # *. Check if the nodes have an item in them -- if YES then do SOMETHING
+    # *. Set all of the nodes in [1] to be searched
+
+    # if TopEdge[1] >= 0:
+    #     edges.add(TopEedges on the screendge)
+    # if BottomEdge[1] <=  NODE_NUM_W- 1:
+    #     edges.add(BottomEdge)
 
     if dist >= 1000:
         # clear the search pattern
@@ -288,7 +349,8 @@ def main_animate():
         for e in edges:
             test_graph.set_seeker(e)
 
-    root.after(SCREEN_REFRESH, main_animate)
+    root.after(SCREEN_REFRESH,
+               main_animate)
 
 ###############################################################################
 
