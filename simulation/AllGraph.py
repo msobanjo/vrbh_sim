@@ -150,31 +150,89 @@ class Graph:
         """
         return self.matrix[t[0]][t[1]]
 
-    def edges_of_node(self, node):
+    def get_nodes_not_searched_around_set_of_nodes(self, node_set):
+        """
+        Takes input of a set of nodes and for each node in that set returns nodes around it that haven't yet been searched
+        """
+
+        nodes_not_searched = set()
+
+        for node in node_set:
+            nodes = (self.get_nodes_not_searched_around_node(node))
+            node.am_sought = True
+            for n in nodes:
+                nodes_not_searched.add(n)
+
+        return nodes_not_searched
+
+
+    def get_nodes_not_searched_around_node(self, node):
         """
         This will return all the edges of the input node
+
+        Returns a set() of node objects that are around the edges of the input
+        node and have't yet been searched
+
+        # TODO: This could be streamlined - it's explicit for now though
         """
+        # Set the input node to sought as it should have been dealt with by now
+        node.am_sought = True
+
         left  = (node.mx -1, node.my)
         right = (node.mx + 1 , node.my)
         up    = (node.mx     , node.my - 1)
         down  = (node.mx, node.my + 1)
+
         l = self.get_node_from_tuple(left)
         r = self.get_node_from_tuple(right)
         u = self.get_node_from_tuple(up)
         d = self.get_node_from_tuple(down)
+
+        ret = set()
+
+        # Check whether the nodes have been searched yet or not, if not then
+        # they should be added to set and returned
+        if l.am_sought == False:
+            ret.add(l)
+        if r.am_sought == False:
+            ret.add(r)
+        if u.am_sought == False:
+            ret.add(u)
+        if d.am_sought == False:
+            ret.add(d)
+
+        return ret
+
+    def get_not_searched(self, nodes_set):
+        """
+        Given a set of Nodes this will return all those within that haven't
+        been searched yet
+        """
         s = set()
-        s.add(l)
-        s.add(r)
-        s.add(u)
-        s.add(d)
+        for n in nodes_set:
+            if n.am_sought == False:
+                # This means the node hasn't been searched yet and needs to be
+                s.add(n)
+            else:
+                # It's already been searched - no need to search it again
+                pass
         return s
 
 
-
+    def check_if_item_in_seekers(self, seekers):
+        """
+        Takes an input of seeker nodes and checks whether any of them is an
+        item node
+        """
+        items = set()
+        for s in seekers:
+            if s.am_item == True:
+                items.add(s)
+        
 
     def receive_tuple_position(self, n):
-        """The graph should be able to receive a tuple position and find nearby nodes
-        based on that.
+        """The graph should be able to receive a tuple position and find nearby
+        nodes based on that.
 
         At the moment the tuple input is a node position on a 40x40 matrix,
         rather than its pixel value.

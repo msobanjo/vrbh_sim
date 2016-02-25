@@ -71,6 +71,7 @@ class Node:
         self.am_robot = False
         self.am_seeker = False
         self.am_sought = False
+        self.am_item = False
 
     def display(self):
         """display the vertice on screen"""
@@ -152,15 +153,23 @@ class Node:
         self.am_robot = False
         self.display()
 
+    def get_matrix_coordinates(self):
+        """
+        Return the matrix coordinates of a node
+        """
+        return ( self.mx, self.my )
+
     def __str__(self):
         info = ("Matrix <x,y> = <{},{}>\nPixel x1 = {}," +
-        " Pixel y1 = {},\nPixel x2 = {}, Pixel y2 = {}\n").format(
+                " Pixel y1 = {},\nPixel x2 = {}, Pixel y2 = {}\n" +
+                "am_sought = {}").format(
             self.mx,
             self.my,
             self.x1,
             self.y1,
             self.x2,
-            self.y2)
+                    self.y2,
+                    self.am_sought)
         return info
 
     def pass_the_butter(self):

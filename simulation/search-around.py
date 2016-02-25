@@ -14,33 +14,35 @@ from AllGraph import Graph
 # around it and create lists with their info.
 
 ###############################################################################
+print ""
 
-w = 5
+w = 8
 sz = 20
 
 test_graph = Graph(w, w, sz)
 
-def get_nodes_around(graph, node):
-    """
-    takes input of a node and returns all those around it
 
-    # set the input node to sought - it's been visited now
-    # find all nodes around it
-    # if they haven't been sought yet then return them
-    """
-    node.am_sought = True
-    # this should be a graph function!
-    new_nodes = graph.edges_of_node(node)
-    for n in new_nodes:
-        if n.am_sought == True:
-            print("Remove")
-        else:
-            print("{} hasn't been searched, {}".format(n.mx, id(n)))
+start_pos = (2, 3)
 
-# test_node = (2, 3)
-t = test_graph.get_node_from_tuple((2, 3))
-ss = get_nodes_around(test_graph, t)
+t = test_graph.get_node_from_tuple(start_pos)
+# this will get all edges of a node that haven't yet been searched and return a
+# set()
+ss = test_graph.get_nodes_not_searched_around_node(t)
+print(type(ss))
+print(ss)
 
-print(test_graph)
+# Now I need to pass a set of nodes in instead of a singe node
+sss_set = test_graph.get_nodes_not_searched_around_set_of_nodes(ss)
+
+# this will go through all of the seeker nodes and test whether they currently
+# have an item in them.
+
+test_graph.check_if_item_in_seekers(sss_set)
+
+# This has now got a set of nodes that are around the other nodes and haven't
+# yet been searched.
+
+# The maximum value of the matrix should be taken into account though as they
+# will currently just get larger and larger
 
 print('done')
