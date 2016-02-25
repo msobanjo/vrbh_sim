@@ -163,7 +163,8 @@ class Graph:
         # column where the matrix was ~ 40x40 or whatever, returning a value of
         # 500 + means that they're
         # pixles rather than nodes.
-        # The nodes have the <x, y> to render to canvas though, so this probably makes sense.
+        # The nodes have the <x, y> to render to canvas though, so this
+        # probably makes sense.
         # this is a node here
 
         node_req = self.matrix[n1 - 1][n2]
