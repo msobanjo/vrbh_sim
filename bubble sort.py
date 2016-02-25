@@ -8,7 +8,7 @@ def bubbleSort(randomItems):
                 randomItems[i+1] = temp
 
 
-randomItems = [random.randint(-50, 100) for c in range(32)]
+randomItems = [random.randint(-50, 100) for c in range(10)]
 print(randomItems)
 bubbleSort(randomItems)
 print(randomItems)
