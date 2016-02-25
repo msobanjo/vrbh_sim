@@ -160,6 +160,8 @@ class Info(Interface):
     def files(self):
         f = open('H:\ALL semester 2\dont show me.txt', 'r+')
         f.write("true")
+        f.close
+        
         self.close()
          
    
