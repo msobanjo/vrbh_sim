@@ -16,7 +16,7 @@ class Graph:
                  NODE_NUM_H,
                  NODE_NUM_W,
                  NODE_SIZE,
-                 canvas
+                 canvas=None
     ):
 
         """
@@ -143,6 +143,34 @@ class Graph:
         At the moment when one pulls a node from the matrix the values are it's
         """
         pass
+
+    def get_node_from_tuple(self, t):
+        """
+        With input of a tuple the graph should return the node object at that location
+        """
+        return self.matrix[t[0]][t[1]]
+
+    def edges_of_node(self, node):
+        """
+        This will return all the edges of the input node
+        """
+        left  = (node.mx -1, node.my)
+        right = (node.mx + 1 , node.my)
+        up    = (node.mx     , node.my - 1)
+        down  = (node.mx, node.my + 1)
+        l = self.get_node_from_tuple(left)
+        r = self.get_node_from_tuple(right)
+        u = self.get_node_from_tuple(up)
+        d = self.get_node_from_tuple(down)
+        s = set()
+        s.add(l)
+        s.add(r)
+        s.add(u)
+        s.add(d)
+        return s
+
+
+
 
     def receive_tuple_position(self, n):
         """The graph should be able to receive a tuple position and find nearby nodes
