@@ -240,6 +240,15 @@ def get_nodes_to_reset(t, b, m):
     return s
 
 
+
+# TODO: Nodes should search everything around them
+
+
+# search everything around node
+    # anything that hasn't been searched add to 'to search'
+# Search everything in 'to search' set / array
+    # anything that hasn't been searched add to new 'to search' list
+
 ###############################################################################
 
 TopEdge    = (robot_tuple[0], robot_tuple[1])

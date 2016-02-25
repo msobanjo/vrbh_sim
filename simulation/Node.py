@@ -93,6 +93,22 @@ class Node:
         """
         pass
 
+    def edges_of_node(self):
+        """
+        This will return all the edges of a node
+        """
+        left = (self.mx -1, self.my)
+        right = (self.mx + 1, self.my)
+        up = (self.mx, self.my - 1)
+        down = (self.mx, self.my + 1)
+        s = set()
+        s.add(left)
+        s.add(right)
+        s.add(up)
+        s.add(down)
+        return s
+
+
     def set_robot(self):
         """This needs to set the colour of a node to be the robot colour
         Maybe this should also take input to change the last one from being a
