@@ -129,22 +129,19 @@ class Interface():
            
         
 class Info(Interface):
-    def __init__(self, root):
-        #Interface.__init__(self,root)
-        self.root = root
-        #root = Tk()
-        #gui = Interface(root)
-          
-
-
+   
     
+    def __init__(self, root):
+        self.root = root
+      
+   
     def okButton1(self):
-     
+        
         self.buttonOk = Button(self.root,text="Ok",command = self.close)
         self.buttonOk.place(x=350,y=350)
 
     def showMeAgainButton(self):
-        self.buttonShowAgain = Button(self.root,text="Don't show me again")
+        self.buttonShowAgain = Button(self.root,text="Don't show me again",command = self.files)
         self.buttonShowAgain.place(x=50 , y=350)
     def close(self):
         self.buttonShowAgain.place_forget()
@@ -154,8 +151,19 @@ class Info(Interface):
         gui.buttons()
         gui.slider()
         canvas.pack(padx=10,pady=240)
+    def close2(self):
+         gui.lables()
+         gui.comboboxs()
+         gui.buttons()
+         gui.slider()
+         canvas.pack(padx=10,pady=240)     
+    def files(self):
+        f = open('H:\ALL semester 2\dont show me.txt', 'r+')
+        f.write("true")
+        f.close
         
-          
+        self.close()
+         
    
 
 
@@ -163,11 +171,7 @@ class Info(Interface):
 
 
 
-
-
-
-
-
+  
 
 
 
@@ -176,19 +180,24 @@ class Info(Interface):
 
 root = Tk()
 gui = Info(root)
-gui.okButton1()
-gui.showMeAgainButton()
+
 root.configure(background='white')
 font.nametofont('TkDefaultFont').configure(size=15)
-#gui.lables()
-#gui.comboboxs()
-#gui.buttons()
-#gui.slider()
 canvas = Canvas(root, width=100, height=90)
 rectangleColour=canvas.create_rectangle(3,7,3+100,7+100,fill=Interface.value)
 canvas.configure(background='white')
 canvas.pack(padx=10,pady=240)
 canvas.pack_forget()
 
-root.geometry('450x600+200+200')        
+root.geometry('450x600+200+200')
+f = open('H:\ALL semester 2\dont show me.txt', 'r+')
+    
+if f.read() == "true":
+    gui.close2()
+else:
+    gui.okButton1()
+    gui.showMeAgainButton()
+        
+        
+f.close    
 root.mainloop()
