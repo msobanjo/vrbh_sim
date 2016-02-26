@@ -159,17 +159,43 @@ class Node:
         """
         return ( self.mx, self.my )
 
+    def node_left(self):
+        """
+        Return a tuple with the coordinates to the left adjacent nodes
+        """
+        return (self.mx - 1, self.my)
+
+    def node_right(self):
+        """
+        Return a tuple with the coordinates to the right adjacent nodes
+        """
+        return (self.mx + 1, self.my)
+
+    def node_up(self):
+        """
+        Return a tuple with the coordinates to the up adjacent nodes
+        """
+        return (self.mx, self.my - 1)
+
+    def node_down(self):
+        """
+        Return a tuple with the coordinates to the down adjacent nodes
+        """
+        return (self.mx, self.my + 1)
+
     def __str__(self):
         info = ("Matrix <x,y> = <{},{}>\nPixel x1 = {}," +
                 " Pixel y1 = {},\nPixel x2 = {}, Pixel y2 = {}\n" +
-                "am_sought = {}").format(
+                "am_sought = {}\n" +
+                "am_item = {}").format(
             self.mx,
             self.my,
             self.x1,
             self.y1,
             self.x2,
                     self.y2,
-                    self.am_sought)
+                    self.am_sought,
+                    self.am_item)
         return info
 
     def pass_the_butter(self):
