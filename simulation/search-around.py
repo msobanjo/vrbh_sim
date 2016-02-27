@@ -16,6 +16,14 @@ H = Helpers()
 # searching in the current manner the program should instead search every node
 # around it and create lists with their info.
 
+# ALGORITHM
+
+# 2. Start from set of nodes edges
+    # 2.2 test if item in set of edges
+        # 2.2.1 if item in set then ....
+    # 2.3 get all edges from current node set
+        # 2.3.1 start from 2 again
+
 ###############################################################################
 
 print ""
@@ -25,25 +33,36 @@ sz = 20
 
 test_graph = Graph(w, w, sz)
 
+# TODO: I should be able to set this via the program rather than inputting it
+# through this
 start_pos = (2, 3)
+# TODO: items should be generated through the graph class instead
+# items should be generated as well
 item = (4,4)
 
+# this is going to be the starting point for the robot - but it's going to be
+# in a set so that it's more general (rather than a single node object or
+# tuple)
+node_set_start = set()
+
 t = test_graph.get_node_from_tuple(start_pos)
+
+# TODO: I should be able to generate a certain amount of items - so pass in an
+# array / set of items and then this function will be called rom within the
+# Graph class or something
 item = test_graph.get_node_from_tuple(item)
 
+# Set the position of the item
 test_graph.place_item(item)
-test_graph.print_item_locations()
 
-# this will get all edges of a node that haven't yet been searched and return a
-# set()
-
-ss = test_graph.get_nodes_not_searched_around_node(t)
+# TODO: I should have this as a set with one element rather than one element so
+# that it's more general
 
 start_set = set()
 start_set.add(t)
 
+# TODO: It's printing out node info somewhere in here and idk where
 ss = test_graph.get_nodes_not_searched_around_set_of_nodes(start_set)
-print("484848")
 
 # Now I need to pass a set of nodes in instead of a singe node
 

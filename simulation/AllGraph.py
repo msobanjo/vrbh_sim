@@ -14,13 +14,16 @@ H = Helpers()
 
 
 class Graph:
-    """Store the node objects and provide some higher level methods on them """
+    """Store the node objects and provide some higher level methods on them
+
+    Not set is used for testing
+    """
 
     def __init__(self,
                  NODE_NUM_H,
                  NODE_NUM_W,
                  NODE_SIZE,
-                 canvas=None
+                 canvas="Not set"
     ):
 
         """
@@ -102,14 +105,29 @@ class Graph:
         for node in node_set:
             node.reset()
 
+    def generate_items(self, robot_position):
+        """
+        This function should generate items in the given position within the graph
+
+        # TODO: What information should this take in? The position of the items
+        # can be generateed randomly within the graph. Taking in the robot
+        # position would enable the nodes not to be placed where that is
+        """
+        pass
+
     def print_item_locations(self):
         """
+        helper - this function is just for getting info whilst working on things
+
         I just want to get a print out of all the items that are currently in the graph
         """
+        print("--------------------------------")
+        print("print_item_locations function : ")
         for row in self.matrix:
             for node in row:
                 if node.am_item == True:
                     print(node)
+        print("--------------------------------")
 
     def place_item(self, node_item):
         """
@@ -143,7 +161,8 @@ class Graph:
 
     def get_nodes_not_searched_around_set_of_nodes(self, node_set):
         """
-        Takes input of a set of nodes and for each node in that set returns nodes around it that haven't yet been searched
+        Takes input of a set of nodes and for each node in that set returns
+        nodes around it that haven't yet been searched
         """
         nodes_not_searched = set()
 
@@ -154,36 +173,6 @@ class Graph:
                 nodes_not_searched.add(n)
 
         return nodes_not_searched
-
-    def check_if_item_in_set(self, node_set):
-        """
-        Take input of a set and check whether there are any items in it.
-        """
-        items = set()
-        for node in node_set:
-            if node.am_item == True:
-                items.add(node)
-        return items
-
-    def node_in_graph(self, node):
-        """
-        Check that the input node is in the graph
-        """
-        gmin = 0
-        gmax = self.number_of_rows
-        node_vals = (node.mx, node.my)
-        # TODO: I'm currently trying to get this so that I can error check for
-        # whether or not the nodes are within the range of the graphs matrix
-
-    def invalid_graph_position(self, tup):
-        """
-        takes in a tuple representing a position, if the tuple isn't within the range of the jf matrix then return false
-
-        """
-        if tup[0] in self.valid_range and tup[1] in self.valid_range:
-            return False
-        else:
-            return True
 
     def get_nodes_not_searched_around_node(self, node):
         """
@@ -217,14 +206,17 @@ class Graph:
                 remove_set.add(direction)
                 # directions.remove(direction)
             else:
-                n = (self.get_node_from_tuple(direction))
+                # TODO: Don't think this line is needed
+                # n = (self.get_node_from_tuple(direction))
                 directions_nodes.add(self.get_node_from_tuple(direction))
 
         directions = directions.difference_update(remove_set)
+
         # Set the input node to sought as it should have been dealt with by now
         node.am_sought = True
 
-        # this will be the set of nodes that are valid positions and haven't been searched yetjf
+        # this will be the set of nodes that are valid positions and haven't
+        # been searched yetjf
         return_set = set()
 
         # check whether the nodes have been searched yet
@@ -233,6 +225,39 @@ class Graph:
                 return_set.add(node)
 
         return return_set
+
+
+
+    def check_if_item_in_set(self, node_set):
+        """
+        Take input of a set and check whether there are any items in it.
+        """
+        items = set()
+        for node in node_set:
+            if node.am_item == True:
+                items.add(node)
+        return items
+
+    def node_in_graph(self, node):
+        """
+        Check that the input node is in the graph
+        """
+        gmin = 0
+        gmax = self.number_of_rows
+        node_vals = (node.mx, node.my)
+        # TODO: I'm currently trying to get this so that I can error check for
+        # whether or not the nodes are within the range of the graphs matrix
+
+    def invalid_graph_position(self, tup):
+        """
+        takes in a tuple representing a position, if the tuple isn't within the range of the jf matrix then return false
+
+        """
+        if tup[0] in self.valid_range and tup[1] in self.valid_range:
+            return False
+        else:
+            return True
+
 
     def get_not_searched(self, nodes_set):
         """
