@@ -15,27 +15,29 @@ class Interface():
         ''' displays the labels on the main page'''
         font.nametofont('TkDefaultFont').configure(size=15)
         MyFont = font.Font(size=20)#Changes the font size
-        self.lableItems = Label(root,text="Items", font=MyFont)
-        self.lableItems.configure(background='white')
-        self.lableItems.pack()
+        self.labelItems = Label(root,text="Items", font=MyFont)
+        self.labelItems.configure(background='white')
+        self.labelItems.pack()
 
-        self.lableType = Label(root,text="Type")
-        self.lableType.configure(background='white')
-        self.lableType.place(x=100,y=70)
+        self.labelType = Label(root,text="Type")
+        self.labelType.configure(background='white')
+        self.labelType.place(x=100,y=70)
 
-        self.lableTime = Label(root,text="Time")
-        self.lableTime.configure(background='white')
-        self.lableTime.place(x=100,y=110)
+        self.labelTime = Label(root,text="Time")
+        self.labelTime.configure(background='white')
+        self.labelTime.place(x=100,y=110)
 
-        self.lableSearching = Label(root,text="Searching")
-        self.lableSearching.configure(background='white')
-        self.lableSearching.place(x=60,y=150)
+        self.labelSearching = Label(root,text="Searching")
+        self.labelSearching.configure(background='white')
+        self.labelSearching.place(x=60,y=150)
 
-        self.lableSorting = Label(root,text="Sorting")
-        self.lableSorting.configure(background='white')
-        self.lableSorting.place(x=80,y=190)
+        self.labelSorting = Label(root,text="Sorting")
+        self.labelSorting.configure(background='white')
+        self.labelSorting.place(x=80,y=190)
 
-        
+        self.lableRobotColour = Label(root,text= "Robots colour")
+        self.lableRobotColour.configure(background='white')
+        self.lableRobotColour.place(x=30,y=300)
 
 
     def okButton(self):
