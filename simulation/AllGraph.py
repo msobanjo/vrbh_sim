@@ -159,6 +159,13 @@ class Graph:
         else:
             return self.matrix[t[0]][t[1]]
 
+
+    def create_items():
+        """
+        This method should create a certain amount of items on screen 
+        """
+        pass
+
     def get_nodes_not_searched_around_set_of_nodes(self, node_set):
         """
         Takes input of a set of nodes and for each node in that set returns

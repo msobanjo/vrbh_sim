@@ -8,6 +8,7 @@ from Node import Node
 from AllGraph import Graph
 
 from HelperClass import Helpers
+
 H = Helpers()
 
 ###############################################################################
@@ -50,18 +51,15 @@ t = test_graph.get_node_from_tuple(start_pos)
 # TODO: I should be able to generate a certain amount of items - so pass in an
 # array / set of items and then this function will be called rom within the
 # Graph class or something
+
 item = test_graph.get_node_from_tuple(item)
 
 # Set the position of the item
 test_graph.place_item(item)
 
-# TODO: I should have this as a set with one element rather than one element so
-# that it's more general
-
 start_set = set()
 start_set.add(t)
 
-# TODO: It's printing out node info somewhere in here and idk where
 ss = test_graph.get_nodes_not_searched_around_set_of_nodes(start_set)
 
 # Now I need to pass a set of nodes in instead of a singe node
@@ -72,18 +70,18 @@ item_found = test_graph.check_if_item_in_set(ss)
 
 sss_set = test_graph.get_nodes_not_searched_around_set_of_nodes(ss)
 
-run = 1
+# TODO: What am I doing this for ?
 
 while not item_found:
-    print "Run {}".format(run)
     sss_set = test_graph.get_nodes_not_searched_around_set_of_nodes(sss_set)
     item_found = test_graph.check_if_item_in_set(sss_set)
-    run += 1
 
 if item_found:
     print("Items found : ")
     for i in item_found:
         print(i.pos)
+
+
 
 # This has now got a set of nodes that are around the other nodes and haven't
 # yet been searched.
