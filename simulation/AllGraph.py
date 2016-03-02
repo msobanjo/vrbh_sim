@@ -105,15 +105,46 @@ class Graph:
         for node in node_set:
             node.reset()
 
-    def generate_items(self, robot_position):
+    def create_random_item(self):
         """
-        This function should generate items in the given position within the graph
+        convert a random value on the grid to an item object.
 
-        # TODO: What information should this take in? The position of the items
-        # can be generateed randomly within the graph. Taking in the robot
-        # position would enable the nodes not to be placed where that is
+        Input of the robot position as items shouldn't be placed there
         """
-        pass
+        # choose random row
+        row = random.choice(self.matrix)
+        node = random.choice(row)
+        return node
+
+    def generate_items(self,
+                       number_of_items,
+                       robot_node,
+                       objects=None
+                       ):
+        """This function should generate items in the given position within the graph
+
+        This shouldn't place any items :
+
+            * Where the robot is positioned
+            * where any objects are (not yet implemented)
+
+        """
+        placed_items = set()
+        while len(placed_items) < number_of_items:
+            item = self.create_random_item()
+            placed_items.add(item)
+            placed_items.discard(robot_node)
+
+        for item in placed_items:
+            # TODO: Should I specify the type of the item as well? As in -
+            # which class it's a part of ? We were going to have 3 different
+            # types of clases or somethign along those lines, where as this is
+            # just setting the node to be an item.
+
+            # TODO: Setting the class type as a global could work actually? As
+            # in, the type to search for...
+            item.am_item = True
+
 
     def print_item_locations(self):
         """
@@ -135,6 +166,8 @@ class Graph:
 
         # TODO: Input of node / tuple?
         """
+        print("place_item : ")
+        print("Placing item at {}\n".format(node_item.pos))
         self.matrix[node_item.mx][node_item.my].am_item = True
 
     def place_robot(self, r):
@@ -162,7 +195,7 @@ class Graph:
 
     def create_items():
         """
-        This method should create a certain amount of items on screen 
+        This method should create a certain amount of items on screen
         """
         pass
 
