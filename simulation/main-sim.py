@@ -6,6 +6,9 @@ from itertools import chain
 
 from Node import Node
 from AllGraph import Graph
+from GlobalsFile import Globs
+
+# G = Globs()
 
 ###############################################################################
 
@@ -49,15 +52,6 @@ test_graph.render()
 test_graph.place_robot(robot_tuple)
 
 ###############################################################################
-
-def wait(n):
-    """
-    Used while debugging - just causes the program to wait for n seconds
-    """
-    print("Freeze for {}".format(n))
-    for i in range(n):
-        print("...")
-        time.sleep(1)
 
 def reset_values(t, b, r):
     """Takes input of top and bottom tuples for the search graph and resets them
@@ -105,11 +99,11 @@ def get_edges(t, b, d, m=test_graph.matrix):
     max_y = NODE_NUM_H
 
     edges = set()
-    
+
     for n in range(d):
         # TODO: How does it get the side values, i get how it gets the ones above and below
         # but not the sides
-    
+
         n = n  + 1
 
         # Create nodes to be added to the set()
@@ -239,8 +233,6 @@ def get_nodes_to_reset(t, b, m):
 
     return s
 
-
-
 # TODO: Nodes should search everything around them
 
 
@@ -254,6 +246,9 @@ def get_nodes_to_reset(t, b, m):
 TopEdge    = (robot_tuple[0], robot_tuple[1])
 BottomEdge = (robot_tuple[0], robot_tuple[1])
 edges      = set()
+
+def mmain_animate():
+    pass
 
 def main_animate():
 

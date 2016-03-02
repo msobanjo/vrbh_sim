@@ -144,6 +144,7 @@ class Graph:
             # TODO: Setting the class type as a global could work actually? As
             # in, the type to search for...
             item.am_item = True
+            print("Created item at : {}".format(item.pos))
 
 
     def print_item_locations(self):

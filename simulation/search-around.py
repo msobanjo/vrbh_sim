@@ -45,8 +45,10 @@ test_graph = Graph(w, w, sz)
 
 # robot and item_node positions
 start_pos = (1, 4)
-item_node = (30,22)
 
+# TODO: This is how many items want to be found by the program. if this is set
+# to 1 then only one item is found, if it's set to 4 then 4 will be found etc.
+items_to_find = 4
 
 # initial set with the one element which is the robot
 search_set = set()
@@ -55,10 +57,8 @@ search_set = set()
 item_found = set()
 
 robot_node = test_graph.get_node_from_tuple(start_pos)
-item_node = test_graph.get_node_from_tuple(item_node)
 
 test_graph.generate_items(4, start_pos)
-test_graph.place_item(item_node)
 
 # Add the robot node to the set of initial values
 search_set.add(robot_node)
@@ -71,37 +71,21 @@ search_set.add(robot_node)
 # example if the method used was find the first and move to the next then this
 # would work. But if the method was to find all of the items then choose which
 # one to use from there then this wouldn't make as much sense (I don't think?)
-while not item_found:
+
+# while not item_found:
+while len(item_found) < items_to_find:
     search_set = test_graph.get_nodes_not_searched_around_set_of_nodes(search_set)
-    item_found = test_graph.check_if_item_in_set(search_set)
-
-a = raw_input("testing item found loop")
-
-print("done")
-
-a = raw_input("finished")
+    # item_found = test_graph.check_if_item_in_set(search_set)
+    item_check = test_graph.check_if_item_in_set(search_set)
+    item_found.update(item_check)
 
 ###############################################################################
 ###############################################################################
-
-
-# Now I need to pass a set of nodes in instead of a singe node
-item_found = test_graph.check_if_item_in_set(search_set)
-
-sss_set = test_graph.get_nodes_not_searched_around_set_of_nodes(search_set)
-# sss_set = test_graph.get_nodes_not_searched_around_set_of_nodes(ss)
-
-while not item_found:
-    print("Set size = {}".format(len(sss_set)))
-    sss_set = test_graph.get_nodes_not_searched_around_set_of_nodes(sss_set)
-    item_found = test_graph.check_if_item_in_set(sss_set)
 
 if item_found:
     print("Items found : ")
     for i in item_found:
         print(i.pos)
-
-
 
 # This has now got a set of nodes that are around the other nodes and haven'robot_node
 # yet been searched.
