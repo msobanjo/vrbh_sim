@@ -68,10 +68,10 @@ class Node:
         self.value = price
 
         # not sure if this'll be useful atm
-        self.am_robot = False
+        self.am_robot  = False
         self.am_seeker = False
         self.am_sought = False
-        self.am_item = False
+        self.am_item   = False
 
     def display(self):
         """display the vertice on screen"""
@@ -127,6 +127,7 @@ class Node:
         """
         self.am_seeker = True
         self.set_colour(self.seeker_colour)
+        self.display()
 
     def set_sought(self):
         """Indicate that a node has been sought already, distinguish it from those
@@ -134,7 +135,9 @@ class Node:
 
         """
         self.am_sought = True
+        self.am_seeker = False
         self.set_colour(self.sought_colour)
+        self.display()
 
     def set_colour(self, c):
         """

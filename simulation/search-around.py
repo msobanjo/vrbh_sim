@@ -7,10 +7,13 @@ from itertools import chain
 from Node import Node
 from AllGraph import Graph
 
-from HelperClass import Helpers
 from pprint import pprint
 
+from HelperClass import Helpers
 H = Helpers()
+
+from GlobalsFile import Globs
+G = Globs()
 
 print("search-around.py...")
 
@@ -34,58 +37,76 @@ print("search-around.py...")
 
 ###############################################################################
 
+
 print ""
 
-# create size of the graph
-w = 50
-sz = 20
+###############################################################################
+
+# Set up the environment with canvas to use
+
+# CREATE MAIN TKINTER ROOT
+root = Tk()
+
+canvas = Canvas(root,
+                width = G.canvas_width,
+                height = G.canvas_height,
+                bg=G.canvas_background_colour)
+canvas.pack()
+
+
+
+
 
 # create a graph instance
-test_graph = Graph(w, w, sz)
+simulation_graph = Graph(G.matrix_size,
+                         G.matrix_size,
+                         G.node_size,
+                         canvas)
+
+simulation_graph.render()
+simulation_graph.place_robot(G.robot_start_position)
+
+
+###############################################################################
 
 # robot and item_node positions
-start_pos = (1, 4)
+start_pos = G.robot_start_position
 
 # TODO: This is how many items want to be found by the program. if this is set
 # to 1 then only one item is found, if it's set to 4 then 4 will be found etc.
 items_to_find = 4
 
 # initial set with the one element which is the robot
-search_set = set()
+# seeker_set = set()
 # set that will contain the items that have been found (if any) on that
 # particular search
 item_found = set()
 
-robot_node = test_graph.get_node_from_tuple(start_pos)
-
-test_graph.generate_items(4, start_pos)
+robot_node = simulation_graph.get_node_from_tuple(G.robot_start_position)
+simulation_graph.generate_items(4, G.robot_start_position)
 
 # Add the robot node to the set of initial values
-search_set.add(robot_node)
+G.seeker_set.add(robot_node)
 
-# TODO: Would make sense to create a method to find items here? rather than
-# doing it in this file?
+# i want this set to keep hold of the last searched and render a different
+# colour in the main_animate method
+sought_set = set()
 
-# TODO: This is going to only find ONE item isn't it? When I might need to find
-# more than that? This would change depending on the method that was used, for
-# example if the method used was find the first and move to the next then this
-# would work. But if the method was to find all of the items then choose which
-# one to use from there then this wouldn't make as much sense (I don't think?)
+def main_animate():
+    # get edges around the start set
+    G.seeker_set = simulation_graph.\
+                   get_nodes_not_searched_around_set_of_nodes(G.seeker_set)
 
-# while not item_found:
-while len(item_found) < items_to_find:
-    search_set = test_graph.get_nodes_not_searched_around_set_of_nodes(search_set)
-    # item_found = test_graph.check_if_item_in_set(search_set)
-    item_check = test_graph.check_if_item_in_set(search_set)
-    item_found.update(item_check)
+    for n in G.seeker_set:
+        n.set_seeker()
 
-###############################################################################
-###############################################################################
+    for n in G.sought_set:
+        n.set_sought()
 
-if item_found:
-    print("Items found : ")
-    for i in item_found:
-        print(i.pos)
+    G.sought_set = G.seeker_set
+
+    root.after(G.screen_refresh, main_animate)
+
 
 # This has now got a set of nodes that are around the other nodes and haven'robot_node
 # yet been searched.
@@ -94,3 +115,7 @@ if item_found:
 # will currently just get larger and larger
 
 print('done')
+
+root.after(G.screen_refresh, main_animate)
+root.mainloop()
+root.destroy()

@@ -6,12 +6,12 @@ import time
 from itertools import chain
 
 from Node import Node
-# import Globals as gvs
-
 
 from HelperClass import Helpers
 H = Helpers()
 
+from GlobalsFile import Globs
+G = Globs()
 
 class Graph:
     """Store the node objects and provide some higher level methods on them
@@ -23,7 +23,7 @@ class Graph:
                  NODE_NUM_H,
                  NODE_NUM_W,
                  NODE_SIZE,
-                 canvas="Not set"
+                 canvas = "Not set"
     ):
 
         """
@@ -96,7 +96,7 @@ class Graph:
         self.matrix[p[0]][p[1]].display()
 
     def reset_nodes(self, node_set):
-        """reset all nodes of the matrix
+        """reset all nodes of the input set
 
         input - node_set are the nodes that are to be reset by this method. This
         is a set() object
@@ -160,6 +160,21 @@ class Graph:
                 if node.am_item == True:
                     print(node)
         print("--------------------------------")
+
+    def draw_seekers(self, seeker_set):
+        """take input of a set of nodes that are to be set to seekers and rendered on
+        screen
+
+        """
+
+
+        for node in seeker_set:
+            p = node.pos
+            self.matrix[p[0]][p[1]].set_seeker()
+            self.matrix[p[0]][p[1]].display()
+            # node.set_seeker()
+            # node.display()
+
 
     def place_item(self, node_item):
         """

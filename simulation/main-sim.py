@@ -8,12 +8,10 @@ from Node import Node
 from AllGraph import Graph
 from GlobalsFile import Globs
 
-# G = Globs()
+G = Globs()
 
 ###############################################################################
 
-# CREATE MAIN TKINTER ROOT
-root = Tk()
 
 # INIT VARIABLES
 NODE_NUM_W = 50
@@ -30,6 +28,8 @@ CANVAS_BACKGROUND_COLOUR = 'white'
 # the page
 SCREEN_REFRESH = 100
 
+# CREATE MAIN TKINTER ROOT
+root = Tk()
 # Create the canvas with given sizes
 canvas = Canvas(root,
                 width = MATRIX_WIDTH,

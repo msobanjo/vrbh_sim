@@ -17,11 +17,12 @@ class Globs:
                  matrix_size=50,
                  node_size=15,
                  item_type = None,
-                 screen_refresh=100,
+                 screen_refresh=700,
                  canvas_background_colour="#0F1E15",
                  item_colour="#9EFD23",
                  robot_colour="#FC227E",
-                 obstacle_colour="#FF4923"
+                 obstacle_colour="#FF4923",
+                 robot_start_position = (15,14),
                  ):
 
         # Size of the square matrix, this should be a value such as 30 which
@@ -41,6 +42,17 @@ class Globs:
 
         # this just works like frame rate
         self.screen_refresh = screen_refresh
+
+        # This is the start position for the robot object on the screen. This
+        # could be set by an external method such as the interface at a later
+        # date.
+        self.robot_start_position = robot_start_position
+
+        # Set that will be used to store the seeker objects whilst searching
+        # for items
+        self.seeker_set = set()
+        # Set to store items that have been searched already
+        self.sought_set = set()
 
         # TODO: might make sense to set the type of item to be searched for if
         # there are going to be a few different kinds as considered. Such as A,
@@ -66,5 +78,30 @@ class Globs:
 
         # TODO: does it make sense to have multiple items on screen?
 
-
         self.item_type = item_type
+
+
+        ###############################################
+        # TODO: IT WOULD BE NICE TO HAVE A GLOBAL CANVAS AS WELL BUT CURRENTLY
+        # THIS ISN'T WORKING. I'M NOT TOO SURE WHY AT THE MO THOUGH
+        ###############################################
+
+        # Canvas dimensions
+        self.canvas_width = self.matrix_size * self.node_size
+        self.canvas_height = self.matrix_size * self.node_size
+
+        """
+        # set up the canvas to be used across all files
+        root = Tk()
+        # It's always going to be a square matrix
+        self.canvas_width = self.matrix_size * self.node_size
+        self.canvas_height = self.matrix_size * self.node_size
+        # create the actual canvas here
+        self.canvas = Canvas(root,
+                             width = self.matrix_size,
+                             height = self.matrix_size,
+                             bg=self.canvas_background_colour)
+
+        # self.canvas.pack()
+
+        """
