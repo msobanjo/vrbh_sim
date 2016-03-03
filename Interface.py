@@ -51,12 +51,14 @@ class Interface():
                 "sorting":self.value_of_comboSorting,
                 "colour":Interface.value
                 } 
-        
-        print(dic["type"],dic["time"],dic["searching"],dic["sorting"],dic["colour"])
-
-        #root.destroy()
-        #root2 = Tk()
-        #root2.geometry('450x450+200+200')
+        if self.value_of_comboType =="":
+            print("Fill out all of the fields")
+        elif self.value_of_comboTime =="":
+            print("Fill out all of the fields")
+        elif self.value_of_comboSearching =="":
+            print("Fill out all of the fields")
+        else:
+            print(dic["type"],dic["time"],dic["searching"],dic["sorting"],dic["colour"])
     
 
     def comboboxs(self):
@@ -135,7 +137,11 @@ class Info(Interface):
     
     def __init__(self, root):
         self.root = root
-      
+        
+    def infomationLabel(self):
+        self.labelInfo = Label(root,text="Type hytrn  yttyyttyytytytttytt \n y trhtrthtrtrhtr htr trh trh tr htr htr \n trtrh ttrhrh trtrtr trhtrh trtr trtrtrh tr \n hrttrh tr htrtrhtr h")
+        self.labelInfo.configure(background='white')
+        self.labelInfo.pack()
    
     def okButton1(self):
         
@@ -148,6 +154,7 @@ class Info(Interface):
     def close(self):
         self.buttonShowAgain.place_forget()
         self.buttonOk.place_forget()
+        self.labelInfo.pack_forget()
         gui.lables()
         gui.comboboxs()
         gui.buttons()
@@ -199,7 +206,7 @@ if f.read() == "true":
 else:
     gui.okButton1()
     gui.showMeAgainButton()
-        
+    gui.infomationLabel()    
         
 f.close    
 root.mainloop()
