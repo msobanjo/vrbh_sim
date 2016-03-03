@@ -91,7 +91,6 @@ class Interface():
         self.buttonOk.place(x=350,y=350)
            
            
-         
 
     def slider(self):
         ''' displays the slider on the main page'''
@@ -116,18 +115,6 @@ class Interface():
 
         Interface.value = "#{}".format(col)
 
-        
-        # if value == "0":
-        #     Interface.value = "blue"
-            
-        # elif value == "1":
-        #     Interface.value = "black"
-
-        # elif value == "2":
-        #     Interface.value = "red"
-
-        # elif value == "3":
-        #     Interface.value = "green"    
 
         canvas.itemconfig(rectangleColour, fill=Interface.value)    
            
@@ -195,8 +182,6 @@ font.nametofont('TkDefaultFont').configure(size=15)
 canvas = Canvas(root, width=100, height=90)
 rectangleColour=canvas.create_rectangle(3,7,3+100,7+100,fill=Interface.value)
 canvas.configure(background='white')
-canvas.pack(padx=10,pady=240)
-canvas.pack_forget()
 
 root.geometry('450x600+200+200')
 f = open('H:\ALL semester 2\dont show me.txt', 'r+')
