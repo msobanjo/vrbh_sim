@@ -17,12 +17,12 @@ class Globs:
                  matrix_size=50,
                  node_size=15,
                  item_type = None,
-                 screen_refresh=700,
+                 screen_refresh=70,
                  canvas_background_colour="#0F1E15",
                  item_colour="#9EFD23",
                  robot_colour="#FC227E",
                  obstacle_colour="#FF4923",
-                 robot_start_position = (15,14),
+                 robot_start_position = (4,5),
                  ):
 
         # Size of the square matrix, this should be a value such as 30 which
@@ -48,11 +48,13 @@ class Globs:
         # date.
         self.robot_start_position = robot_start_position
 
+
         # Set that will be used to store the seeker objects whilst searching
         # for items
         self.seeker_set = set()
         # Set to store items that have been searched already
         self.sought_set = set()
+        self.all_sought_set = set()
 
         # TODO: might make sense to set the type of item to be searched for if
         # there are going to be a few different kinds as considered. Such as A,
@@ -105,3 +107,28 @@ class Globs:
         # self.canvas.pack()
 
         """
+
+    def set_robot_position(self):
+        """
+        # TODO: It might make sense to have the robot position set within
+        # the globals file rather than in the graph section? Then the graph
+        # can just read from there or something along those lines
+        """
+        pass
+
+    def random_robot_start_position(self):
+        """
+        This will just randomise the starting position of the robot node
+        """
+        startx = random.randint(0,self.matrix_size)
+        starty = random.randint(0,self.matrix_size)
+        self.robot_start_position = (startx, starty)
+
+    def reset_sought_sets(self):
+        """
+        reset the sets that contain info about the nodes that have been sought
+        and that are currently seeker nodes
+        """
+        self.sought_set = set()
+        self.all_sought_set = set()
+

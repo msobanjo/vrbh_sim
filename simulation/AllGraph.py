@@ -4,6 +4,7 @@ import random
 import time
 # used to convert the 2D array into a 1D array
 from itertools import chain
+from pprint import pprint
 
 from Node import Node
 
@@ -102,6 +103,9 @@ class Graph:
         is a set() object
 
         """
+        # print("Reset nodes : ")
+        # print("Resetting the nodes : {}".format(pprint(node_set)))
+
         for node in node_set:
             node.reset()
 
@@ -130,22 +134,36 @@ class Graph:
 
         """
         placed_items = set()
+
         while len(placed_items) < number_of_items:
             item = self.create_random_item()
             placed_items.add(item)
             placed_items.discard(robot_node)
 
-        for item in placed_items:
-            # TODO: Should I specify the type of the item as well? As in -
-            # which class it's a part of ? We were going to have 3 different
-            # types of clases or somethign along those lines, where as this is
-            # just setting the node to be an item.
+        return placed_items
 
-            # TODO: Setting the class type as a global could work actually? As
-            # in, the type to search for...
-            item.am_item = True
-            print("Created item at : {}".format(item.pos))
+    def create_generated_items(self, item_set):
+        """
+        set the previously generated items to be items on the graph
+        """
+        for item in item_set:
+            item.set_item()
 
+    def set_seek(self,seeker_set):
+        """
+        Iterate over the input set() and set any non item nodes to be seekers
+        """
+        for n in seeker_set:
+            if not n.am_item:
+                n.set_seeker()
+
+    def set_sought(self, sought_set):
+        """
+        Iterate over input sought_set and set nodes to sought if they're not items
+        """
+        for n in sought_set:
+            if not n.am_item:
+                n.set_sought()
 
     def print_item_locations(self):
         """
@@ -186,7 +204,7 @@ class Graph:
         print("Placing item at {}\n".format(node_item.pos))
         self.matrix[node_item.mx][node_item.my].am_item = True
 
-    def place_robot(self, r):
+    def place_robot(self, r, old_robot=None):
         """This will enable one to place the Robot on the Graph somewhere.
 
         Takes input of r which should be a position in the matrix to assign a
@@ -194,9 +212,17 @@ class Graph:
 
         eg r = (20,20) will create a robot node in the middle of a 20x20 matrix
 
+        # TODO: this should take a tuple in or a node object? Whatever it takes
+        # it should then call the function in the node class that creates the
+        # robot node
         """
-        print("Assigning robot position...")
-        print(self.matrix[r[0]][r[1]])
+        # TODO: This will occaisionally place out of bounds so needs fixing!
+
+        if old_robot:
+            self.matrix[old_robot[1]][old_robot[0]].reset()
+            self.matrix[r[1]][r[0]].set_robot()
+        else:
+            self.matrix[r[1]][r[0]].set_robot()
 
     def get_node_from_tuple(self, t):
         """
@@ -206,7 +232,8 @@ class Graph:
             print("Error, tuple position is invalid, tuple : {}".format(t))
             print("Max range is 0 to {}".format(self.valid_range))
         else:
-            return self.matrix[t[0]][t[1]]
+            # TODO: I had to change these to [1][0] for some reason - x,y are switched
+            return self.matrix[t[1]][t[0]]
 
 
     def create_items():
@@ -239,7 +266,6 @@ class Graph:
 
         # TODO: This could be streamlined - it's explicit for now though
         """
-        # GET COORDINATES FOR THE NODES
 
         # Set containing tuples representing matrix coordinates
         directions = set()
@@ -282,8 +308,6 @@ class Graph:
 
         return return_set
 
-
-
     def check_if_item_in_set(self, node_set):
         """
         Take input of a set and check whether there are any items in it.
@@ -313,7 +337,6 @@ class Graph:
             return False
         else:
             return True
-
 
     def get_not_searched(self, nodes_set):
         """
@@ -420,39 +443,12 @@ class Graph:
         """
         pass
 
-    # def check_edges_in_range(self, n):
-    #     """
-    #     Check that all the edges around the input node are within the graphs
-    #     matrix
-
-    #     """
-    #     t = (n.mx, n.my)
-
-    #     left  = (node.mx -1, node.my)
-    #     right = (node.mx + 1 , node.my)
-    #     up    = (node.mx     , node.my - 1)
-    #     down  = (node.mx, node.my + 1)
-
-    #     directions = [left,right,up,down]
-
-    #     for d in directions:
-    #         if d[0] < self.number_of_rows or d[0] > self.number_of_rows \
-    #            or d[1] < self.number_of_rows or \
-    #            d[1] < self.number_of_rows:
-    #             print("This is failed...")
-
-    #     # (node.mx -1, node.my)
-    #     # (node.mx + 1 , node.my)
-    #     # (node.mx     , node.my - 1)
-    #     # (node.mx, node.my + 1)
-
 ###############################################################################
 
     def check_if_in_range_node(self, node):
         """
         Check that a node value is in range of the graph
         """
-        print("hahahahaha")
         if node.mx > self.number_of_rows or node.mx < 0:
             print("Node is out of range :")
             print("node : {}".format(node.pos))

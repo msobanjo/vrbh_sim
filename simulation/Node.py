@@ -1,3 +1,5 @@
+from GlobalsFile import Globs
+G = Globs()
 
 class Node:
     """Will be each node on the screen - robot - obj etc...
@@ -16,13 +18,14 @@ class Node:
                  price=5,
                  colour="#555",
                  outline="#666",
-                 robot_colour = "#f27",
-                 seeker_colour = "#93FF46",
-                 sought_colour = "#F83BAA"
+
+                 robot_colour="#fff",
+                 sought_colour = "#F83BAA",
+                 seeker_colour = "#0Af2C4",
+                 item_colour = "#00A500",
                  ):
 
         # initialise the coordinates for the vertice
-
         # These are the matrix positions for Node
         self.mx = x1
         self.my = y1
@@ -49,9 +52,10 @@ class Node:
 
         # colours
 
-        self.colour = colour
+        self.colour        = colour
         self.sought_colour = sought_colour
         self.seeker_colour = seeker_colour
+        self.item_colour   = item_colour
 
         self.canvas = canvas
 
@@ -72,6 +76,12 @@ class Node:
         self.am_seeker = False
         self.am_sought = False
         self.am_item   = False
+
+        # TODO: there should be info about the data that's contained in the
+        # items here as well
+        self.item_data = dict()
+        self.item_data['items'] = dict()
+        self.item_data['value'] = dict()
 
     def display(self):
         """display the vertice on screen"""
@@ -109,14 +119,31 @@ class Node:
         s.add(down)
         return s
 
-
     def set_robot(self):
         """This needs to set the colour of a node to be the robot colour
         Maybe this should also take input to change the last one from being a
         robot
+
+        # TODO: Maybe the colours should be global? Or maybe they shouldn't be
+        # in the global file? I dunno what the point in having them in both it
+        # at the mo as it's only the ones from the robot that are really being
+        # used
         """
-        self.am_robot = True
+        self.am_robot  = True
+        self.am_sought = True
+        self.am_seeker = False
+        self.am_item = False
         self.set_colour(self.robot_colour)
+        self.display()
+
+    def set_item(self):
+        """
+        Set the node to be an item
+        """
+        self.am_item = True
+        self.set_colour(self.item_colour)
+        self.display()
+
 
     def set_seeker(self):
         """Change the node to represent a seeker node given the class variable setting
@@ -151,8 +178,11 @@ class Node:
         This will reset the node to an initial condition
         """
         self.colour = "#555"
+        # self.colour = "#000"
         self.set_colour(self.colour)
         self.am_seeker = False
+        self.am_sought = False
+        self.am_item = False
         self.am_robot = False
         self.display()
 
@@ -178,6 +208,7 @@ class Node:
         """
         Return a tuple with the coordinates to the up adjacent nodes
         """
+
         return (self.mx, self.my - 1)
 
     def node_down(self):
