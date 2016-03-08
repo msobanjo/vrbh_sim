@@ -134,7 +134,7 @@ class Info(Interface):
         self.root = root
         
     def infomationLabel(self):
-        self.labelInfo = Label(root,text="Type hytrn  yttyyttyytytytttytt \n y trhtrthtrtrhtr htr trh trh tr htr htr \n trtrh ttrhrh trtrtr trhtrh trtr trtrtrh tr \n hrttrh tr htrtrhtr h")
+        self.labelInfo = Label(root,text="Welcome to Virtual Robot Bargain Hunt \n \n The aim of this simulation is for you to find out within a certian amount of time \n how many items you can find. \n \n After you found all the items you are able to you will be given the option \n of how you want to sort your items. ")
         self.labelInfo.configure(background='white')
         self.labelInfo.pack()
    
