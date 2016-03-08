@@ -2,6 +2,9 @@ import sys
 from Tkinter import *
 import ttk
 import tkFont as font
+import math
+import random
+import time
 
 
 
@@ -42,6 +45,9 @@ class Interface():
 
     def okButton(self):
         ''' prints the values the user has choosen '''
+        
+        self.root.destroy()
+        import searchAround
         self.value_of_comboType = self.comboType.get()
         self.value_of_comboTime = self.comboTime.get()
         self.value_of_comboSearching = self.comboSearching.get()
@@ -50,7 +56,8 @@ class Interface():
                 "searching":self.value_of_comboSearching,
                 "sorting":self.value_of_comboSorting,
                 "colour":Interface.value
-                } 
+                }
+        
         if self.value_of_comboType =="":
             print("Fill out all of the fields")
         elif self.value_of_comboTime =="":
@@ -179,6 +186,7 @@ root = Tk()
 gui = Info(root)
 
 root.configure(background='white')
+
 font.nametofont('TkDefaultFont').configure(size=15)
 canvas = Canvas(root, width=100, height=450,highlightthickness=0)
 rectangleColour=canvas.create_rectangle(3,110,3+100,110+100,fill=Interface.value)
