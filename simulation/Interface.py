@@ -5,7 +5,7 @@ import tkFont as font
 import math
 import random
 import time
-
+import Node
 
 
 class Interface():
@@ -45,9 +45,6 @@ class Interface():
 
     def okButton(self):
         ''' prints the values the user has choosen '''
-        
-        self.root.destroy()
-        import searchAround
         self.value_of_comboType = self.comboType.get()
         self.value_of_comboTime = self.comboTime.get()
         self.value_of_comboSearching = self.comboSearching.get()
@@ -57,7 +54,6 @@ class Interface():
                 "sorting":self.value_of_comboSorting,
                 "colour":Interface.value
                 }
-        
         if self.value_of_comboType =="":
             print("Fill out all of the fields")
         elif self.value_of_comboTime =="":
@@ -66,6 +62,11 @@ class Interface():
             print("Fill out all of the fields")
         else:
             print(dic["type"],dic["time"],dic["searching"],dic["sorting"],dic["colour"])
+            self.root.destroy()
+            import searchAround
+        
+        
+        
     
 
     def comboboxs(self):
@@ -162,7 +163,7 @@ class Info(Interface):
          gui.slider()
          canvas.pack(padx=10,pady=240)     
     def files(self):
-        f = open('C:\Users\OWNER\ALL.git\dont show me.txt', 'r+')
+        f = open('H:\ALL semester 2\dont show me.txt', 'r+')
         f.write("true")
         f.close
         
@@ -193,7 +194,7 @@ rectangleColour=canvas.create_rectangle(3,110,3+100,110+100,fill=Interface.value
 canvas.configure(background='white')
 
 root.geometry('750x750')
-f = open('C:\Users\OWNER\ALL.git\dont show me.txt', 'r+')
+f = open('H:\ALL semester 2\dont show me.txt', 'r+')
     
 if f.read() == "true":
     gui.close2()

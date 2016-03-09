@@ -19,7 +19,7 @@ class Node:
                  colour="#555",
                  outline="#666",
 
-                 robot_colour="#fff",
+                 robot_colour="Blue",
                  sought_colour = "#F83BAA",
                  seeker_colour = "#0Af2C4",
                  item_colour = "#00A500",
