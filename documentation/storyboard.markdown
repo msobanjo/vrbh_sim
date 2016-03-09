@@ -68,4 +68,6 @@ order to reach the item.
 
 <img src= "https://raw.githubusercontent.com/geo7/vrbh_sim/develop/documentation/imgs/storyboard-imgs/robo-found-item.png" data-canonical-src= "https://raw.githubusercontent.com/geo7/vrbh_sim/develop/documentation/imgs/storyboard-imgs/robo-found-item.png" width="400" height="400" />
 
+#Sorting
 
+<img src= http://i.imgur.com/wH2U1S5.jpg alt="interface" width="500" height="450">
