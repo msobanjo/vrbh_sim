@@ -72,6 +72,8 @@ order to reach the item.
 
 This is the sorting screen it displays the items that the robot has been able to 
 find sorting them in the way the user has chosen. We have used a button in the
-bottom right of the form to help the user navigate back to the main menu.
+bottom right of the form to help the user navigate back to the main menu. We have
+used labels to display the items as it gives of a very simplsitic and clean 
+look while aslo informing the user of all of the information they need.
 
 <img src= http://i.imgur.com/wH2U1S5.jpg alt="interface" width="500" height="450">
