@@ -76,7 +76,7 @@ class Interface():
           self.comboType.place(x=190,y=90)
           #Place holder values atm
           self.comboType.config(values = ("a","b","c"))
-          #self.text.get()
+          
 
           self.textTime = StringVar()
           self.comboTime = ttk.Combobox(self.root, textvariable = self.textTime)
@@ -110,11 +110,7 @@ class Interface():
        
         self.sliderColour.place(x=270,y=500)
         self.sliderColour.configure(background='white')
-    def done(self):
-        ''' close the main page and opens up a new one'''
-        #root.destroy()
-        #root2 = Tk()
-        #root2.geometry('450x450+200+200') 
+    
 
     def print_value(self,value):
         '''sets the value of the colours on the slider ''' 
@@ -144,7 +140,7 @@ class Info(Interface):
         self.buttonOk = Button(self.root,text="Ok",command = self.close)
         self.buttonOk.place(x=650,y=600)
 
-    def showMeAgainButton(self):
+    def dontShowMeAgainButton(self):
         self.buttonShowAgain = Button(self.root,text="Don't show me again",command = self.files)
         self.buttonShowAgain.place(x=50 , y=600)
     def close(self):
@@ -163,10 +159,9 @@ class Info(Interface):
          gui.slider()
          canvas.pack(padx=10,pady=240)     
     def files(self):
-        f = open('H:\ALL semester 2\dont show me.txt', 'r+')
+        f = open('C:\Users\OWNER\ALL.git\dont show me.txt', 'r+')
         f.write("true")
         f.close
-        
         self.close()
          
    
@@ -194,13 +189,13 @@ rectangleColour=canvas.create_rectangle(3,110,3+100,110+100,fill=Interface.value
 canvas.configure(background='white')
 
 root.geometry('750x750')
-f = open('H:\ALL semester 2\dont show me.txt', 'r+')
+f = open('C:\Users\OWNER\ALL.git\dont show me.txt', 'r+')
     
 if f.read() == "true":
     gui.close2()
 else:
     gui.okButton1()
-    gui.showMeAgainButton()
+    gui.dontShowMeAgainButton()
     gui.infomationLabel()    
         
 f.close    
