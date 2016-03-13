@@ -1,0 +1,2 @@
+# don't think these object files are really needed between systems
+*.pyc
